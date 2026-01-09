@@ -9,3 +9,7 @@ Se kurswebben för specifikation och kravlista.
 - [ ] Öppna filen `vite.config.js` och byt ut `base`-värdet mot ditt repos adress.
 - [ ] Gå in på Settings-fliken i ditt repo och aktivera GitHub Pages. Välj "GitHub Actions" som alternativ.
 - [ ] Se till att adressen till din GitHub Pages finns på repots startsida (via kugghjulet).
+
+Om "Pages"-actionet misslyckas första gången så borde det gå igenom efter att du gör en ny push. Alternativt kan du gå in på "Actions"-fliken och välja "Re-run failed jobs" efter att du har aktiverat GitHub Pages.
+
+Om din CSS/bilder inte syns så har du förmodligen inte ändrat/skrivit fel adress i `vite.config.js`-filen.
