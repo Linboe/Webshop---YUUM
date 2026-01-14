@@ -112,15 +112,52 @@ const products = [
 ];
 
 let filteredProducts = Array.from(products);
+const productListing = document.querySelector('#products');
 
-// -------------- FILTRERA BUTTONS -- ----------------
-// ----------------- anv.event -----------------------
+//--------------------------------------------------
+// -------------- FILTER BUTTONS -- ----------------
+//--------------------------------------------------
+
 const donutsFilterBtn = document.querySelector('#donutsFilterBtn');
+const icecreamFilterBtn = document.querySelector('#icecreamFilterBtn');
+const milkshakeFilterBtn = document.querySelector('#milkshakeFilterBtn');
 
-donutsFilterBtn.addEventListener('click', filterProductListByDonutCategory);
+donutsFilterBtn.addEventListener('click', filterProductsListByDonutCategory);
+icecreamFilterBtn.addEventListener(
+  'click',
+  filterProductsListByIcecreamCategory
+);
+milkshakeFilterBtn.addEventListener(
+  'click',
+  filterProductsListByMilkshakeCategory
+);
 
-function filterProductListByDonutCategory() {
-  const result = products.filter((product) => product.category === 'donut');
+function showAllProducts() {
+  filteredProducts = Array.from(products);
+  printProducts();
+}
+
+function filterProductsListByDonutCategory() {
+  filteredProducts = products.filter((product) => product.category === 'donut');
+  printProducts();
+}
+
+function filterProductsListByIcecreamCategory() {
+  filteredProducts = products.filter(
+    (product) => product.category === 'icecream'
+  );
+  printProducts();
+}
+
+function filterProductsListByMilkshakeCategory() {
+  filteredProducts = products.filter(
+    (product) => product.category === 'milkshake'
+  );
+  printProducts();
+}
+
+function printProducts() {
+  productListing.innerHTML = '';
 
   for (let i = 0; i < filteredProducts.length; i++) {
     const currentProduct = filteredProducts[i];
@@ -140,12 +177,7 @@ function filterProductListByDonutCategory() {
   }
 }
 
-// ----------- FÅ UT INFO OM PRODUKTER -------------
-// ---------------- anv. for-loop -------------------
-// upprepar samma kod flera gånger för varje produkt i min array
-
-// i++ <--- betyd. ökar räknaren (i) med 1 varv => loopen slutar (annars oändlig)
-const productListing = document.querySelector('#products');
+printProducts();
 
 // ----------- JUSTERA ANTALET PRODUKTER -------------
 // ----------------- anv.event -----------------------
