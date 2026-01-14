@@ -121,6 +121,7 @@ const productListing = document.querySelector('#products');
 const donutsFilterBtn = document.querySelector('#donutsFilterBtn');
 const icecreamFilterBtn = document.querySelector('#icecreamFilterBtn');
 const milkshakeFilterBtn = document.querySelector('#milkshakeFilterBtn');
+const allproductsFilterBtn = document.querySelector('#allproductsFilterBtn');
 
 donutsFilterBtn.addEventListener('click', filterProductsListByDonutCategory);
 icecreamFilterBtn.addEventListener(
@@ -131,8 +132,9 @@ milkshakeFilterBtn.addEventListener(
   'click',
   filterProductsListByMilkshakeCategory
 );
+allproductsFilterBtn.addEventListener('click', allProducts);
 
-function showAllProducts() {
+function allProducts() {
   filteredProducts = Array.from(products);
   printProducts();
 }
