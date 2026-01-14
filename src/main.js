@@ -111,25 +111,44 @@ const products = [
   },
 ];
 
-// -------------------- LOOP -----------------------
-// ----------- få ut info om produkter -------------
+let filteredProducts = Array.from(products);
 
-const productListing = document.querySelector('#products');
+// -------------- FILTRERA BUTTONS -- ----------------
+// ----------------- anv.event -----------------------
+const donutsFilterBtn = document.querySelector('#donutsFilterBtn');
 
-for (let i = 0; i < products.length; i++) {
-  console.log(products[i]);
+donutsFilterBtn.addEventListener('click', filterProductListByDonutCategory);
 
-  const currentProduct = products[i];
+function filterProductListByDonutCategory() {
+  const result = products.filter((product) => product.category === 'donut');
 
-  productListing.innerHTML += currentProduct.name + '<br>';
-  productListing.innerHTML += currentProduct.price + '<br>';
-  productListing.innerHTML += currentProduct.rating + '<br>';
-  productListing.innerHTML += currentProduct.images + '<br>';
-  productListing.innerHTML += currentProduct.category + '<br>';
+  for (let i = 0; i < filteredProducts.length; i++) {
+    const currentProduct = filteredProducts[i];
+
+    const html = `
+    <article>
+      <h2>${currentProduct.name}</h2>
+      <div class="metadata">
+        <p>Pris: ${currentProduct.price} kr</p>
+        <p>Rating: ${currentProduct.rating}/5</p>
+      </div>
+      <p>${currentProduct.category}</p>
+    </article>
+  `;
+
+    productListing.innerHTML += html;
+  }
 }
 
-// -------------------- EVENT ------------------------
-// ----------- justera antalet produkter -------------
+// ----------- FÅ UT INFO OM PRODUKTER -------------
+// ---------------- anv. for-loop -------------------
+// upprepar samma kod flera gånger för varje produkt i min array
+
+// i++ <--- betyd. ökar räknaren (i) med 1 varv => loopen slutar (annars oändlig)
+const productListing = document.querySelector('#products');
+
+// ----------- JUSTERA ANTALET PRODUKTER -------------
+// ----------------- anv.event -----------------------
 
 const minus = document.querySelector('#subtract');
 const plus = document.querySelector('#addera');
