@@ -1,10 +1,30 @@
 body {
-  background-color: rgb(236, 235, 229);
+  background-color: rgb(235, 234, 250);
+}
+
+header {
+  background-color: white;
+  margin-block: 20px;
+}
+
+h1 {
+  color: rgb(51, 47, 109);
+}
+
+h2 {
+  color: rgb(255, 255, 255);
+}
+
+article p {
+  color: rgb(235, 234, 250);
 }
 
 .productlist article {
   border: 1px solid #000000;
   padding: 6px;
+  background-color: rgb(51, 47, 109);
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 
 .productlist .metadata {
@@ -19,8 +39,6 @@ button {
 
 @media screen and (min-width: 720px) {
   header {
-    background-color: white;
-    margin-block: 20px;
     padding-inline: 40px;
   }
 
