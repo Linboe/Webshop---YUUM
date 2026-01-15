@@ -3,10 +3,12 @@ body {
 }
 
 .productlist article {
-  border: 1px solid black;
+  border: 1px solid #000000;
+  padding: 6px;
 }
 
 .productlist .metadata {
   display: flex;
   justify-content: space-between;
+  padding: 6px;
 }

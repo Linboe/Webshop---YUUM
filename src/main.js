@@ -21,11 +21,15 @@ import './style.css';
  * PRODUKTINFO
  * x  10 produkter (produktnamn, pris, rating, kategori, adress till bild)
  * x  sortera produkter med tillhörande info - anv. ARRAY, OBJECT
+ * x  skriva ut produkter + info html i js
  * x  visa produkt och info i webläsaren - anv. LOOP
  *
  * KATEGORIER
- *    skapa 3 kategorier
- *    filtrerna produkter på kategorier (se inspelning 14/1)
+ * x  skapa 3 kategorier
+ * x  filtrerna produkter på kategorier (se inspelning 14/1)
+ *
+ * SORTERING
+ *    sortera produkter efter pris (nr), rating (nr), namn (string)
  *
  * JUSTERA ANTAL PRODUKTER
  *    justera antal produkter, plus minus  - anv. EVENT
@@ -109,7 +113,7 @@ const products = [
     rating: 5,
     category: 'milkshake',
   },
-];
+]; //--- !! --- wait...vrf har behövdes detta tomma object? --- !! ---
 
 let filteredProducts = Array.from(products);
 const productListing = document.querySelector('#products');
@@ -123,6 +127,8 @@ const icecreamFilterBtn = document.querySelector('#icecreamFilterBtn');
 const milkshakeFilterBtn = document.querySelector('#milkshakeFilterBtn');
 const allproductsFilterBtn = document.querySelector('#allproductsFilterBtn');
 
+//------ lägg till click - EVENT på knapparna ------
+
 donutsFilterBtn.addEventListener('click', filterProductsListByDonutCategory);
 icecreamFilterBtn.addEventListener(
   'click',
@@ -133,6 +139,8 @@ milkshakeFilterBtn.addEventListener(
   filterProductsListByMilkshakeCategory
 );
 allproductsFilterBtn.addEventListener('click', allProducts);
+
+//------- FILTRERING av produkter i kategori -------
 
 function allProducts() {
   filteredProducts = Array.from(products);
@@ -158,10 +166,14 @@ function filterProductsListByMilkshakeCategory() {
   printProducts();
 }
 
+//------ skriver ut produkterna. anv. FOR-LOOP ------
+//HTML (först loopa de igenom produkterna MEN efter filtrering/kategori ändrade till filterdProducts) ------
+
 function printProducts() {
   productListing.innerHTML = '';
 
   for (let i = 0; i < filteredProducts.length; i++) {
+    //filteredProducts.lengt --> se let array i toppen. for --> startar loop, let i=0 --> räknare som heter i, i < filteredProducts.length --> villkoret: loop körs så länge i < antalet element i arrayen (filteredProducts.length = antal produkter i array). När i EJ < length --> loop stannar, i++ --> i ökas med 1, gå vidare till nästa varv till alla produkter gåtts igenom
     const currentProduct = filteredProducts[i];
 
     const html = `
@@ -171,13 +183,15 @@ function printProducts() {
         <p>Pris: ${currentProduct.price} kr</p>
         <p>Rating: ${currentProduct.rating}/5</p>
       </div>
-      <p>${currentProduct.category}</p>
+        <p class="metadata">${currentProduct.category}</p>
     </article>
   `;
 
     productListing.innerHTML += html;
   }
 }
+
+// i HTML, skriv ut kr och /5 i rating här pga annars påverkar det hur jag behöver skriva funktionerna i t.ex. sortering (t.ex. ist nr för kr till string)
 
 printProducts();
 
