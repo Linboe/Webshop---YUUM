@@ -12,3 +12,15 @@ body {
   justify-content: space-between;
   padding: 6px;
 }
+
+@media screen and (min-width: 720px) {
+  .productlist {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .productlist article {
+    width: 30%;
+  }
+}

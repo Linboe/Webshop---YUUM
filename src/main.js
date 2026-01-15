@@ -53,7 +53,7 @@ const products = [
   {
     name: 'Chocolate',
     images: 'img.jpg',
-    price: 20,
+    price: 60,
     rating: 4,
     category: 'donut',
   },
@@ -149,7 +149,27 @@ allproductsFilterBtn.addEventListener('click', allProducts);
 // -------------- SORTERA BUTTONS ------------------
 //--------------------------------------------------
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
+const sortByPriceBtn = document.querySelector('#sortByPriceBtn');
+const sortByRatingBtn = document.querySelector('#sortByRatingBtn');
+
 sortByNameBtn.addEventListener('click', sortByName);
+sortByPriceBtn.addEventListener('click', sortByPrice);
+sortByRatingBtn.addEventListener('click', sortByRating);
+
+function sortByRating() {
+  filteredProducts.sort(
+    (product1, product2) => product1.rating < product2.rating
+  );
+  printProducts();
+}
+
+function sortByPrice() {
+  filteredProducts.sort(
+    (product1, product2) => product1.price > product2.price
+  );
+
+  printProducts();
+}
 
 function sortByName() {
   filteredProducts.sort((product1, product2) => {
@@ -212,7 +232,7 @@ function printProducts() {
         <p>Pris: ${currentProduct.price} kr</p>
         <p>Rating: ${currentProduct.rating}/5</p>
       </div>
-        <p class="metadata">${currentProduct.category}</p>
+        <p>${currentProduct.category}</p>
     </article>
   `;
 
