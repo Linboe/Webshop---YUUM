@@ -17,7 +17,7 @@ import './style.css';
  * Datum
  */
 
-/** PSEUDOKOD
+/** PSEUDOKOD TO DO
  * PRODUKTINFO
  * x  10 produkter (produktnamn, pris, rating, kategori, adress till bild)
  * x  sortera produkter med tillhörande info - anv. ARRAY, OBJECT
@@ -29,14 +29,14 @@ import './style.css';
  * x  filtrerna produkter på kategorier (se inspelning 14/1)
  *
  * SORTERING
- *    sortera produkter efter pris (nr), rating (nr), namn (string)
+ * x  sortera produkter efter pris (nr), rating (nr), namn (string)
  *
  * JUSTERA ANTAL PRODUKTER
  *    justera antal produkter, plus minus  - anv. EVENT
  *    visa priset - totalsumman vid justering
  *
  * RATING
- *    visa rating under produkt
+ *    visa rating under produkt med ikoner
  *
  * VARUKROG
  *    lägga in produkter (antal) i varukrog
@@ -146,7 +146,33 @@ milkshakeFilterBtn.addEventListener(
 );
 allproductsFilterBtn.addEventListener('click', allProducts);
 
-// -------------- SORTERA BUTTONS ------------------
+//------- FILTRERING av produkter i kategori -------
+
+function allProducts() {
+  filteredProducts = Array.from(products);
+  printProducts();
+}
+
+function filterProductsListByDonutCategory() {
+  filteredProducts = products.filter((product) => product.category === 'donut');
+  printProducts();
+}
+
+function filterProductsListByIcecreamCategory() {
+  filteredProducts = products.filter(
+    (product) => product.category === 'icecream'
+  );
+  printProducts();
+}
+
+function filterProductsListByMilkshakeCategory() {
+  filteredProducts = products.filter(
+    (product) => product.category === 'milkshake'
+  );
+  printProducts();
+}
+
+// ---------------- SORT BUTTONS -------------------
 //--------------------------------------------------
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
 const sortByPriceBtn = document.querySelector('#sortByPriceBtn');
@@ -185,32 +211,6 @@ function sortByName() {
     return 0;
   });
 
-  printProducts();
-}
-
-//------- FILTRERING av produkter i kategori -------
-
-function allProducts() {
-  filteredProducts = Array.from(products);
-  printProducts();
-}
-
-function filterProductsListByDonutCategory() {
-  filteredProducts = products.filter((product) => product.category === 'donut');
-  printProducts();
-}
-
-function filterProductsListByIcecreamCategory() {
-  filteredProducts = products.filter(
-    (product) => product.category === 'icecream'
-  );
-  printProducts();
-}
-
-function filterProductsListByMilkshakeCategory() {
-  filteredProducts = products.filter(
-    (product) => product.category === 'milkshake'
-  );
   printProducts();
 }
 
