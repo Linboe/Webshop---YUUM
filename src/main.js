@@ -17,12 +17,12 @@ import './style.css';
  * Datum
  */
 
-/**
+/** PSEUDOKOD
  * PRODUKTINFO
  * x  10 produkter (produktnamn, pris, rating, kategori, adress till bild)
  * x  sortera produkter med tillhörande info - anv. ARRAY, OBJECT
  * x  skriva ut produkter + info html i js
- * x  visa produkt och info i webläsaren - anv. LOOP
+ * x  visa produkt och info i webläsaren - anv. FOR-LOOP
  *
  * KATEGORIER
  * x  skapa 3 kategorier
@@ -37,6 +37,13 @@ import './style.css';
  *
  * RATING
  *    visa rating under produkt
+ *
+ * VARUKROG
+ *    lägga in produkter (antal) i varukrog
+ *    visa rätt pris/summa
+ *    i varukorg - justera antal produkter
+ *      priset anpassas
+ *    ikon papperskord om jag vill ta bort en hel produkt alt. tömma allt
  */
 
 // ------------------ ARRAY-OBJECT --------------------
@@ -72,14 +79,14 @@ const products = [
     category: 'icecream',
   },
   {
-    name: 'Breezy melon',
+    name: 'Breezy Melon',
     images: 'img.jpg',
     price: 38,
     rating: 3,
     category: 'icecream',
   },
   {
-    name: 'Salty liquorice',
+    name: 'Salty Liquorice',
     images: 'img.jpg',
     price: 46,
     rating: 4,
@@ -113,13 +120,12 @@ const products = [
     rating: 5,
     category: 'milkshake',
   },
-]; //--- !! --- wait...vrf har behövdes detta tomma object? --- !! ---
+];
 
-let filteredProducts = Array.from(products);
+let filteredProducts = Array.from(products); //kopia av arrayen ovan. let --> kan ändras vilket behövs vid filtrering
 const productListing = document.querySelector('#products');
 
-//--------------------------------------------------
-// -------------- FILTER BUTTONS -- ----------------
+// -------------- FILTER BUTTONS -------------------
 //--------------------------------------------------
 
 const donutsFilterBtn = document.querySelector('#donutsFilterBtn');
@@ -127,7 +133,7 @@ const icecreamFilterBtn = document.querySelector('#icecreamFilterBtn');
 const milkshakeFilterBtn = document.querySelector('#milkshakeFilterBtn');
 const allproductsFilterBtn = document.querySelector('#allproductsFilterBtn');
 
-//------ lägg till click - EVENT på knapparna ------
+//------- lägg till click - EVENT på filterBtn -------
 
 donutsFilterBtn.addEventListener('click', filterProductsListByDonutCategory);
 icecreamFilterBtn.addEventListener(
@@ -139,6 +145,28 @@ milkshakeFilterBtn.addEventListener(
   filterProductsListByMilkshakeCategory
 );
 allproductsFilterBtn.addEventListener('click', allProducts);
+
+// -------------- SORTERA BUTTONS ------------------
+//--------------------------------------------------
+const sortByNameBtn = document.querySelector('#sortByNameBtn');
+sortByNameBtn.addEventListener('click', sortByName);
+
+function sortByName() {
+  filteredProducts.sort((product1, product2) => {
+    const product1Name = product1.name.toUpperCase();
+    const product2Name = product2.name.toUpperCase();
+    if (product1Name < product2Name) {
+      return -1;
+    }
+    if (product1Name > product2Name) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  printProducts();
+}
 
 //------- FILTRERING av produkter i kategori -------
 
@@ -167,10 +195,11 @@ function filterProductsListByMilkshakeCategory() {
 }
 
 //------ skriver ut produkterna. anv. FOR-LOOP ------
+//For-loop anv när vet hur mång ggr koden ska köras. loopar igenom en array med index. Index anv vid fler aarrayer, för att hämta rätt element/ändra/ta bort specifikt element t.ex. visa produkt 1, 2 samt veta ordning
 //HTML (först loopa de igenom produkterna MEN efter filtrering/kategori ändrade till filterdProducts) ------
 
 function printProducts() {
-  productListing.innerHTML = '';
+  productListing.innerHTML = ''; //detta för att inte allt ska läggas till utan endast det filtrerade
 
   for (let i = 0; i < filteredProducts.length; i++) {
     //filteredProducts.lengt --> se let array i toppen. for --> startar loop, let i=0 --> räknare som heter i, i < filteredProducts.length --> villkoret: loop körs så länge i < antalet element i arrayen (filteredProducts.length = antal produkter i array). När i EJ < length --> loop stannar, i++ --> i ökas med 1, gå vidare till nästa varv till alla produkter gåtts igenom
