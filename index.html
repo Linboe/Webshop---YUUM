@@ -13,6 +13,10 @@
 </head>
 
 <body>
+  <!--************************************************************************-->
+  <!--***************************** HEADER ***********************************-->
+  <!--************************************************************************-->
+
   <header>
     <div class="container">
       <h1>Gottfrids munkfabrik</h1>
@@ -23,7 +27,14 @@
     </div>
   </header>
 
+  <!--************************************************************************-->
+  <!--****************************** MAIN ************************************-->
+  <!--************************************************************************-->
   <main>
+    <!------------- produktlista -------------->
+
+    <section class="productlist" id="products"></section>
+
     <!-------------- filtrering --------------->
 
     <div class="container">
@@ -44,17 +55,13 @@
       </div>
     </div>
 
-    <!------------- produktlista -------------->
-
-    <section class="productlist" id="products"></section>
-
     <!-------- välja antal produkter --------->
     <button id="subtract">-</button>
     <input type="number" value="0" id="currentCount">
     <button id="addera">+</button>
 
     <!------- formulär för kunduppgifter ------->
-    <h2 class="h2-kontakt" id="Kontakt">Kontaktformulär</h2>
+    <h2 class="h2-kontakt" id="contact">Kontaktformulär</h2>
     <form>
       <fieldset>
         <label>
@@ -124,6 +131,9 @@ Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. D
 
   </main>
 
+  <!--************************************************************************-->
+  <!--***************************** FOOTER ***********************************-->
+  <!--************************************************************************-->
   <footer>
     footer
   </footer>
