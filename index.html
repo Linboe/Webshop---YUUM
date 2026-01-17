@@ -53,6 +53,75 @@
     <input type="number" value="0" id="currentCount">
     <button id="addera">+</button>
 
+    <!------- formulär för kunduppgifter ------->
+    <h2 class="h2-kontakt" id="Kontakt">Kontaktformulär</h2>
+    <form>
+      <fieldset>
+        <label>
+          <input type="text" name="namn" required>
+          <span>Förnamn</span>
+        </label>
+
+        <label>
+          <input type="text" name="efternamn" required>
+          <span>Efternamn</span>
+        </label>
+
+        <label>
+          <input type="text" name="adress" required>
+          <span>Adress (gata)</span>
+        </label>
+
+        <label>
+          <input type="number" name="postnummer" required>
+          <span>Postnummer</span>
+        </label>
+
+        <label>
+          <input type="text" name="postort" required>
+          <span>Efternamn</span>
+        </label>
+
+        <label>
+          <input type="text" name="portkod">
+          <span>Ev.portkod</span>
+        </label>
+
+        <label>
+          <input type="number" name="telefon">
+          <span>Telefon (mobil)</span>
+        </label>
+
+        <label>
+          <input type="email" name="e-post" required>
+          <span>E-postadress</span>
+        </label>
+
+        <label>
+          <span>val för bestalsätt: kort eller faktura</span>
+
+          <!--Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
+Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. Dessa behöver inte valideras!-->
+        </label>
+
+        <label>
+          <input type="checkbox" name="acceptera-behandling-av-personuppgifter">
+          <span>Godkännande av behandling av personuppgifter</span>
+
+          <input type="checkbox" name="acceptera-mottagande-av-nyhetsbrev">
+          <span>Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
+        </label>
+
+        <!--Samtliga formulärfält ska valideras och formuläret/beställningen ska inte gå att skicka om det finns några fel
+  - Felen ska markeras och kommuniceras tydligt (t.ex. ej enbart med röd färg, tag i beaktande a11y)
+  - När formuläret är korrekt ifyllt ska Skicka-/Beställ-knappen aktiveras, innan det är den utgråad
+  - Det ska finnas en "Rensa beställning"-knapp som återställer samtliga formulärfält liksom eventuella beställda munkar/produkter (alltså antalet återställs till 0)
+  - Det ska finnas ett fält för att mata in en rabattkod.-->
+
+        <button>Skicka</button>
+      </fieldset>
+    </form>
+
   </main>
 
   <footer>

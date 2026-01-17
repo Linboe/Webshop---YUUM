@@ -23,6 +23,7 @@ import './style.css';
  * x  sortera produkter med tillhörande info - anv. ARRAY, OBJECT
  * x  skriva ut produkter + info html i js
  * x  visa produkt och info i webläsaren - anv. FOR-LOOP
+ *    varje produkt ska ha (minst) två bilder - som det går att växla mellan
  *
  * KATEGORIER
  * x  skapa 3 kategorier
@@ -44,6 +45,18 @@ import './style.css';
  *    i varukorg - justera antal produkter
  *      priset anpassas
  *    ikon papperskord om jag vill ta bort en hel produkt alt. tömma allt
+ *    varukorgssammanfattning som visar endast de munkar som har beställts (skild från beställningsformuläret)
+ *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
+ *    visuell feedback när varukorgens totalsumma uppdateras t.ex. färg-skiftning
+ *
+ *    SPECIALREGLER
+ *    mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
+ *    fre - se uppgiftsbeskrivning
+ *    > 800 kr - se uppgiftsbeskrivning
+ *    >= 10 munkar/produkter - se uppgiftsbeskrivning
+ *    >= 15 munkar/produkter - se uppgiftsbeskrivning
+ *    om ej beställning inom 15 min ska beställningsforumläret tömmas/rensas och kunden ska meddelas att för långsamt - anv. timer?
+ *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
 // ------------------ ARRAY-OBJECT --------------------
