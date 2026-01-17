@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FED25D | Inlämningsuppgift 1</title>
 
-  <link rel="stylesheet">
-
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -21,8 +21,20 @@
     <div class="container">
       <h1>Gottfrids munkfabrik</h1>
       <div>
-        <button aria-label="button open shopping-chart">Varukorg</button>
-        <button aria-label="button open navigation menu" class="menu-btn">Meny</button>
+        <button aria-label="button-open-shopping-cart" class="material-symbols-outlined">
+          shopping_cart
+        </button>
+
+        <button aria-label="button-open-navigation-menu" class="material-symbols-outlined">
+          menu
+        </button>
+
+        <nav>
+          <ul>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   </header>
@@ -31,10 +43,6 @@
   <!--****************************** MAIN ************************************-->
   <!--************************************************************************-->
   <main>
-    <!------------- produktlista -------------->
-
-    <section class="productlist" id="products"></section>
-
     <!-------------- filtrering --------------->
 
     <div class="container">
@@ -54,6 +62,10 @@
         <button id="sortByRatingBtn">Högst betyg</button>
       </div>
     </div>
+
+    <!------------- produktlista -------------->
+
+    <section class="productlist" id="products"></section>
 
     <!-------- välja antal produkter --------->
     <button id="subtract">-</button>
