@@ -108,7 +108,7 @@ h2 {
   display: block;
   top: 0;
   left: 0;
-  background: white;
+  background: rgb(153, 150, 196);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,8 +126,11 @@ h2 {
 }
 
 .filterNav.open {
-  background: #b35e5e;
   display: block;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 li a {
@@ -187,6 +190,11 @@ label {
 footer {
   margin-top: 20px;
   padding-block: 20px;
+  display: block;
+}
+
+footer a {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 720px) {
@@ -209,6 +217,12 @@ footer {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 }

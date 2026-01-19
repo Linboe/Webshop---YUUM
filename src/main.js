@@ -84,14 +84,9 @@ const filterBtn = document.querySelector('#filterBtn');
 const filterNav = document.querySelector('#filterNav');
 
 filterBtn.addEventListener('click', filterOptions);
-filterNav.addEventListener('click', closeFilterNav);
 
 function filterOptions() {
   filterNav.classList.toggle('open');
-}
-
-function closeFilterNav() {
-  filterNav.classList.remove('open');
 }
 
 // ------------------ ARRAY-OBJECT --------------------
