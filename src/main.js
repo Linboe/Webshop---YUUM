@@ -59,7 +59,7 @@ import './style.css';
  *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
-// --------------- NAV: TOGGLE-MENU -----------------
+// ------------- mainNav: TOGGLE-MENU ---------------
 // ---------------- open and close ------------------
 const menuButton = document.querySelector('#menuBtn');
 const mainMenu = document.querySelector('#mainNav');
@@ -77,6 +77,21 @@ function toggleMenu() {
 
 function closeToggleMenu() {
   mainMenu.classList.remove('open');
+}
+
+// ------------------ FilternNav ---------------------
+const filterBtn = document.querySelector('#filterBtn');
+const filterNav = document.querySelector('#filterNav');
+
+filterBtn.addEventListener('click', filterOptions);
+filterNav.addEventListener('click', closeFilterNav);
+
+function filterOptions() {
+  filterNav.classList.toggle('open');
+}
+
+function closeFilterNav() {
+  filterNav.classList.remove('open');
 }
 
 // ------------------ ARRAY-OBJECT --------------------

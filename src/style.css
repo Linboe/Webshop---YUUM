@@ -99,11 +99,11 @@ h2 {
 
 /*--------- NAV: TOGGLE-MENU ---------*/
 
-nav {
+.mainNav {
   display: none;
 }
 
-nav.open {
+.mainNav.open {
   position: fixed;
   display: block;
   top: 0;
@@ -117,8 +117,17 @@ nav.open {
   z-index: 10000;
 }
 
-nav ul {
+.mainNav ul {
   list-style: none;
+}
+
+.filterNav {
+  display: none;
+}
+
+.filterNav.open {
+  background: #b35e5e;
+  display: block;
 }
 
 li a {
@@ -172,6 +181,12 @@ fieldset {
 label {
   display: block;
   margin: 6px;
+}
+
+/*--------- FOOTER ---------*/
+footer {
+  margin-top: 20px;
+  padding-block: 20px;
 }
 
 @media screen and (min-width: 720px) {

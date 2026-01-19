@@ -40,11 +40,13 @@
           shopping_cart
         </button>
 
+        <span>totalsumma</span>
+
         <button aria-label="button-open-navigation-menu" class="material-symbols-outlined" id="menuBtn">
           menu
         </button>
 
-        <nav id="mainNav">
+        <nav class="mainNav" id="mainNav">
           <ul>
             <li><a href="#products">Products</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -62,13 +64,16 @@
 
     <div class="container">
       <div>
-        <span class="material-symbols-outlined">
+        <button class="material-symbols-outlined" id="filterBtn">
           filter_alt
-        </span>
-        <button aria-label="filter-show-donuts" id="donutsFilterBtn">Donuts</button>
-        <button aria-label="filter-show-icecream" id="icecreamFilterBtn">Icecream</button>
-        <button aria-label="filter-show-milkshake" id="milkshakeFilterBtn">Milkshake</button>
-        <button aria-label="filter-show-all" id="allproductsFilterBtn">All</button>
+        </button>
+
+        <nav class="filterNav" id="filterNav">
+          <button aria-label="filter-show-donuts" id="donutsFilterBtn">Donuts</button>
+          <button aria-label="filter-show-icecream" id="icecreamFilterBtn">Icecream</button>
+          <button aria-label="filter-show-milkshake" id="milkshakeFilterBtn">Milkshake</button>
+          <button aria-label="filter-show-all" id="allproductsFilterBtn">All</button>
+        </nav>
       </div>
 
       <!--------------- sortering --------------->
@@ -163,7 +168,7 @@ Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. D
   <!--***************************** FOOTER ***********************************-->
   <!--************************************************************************-->
   <footer>
-    footer
+    instagram / facebook / email / telefon
   </footer>
   <script type="module" src="/src/main.js"></script>
 </body>
