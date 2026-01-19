@@ -166,7 +166,7 @@ button {
   gap: 10px;
 }
 
-/*--------- CONTACT ---------*/
+/*-------- FORM-CONTACT -------*/
 .h2-kontakt {
   color: rgb(51, 47, 109);
   background-color: white;
@@ -174,22 +174,57 @@ button {
   padding-block: 8px;
 }
 
-fieldset {
-  border: none;
+form {
+  justify-content: center;
   background-color: rgb(153, 150, 196);
   border-radius: 8px;
   margin-bottom: 20px;
+  padding-top: 40px;
+  padding-left: 10px;
+}
+
+fieldset {
+  border: none;
 }
 
 label {
   display: block;
-  margin: 6px;
+  margin-bottom: 10px;
+}
+fieldset.contactInput label {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+input {
+  border-radius: 8px;
+  border: none;
+  padding: 4px;
+}
+
+fieldset.contactInput input {
+  width: 300px;
+}
+
+fieldset.contactInput label span {
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+
+  pointer-events: none;
+  transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+label input:focus + span {
+  top: -20px;
+  align-items: start;
 }
 
 /*--------- FOOTER ---------*/
 footer {
   margin-top: 20px;
-  padding-block: 20px;
+  padding: 20px;
   display: block;
 }
 
@@ -200,6 +235,17 @@ footer a {
 @media screen and (min-width: 720px) {
   header {
     padding-inline: 40px;
+  }
+
+  form {
+    display: flex;
+    margin-block: 20px;
+    margin-inline: 200px;
+  }
+
+  .h2-kontakt {
+    display: flex;
+    justify-content: center;
   }
 
   .productlist {

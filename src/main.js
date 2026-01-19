@@ -59,42 +59,12 @@ import './style.css';
  *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
-// ------------- mainNav: TOGGLE-MENU ---------------
-// ---------------- open and close ------------------
-const menuButton = document.querySelector('#menuBtn');
-const mainMenu = document.querySelector('#mainNav');
-const navLinks = document.querySelectorAll('#mainNav a');
-
-menuButton.addEventListener('click', toggleMenu);
-navLinks.forEach((link) => {
-  link.addEventListener('click', closeToggleMenu);
-});
-mainNav.addEventListener('click', closeToggleMenu);
-
-function toggleMenu() {
-  mainMenu.classList.toggle('open');
-}
-
-function closeToggleMenu() {
-  mainMenu.classList.remove('open');
-}
-
-// ------------------ FilternNav ---------------------
-const filterBtn = document.querySelector('#filterBtn');
-const filterNav = document.querySelector('#filterNav');
-
-filterBtn.addEventListener('click', filterOptions);
-
-function filterOptions() {
-  filterNav.classList.toggle('open');
-}
-
 // ------------------ ARRAY-OBJECT --------------------
 // ---------- samlad info för varje produkt  ----------
 
 const products = [
   {
-    name: 'Chocolate',
+    name: 'Lux Chocolate',
     images: 'img.jpg',
     price: 60,
     rating: 4,
@@ -143,7 +113,7 @@ const products = [
     category: 'milkshake',
   },
   {
-    name: 'Strawberry',
+    name: 'YUUM special',
     images: 'img.jpg',
     price: 50,
     rating: 4,
@@ -167,6 +137,36 @@ const products = [
 
 let filteredProducts = Array.from(products); //kopia av arrayen ovan. let --> kan ändras vilket behövs vid filtrering
 const productListing = document.querySelector('#products');
+
+// ------------- mainNav: TOGGLE-MENU ---------------
+// ---------------- open and close ------------------
+const menuButton = document.querySelector('#menuBtn');
+const mainMenu = document.querySelector('#mainNav');
+const navLinks = document.querySelectorAll('#mainNav a');
+
+menuButton.addEventListener('click', toggleMenu);
+navLinks.forEach((link) => {
+  link.addEventListener('click', closeToggleMenu);
+});
+mainNav.addEventListener('click', closeToggleMenu);
+
+function toggleMenu() {
+  mainMenu.classList.toggle('open');
+}
+
+function closeToggleMenu() {
+  mainMenu.classList.remove('open');
+}
+
+// ------------------ FilternNav ---------------------
+const filterBtn = document.querySelector('#filterBtn');
+const filterNav = document.querySelector('#filterNav');
+
+filterBtn.addEventListener('click', filterOptions);
+
+function filterOptions() {
+  filterNav.classList.toggle('open');
+}
 
 // -------------- FILTER BUTTONS -------------------
 //--------------------------------------------------

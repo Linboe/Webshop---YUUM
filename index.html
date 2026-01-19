@@ -36,7 +36,7 @@
 
   <header>
     <div class="container">
-      <h1>Gottfrids munkfabrik</h1>
+      <h1>YUUM</h1>
       <div>
         <button aria-label="button-open-shopping-cart" class="material-symbols-outlined">
           shopping_cart
@@ -98,7 +98,7 @@
     <!------- formulär för kunduppgifter ------->
     <h2 class="h2-kontakt" id="contact">Kontaktformulär</h2>
     <form>
-      <fieldset>
+      <fieldset class="contactInput">
         <label>
           <input type="text" name="namn" required>
           <span>Förnamn</span>
@@ -138,10 +138,17 @@
           <input type="email" name="e-post" required>
           <span>E-postadress</span>
         </label>
+      </fieldset>
 
+      <fieldset>
+        <span>Välj betalsätt</span>
         <label>
-          <span>val för bestalsätt: kort eller faktura</span>
-
+          <input type="radio" name="faktura-eller-kortbetalning" value="faktura">
+          <span>Faktura</span>
+        </label>
+        <label>
+          <input type="radio" name="faktura-eller-kortbetalning" value="kortbetalning">
+          <span>Kortbetalning</span>
           <!--Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
 Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. Dessa behöver inte valideras!-->
         </label>
@@ -149,9 +156,11 @@ Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. D
         <label>
           <input type="checkbox" name="acceptera-behandling-av-personuppgifter">
           <span>Godkännande av behandling av personuppgifter</span>
+        </label>
 
+        <label>
           <input type="checkbox" name="acceptera-mottagande-av-nyhetsbrev">
-          <span>Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
+          <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
         </label>
 
         <!--Samtliga formulärfält ska valideras och formuläret/beställningen ska inte gå att skicka om det finns några fel
@@ -170,7 +179,7 @@ Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. D
   <!--***************************** FOOTER ***********************************-->
   <!--************************************************************************-->
   <footer>
-    <div><a href="mailto:info@gottfridsmunkfabrik.se">info@gottfridsmunkfabrik.se</a></div>
+    <div><a href="mailto:info@yuum.se">yuum.com</a></div>
 
     <div>
       <a href="https://www.instagram.com" style="font-size:24px" class="fa" target="_blank"
