@@ -59,6 +59,16 @@ import './style.css';
  *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
+// --------------- NAV: TOGGLE-MENU -----------------
+const menuButton = document.querySelector('#menuBtn');
+const mainMenu = document.querySelector('#mainNav');
+
+menuButton.addEventListener('click', toggleMenu);
+
+function toggleMenu() {
+  mainMenu.classList.toggle('open');
+}
+
 // ------------------ ARRAY-OBJECT --------------------
 // ---------- samlad info för varje produkt  ----------
 
@@ -151,11 +161,11 @@ const allproductsFilterBtn = document.querySelector('#allproductsFilterBtn');
 donutsFilterBtn.addEventListener('click', filterProductsListByDonutCategory);
 icecreamFilterBtn.addEventListener(
   'click',
-  filterProductsListByIcecreamCategory
+  filterProductsListByIcecreamCategory,
 );
 milkshakeFilterBtn.addEventListener(
   'click',
-  filterProductsListByMilkshakeCategory
+  filterProductsListByMilkshakeCategory,
 );
 allproductsFilterBtn.addEventListener('click', allProducts);
 
@@ -173,14 +183,14 @@ function filterProductsListByDonutCategory() {
 
 function filterProductsListByIcecreamCategory() {
   filteredProducts = products.filter(
-    (product) => product.category === 'icecream'
+    (product) => product.category === 'icecream',
   );
   printProducts();
 }
 
 function filterProductsListByMilkshakeCategory() {
   filteredProducts = products.filter(
-    (product) => product.category === 'milkshake'
+    (product) => product.category === 'milkshake',
   );
   printProducts();
 }
@@ -197,14 +207,14 @@ sortByRatingBtn.addEventListener('click', sortByRating);
 
 function sortByRating() {
   filteredProducts.sort(
-    (product1, product2) => product1.rating < product2.rating
+    (product1, product2) => product1.rating < product2.rating,
   );
   printProducts();
 }
 
 function sortByPrice() {
   filteredProducts.sort(
-    (product1, product2) => product1.price > product2.price
+    (product1, product2) => product1.price > product2.price,
   );
 
   printProducts();
