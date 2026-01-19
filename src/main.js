@@ -62,11 +62,19 @@ import './style.css';
 // --------------- NAV: TOGGLE-MENU -----------------
 const menuButton = document.querySelector('#menuBtn');
 const mainMenu = document.querySelector('#mainNav');
+const navLinks = document.querySelectorAll('#mainNav a');
 
 menuButton.addEventListener('click', toggleMenu);
+navLinks.forEach((link) => {
+  link.addEventListener('click', closeToggleMenu);
+});
 
 function toggleMenu() {
   mainMenu.classList.toggle('open');
+}
+
+function closeToggleMenu() {
+  mainMenu.classList.remove('open');
 }
 
 // ------------------ ARRAY-OBJECT --------------------
