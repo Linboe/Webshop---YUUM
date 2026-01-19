@@ -60,6 +60,7 @@ import './style.css';
  */
 
 // --------------- NAV: TOGGLE-MENU -----------------
+// ---------------- open and close ------------------
 const menuButton = document.querySelector('#menuBtn');
 const mainMenu = document.querySelector('#mainNav');
 const navLinks = document.querySelectorAll('#mainNav a');
@@ -68,6 +69,7 @@ menuButton.addEventListener('click', toggleMenu);
 navLinks.forEach((link) => {
   link.addEventListener('click', closeToggleMenu);
 });
+mainNav.addEventListener('click', closeToggleMenu);
 
 function toggleMenu() {
   mainMenu.classList.toggle('open');

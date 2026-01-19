@@ -149,6 +149,11 @@ button {
   margin-bottom: 8px;
 }
 
+.container div {
+  display: flex;
+  gap: 10px;
+}
+
 /*--------- CONTACT ---------*/
 .h2-kontakt {
   color: rgb(51, 47, 109);
