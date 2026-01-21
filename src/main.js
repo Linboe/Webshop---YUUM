@@ -125,20 +125,20 @@ function allProducts() {
 }
 
 function filterProductsListByDonutCategory() {
-  filteredProducts = products.filter((product) => product.category === 'donut');
+  filteredProducts = products.filter((product) => product.category === 'Donut');
   printProducts();
 }
 
 function filterProductsListByIcecreamCategory() {
   filteredProducts = products.filter(
-    (product) => product.category === 'icecream',
+    (product) => product.category === 'Icecream',
   );
   printProducts();
 }
 
 function filterProductsListByMilkshakeCategory() {
   filteredProducts = products.filter(
-    (product) => product.category === 'milkshake',
+    (product) => product.category === 'Milkshake',
   );
   printProducts();
 }
