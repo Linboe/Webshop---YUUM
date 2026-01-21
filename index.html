@@ -6,6 +6,15 @@
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍩</text></svg>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description" content="YUUM! - treats all day everyday">
+  <meta property="og:title" content="YUUM! - stay sweet">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="YUUM! logo">
+
+
   <title>FED25D | Inlämningsuppgift 1</title>
 
   <link rel="stylesheet"
@@ -25,8 +34,6 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body>
@@ -36,7 +43,7 @@
 
   <header>
     <div class="container">
-      <h1>YUUM</h1>
+      <h1>yuum!</h1>
       <div>
         <span>100 KR</span>
 
@@ -66,7 +73,7 @@
 
     <div class="container">
       <div>
-        <button class="material-symbols-outlined" id="filterBtn">
+        <button aria-label="button-open-filter-menu" class="material-symbols-outlined" id="filterBtn">
           filter_alt
         </button>
 
@@ -80,9 +87,12 @@
 
       <!--------------- sortering --------------->
       <div>
-        <button class="material-symbols-outlined" id="sortByNameBtn">sort_by_alpha</button>
-        <button class="material-symbols-outlined" id="sortByPriceBtn">arrow_cool_down</button>
-        <button class="material-symbols-outlined" id="sortByRatingBtn">star</button>
+        <button aria-label="button-sort-product-alphabetically" class="material-symbols-outlined"
+          id="sortByNameBtn">sort_by_alpha</button>
+        <button aria-label="button-sort-product-by-lowest-price-first" class="material-symbols-outlined"
+          id="sortByPriceBtn">arrow_cool_down</button>
+        <button aria-label="button-sort-product-by-highest-rating-first" class="material-symbols-outlined"
+          id="sortByRatingBtn">star</button>
       </div>
     </div>
 
@@ -90,22 +100,25 @@
 
     <section class="productlist" id="products"></section>
 
-    <!-------- välja antal produkter --------->
+    <!-------- välja antal produkter -------
     <button id="subtract">-</button>
     <input type="number" value="0" id="currentCount">
     <button id="addera">+</button>
+    
+    Flytta till JS
+    -->
 
     <!------- formulär för kunduppgifter ------->
-    <h2 class="h2-kontakt" id="contact">Kontaktformulär</h2>
+    <h2 class="h2-contact" id="contact">Kontaktformulär</h2>
     <form>
       <fieldset class="contactInput">
         <label>
-          <input type="text" name="namn" required>
+          <input type="text" name="first-name" required>
           <span>Förnamn</span>
         </label>
 
         <label>
-          <input type="text" name="efternamn" required>
+          <input type="text" name="surname" required>
           <span>Efternamn</span>
         </label>
 
@@ -115,27 +128,27 @@
         </label>
 
         <label>
-          <input type="number" name="postnummer" required>
+          <input type="number" name="postcode" required>
           <span>Postnummer</span>
         </label>
 
         <label>
-          <input type="text" name="postort" required>
-          <span>Efternamn</span>
+          <input type="text" name="postcode-area" required>
+          <span>Postort</span>
         </label>
 
         <label>
-          <input type="text" name="portkod">
+          <input type="text" name="entery-code">
           <span>Ev.portkod</span>
         </label>
 
         <label>
-          <input type="number" name="telefon">
+          <input type="tel" name="telephonenumber">
           <span>Telefon (mobil)</span>
         </label>
 
         <label>
-          <input type="email" name="e-post" required>
+          <input type="email" name="e-mail" required>
           <span>E-postadress</span>
         </label>
       </fieldset>
@@ -143,23 +156,23 @@
       <fieldset>
         <span>Välj betalsätt</span>
         <label>
-          <input type="radio" name="faktura-eller-kortbetalning" value="faktura">
+          <input type="radio" name="payment-method-invocie" value="invocie">
           <span>Faktura</span>
         </label>
         <label>
-          <input type="radio" name="faktura-eller-kortbetalning" value="kortbetalning">
+          <input type="radio" name="payment-method-card" value="card-payment">
           <span>Kortbetalning</span>
           <!--Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
 Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. Dessa behöver inte valideras!-->
         </label>
 
         <label>
-          <input type="checkbox" name="acceptera-behandling-av-personuppgifter">
+          <input type="checkbox" name="consent-to-the-processing-of-personal-data-checkbox">
           <span>Godkännande av behandling av personuppgifter</span>
         </label>
 
         <label>
-          <input type="checkbox" name="acceptera-mottagande-av-nyhetsbrev">
+          <input type="checkbox" name="subscribe-to-newsletter-checkbox">
           <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
         </label>
 
@@ -179,13 +192,13 @@ Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. D
   <!--***************************** FOOTER ***********************************-->
   <!--************************************************************************-->
   <footer>
-    <div><a href="mailto:info@yuum.se">yuum.com</a></div>
+    <div><a href="mailto:info@yuum.se">www.yuum.com</a></div>
 
     <div>
-      <a href="https://www.instagram.com" style="font-size:24px" class="fa" target="_blank"
-        rel="noopener noreferrer">&#xf16d;</a>
-      <a href="https://www.facebook.com" style="font-size:24px" class="fa" target="_blank"
-        rel="noopener noreferrer">&#xf082;</a>
+      <a href="https://www.instagram.com" class="fa" target="_blank" rel="noopener noreferrer"
+        aria-label="instagram-link">&#xf16d;</a>
+      <a href="https://www.facebook.com" class="fa" target="_blank" rel="noopener noreferrer"
+        aria-label="facebook-link">&#xf082;</a>
     </div>
 
     <a href="tel:+46712345678">071-234 56 78</a>

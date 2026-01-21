@@ -39,7 +39,7 @@ import './style.css';
  * RATING
  *    visa rating under produkt med ikoner
  *
- * VARUKROG
+ * VARUKORG
  *    lägga in produkter (antal) i varukrog
  *    visa rätt pris/summa
  *    i varukorg - justera antal produkter
@@ -55,7 +55,7 @@ import './style.css';
  *    > 800 kr - se uppgiftsbeskrivning
  *    >= 10 munkar/produkter - se uppgiftsbeskrivning
  *    >= 15 munkar/produkter - se uppgiftsbeskrivning
- *    om ej beställning inom 15 min ska beställningsforumläret tömmas/rensas och kunden ska meddelas att för långsamt - anv. timer?
+ *    om ej beställning inom 15 min ska beställningsformuläret tömmas/rensas och kunden ska meddelas att för långsamt - anv. timer?
  *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
@@ -113,7 +113,7 @@ const products = [
     category: 'milkshake',
   },
   {
-    name: 'YUUM special',
+    name: 'YUUM special!',
     images: 'img.jpg',
     price: 50,
     rating: 4,
