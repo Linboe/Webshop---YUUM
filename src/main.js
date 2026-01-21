@@ -1,4 +1,5 @@
 import './style.css';
+import products from './products.mjs';
 
 /** FÖR ATT LÖSA UPPGIFTEN
  * Logik & programflöde
@@ -61,79 +62,6 @@ import './style.css';
 
 // ------------------ ARRAY-OBJECT --------------------
 // ---------- samlad info för varje produkt  ----------
-
-const products = [
-  {
-    name: 'Lux Chocolate',
-    images: 'img.jpg',
-    price: 60,
-    rating: 4,
-    category: 'donut',
-  },
-  {
-    name: 'Vanilla',
-    images: 'img.jpg',
-    price: 20,
-    rating: 4,
-    category: 'donut',
-  },
-  {
-    name: 'Blueberry',
-    images: 'img.jpg',
-    price: 28,
-    rating: 5,
-    category: 'donut',
-  },
-  {
-    name: 'Honey Swirl',
-    images: 'img.jpg',
-    price: 38,
-    rating: 5,
-    category: 'icecream',
-  },
-  {
-    name: 'Breezy Melon',
-    images: 'img.jpg',
-    price: 38,
-    rating: 3,
-    category: 'icecream',
-  },
-  {
-    name: 'Salty Liquorice',
-    images: 'img.jpg',
-    price: 46,
-    rating: 4,
-    category: 'icecream',
-  },
-  {
-    name: 'Marsmallow',
-    images: 'img.jpg',
-    price: 50,
-    rating: 2,
-    category: 'milkshake',
-  },
-  {
-    name: 'YUUM special!',
-    images: 'img.jpg',
-    price: 50,
-    rating: 4,
-    category: 'milkshake',
-  },
-  {
-    name: 'Cocos',
-    images: 'img.jpg',
-    price: 58,
-    rating: 5,
-    category: 'milkshake',
-  },
-  {
-    name: 'Mango',
-    images: 'img.jpg',
-    price: 50,
-    rating: 5,
-    category: 'milkshake',
-  },
-];
 
 let filteredProducts = Array.from(products); //kopia av arrayen ovan. let --> kan ändras vilket behövs vid filtrering
 const productListing = document.querySelector('#products');
@@ -257,6 +185,9 @@ function sortByName() {
   printProducts();
 }
 
+// ----------------- SHOPPING-CART --------------------
+const cart = [];
+
 //------ skriver ut produkterna. anv. FOR-LOOP ------
 //For-loop anv när vet hur mång ggr koden ska köras. loopar igenom en array med index. Index anv vid fler aarrayer, för att hämta rätt element/ändra/ta bort specifikt element t.ex. visa produkt 1, 2 samt veta ordning
 //HTML (först loopa de igenom produkterna MEN efter filtrering/kategori ändrade till filterdProducts) ------
@@ -264,11 +195,13 @@ function sortByName() {
 function printProducts() {
   productListing.innerHTML = ''; //detta för att inte allt ska läggas till utan endast det filtrerade
 
+  let html = '';
+
   for (let i = 0; i < filteredProducts.length; i++) {
     //filteredProducts.lengt --> se let array i toppen. for --> startar loop, let i=0 --> räknare som heter i, i < filteredProducts.length --> villkoret: loop körs så länge i < antalet element i arrayen (filteredProducts.length = antal produkter i array). När i EJ < length --> loop stannar, i++ --> i ökas med 1, gå vidare till nästa varv till alla produkter gåtts igenom
     const currentProduct = filteredProducts[i];
 
-    const html = `
+    html += `
     <article>
       <h2>${currentProduct.name}</h2>
       <div class="metadata">
@@ -276,14 +209,17 @@ function printProducts() {
         <p>Rating: ${currentProduct.rating}/5</p>
       </div>
         <p>${currentProduct.category}</p>
+        <button aria-label="button-shopping-cart">Köp</button>
     </article>
   `;
 
-    productListing.innerHTML += html;
+    productListing.innerHTML = html;
   }
 }
 
 // i HTML, skriv ut kr och /5 i rating här pga annars påverkar det hur jag behöver skriva funktionerna i t.ex. sortering (t.ex. ist nr för kr till string)
+
+/*const buybuttons = document.querySelectorAll('#products button'); */
 
 printProducts();
 
