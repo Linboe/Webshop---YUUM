@@ -203,30 +203,56 @@ function printProducts() {
 
     html += `
     <article>
-      <h2>${currentProduct.name}</h2>
+      <h3>${currentProduct.name}</h3>
       <div class="metadata">
         <p>Pris: ${currentProduct.price} kr</p>
         <p>Rating: ${currentProduct.rating}/5</p>
       </div>
-        <p>${currentProduct.category}</p>
-        <label>
-        <span>Antal</span>
-        <input type="number">
-        </label>
-        <button data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
+      <p>${currentProduct.category}</p>
+      <button class="subtract" data-id="${currentProduct.id}">-</button>
+      <input type="number" id="amount-${currentProduct.id}" undefined>  
+      <button class="add" data-id="${currentProduct.id}">+</button>
+      <button class="buy" data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
     </article>
   `;
   }
+  //id="amount-${currentProduct.id}" <--- detta är ett sk dynamiskt ID
   productListing.innerHTML = html;
 
   // ----------------- SHOPPING-CART --------------------
 
-  const buybuttons = document.querySelectorAll('#products button');
-  buybuttons.forEach((btn) => {
+  const buyButtons = document.querySelectorAll('#products button.buy');
+  buyButtons.forEach((btn) => {
     btn.addEventListener('click', addProductsToCart);
   });
+
+  // --------- input add and subtract products ----------
+  const addButtons = document.querySelectorAll('#products button.add');
+  addButtons.forEach((btn) => {
+    btn.addEventListener('click', addProducts);
+  });
+
+  const subtractButtons = document.querySelectorAll(
+    '#products button.subtract',
+  );
+  subtractButtons.forEach((btn) => {
+    btn.addEventListener('click', subtractProducts);
+  });
+
+  function addProducts(e) {
+    const clickedBtnId = e.target.dataset.id;
+    const input = document.querySelector(`#amount-${clickedBtnId}`);
+    input.value = Number(input.value) + 1;
+  }
+
+  function subtractProducts(e) {
+    const clickedBtnId = e.target.dataset.id;
+    const input = document.querySelector(`#amount-${clickedBtnId}`);
+    input.value = Number(input.value) - 1;
+  }
 }
 
+// ----------------- SHOPPING-CART --------------------
 function addProductsToCart(e) {
   const clickedBtnId = Number(e.target.dataset.id); //OBS konvertera om string till number pga ID=number - så det matchar produktarrayen
 
@@ -262,22 +288,3 @@ function printCart() {
 }
 
 printProducts();
-
-// ----------- JUSTERA ANTALET PRODUKTER -------------
-// ----------------- anv.event -----------------------
-/*
-const minus = document.querySelector('#subtract');
-const plus = document.querySelector('#addera');
-const currentCount = document.querySelector('#currentCount');
-
-minus.addEventListener('click', subtract);
-plus.addEventListener('click', addera);
-
-function subtract() {
-  currentCount.value -= 1;
-}
-
-function addera() {
-  currentCount.value = Number(currentCount.value) + 1; //typkonventering - gör om string till nummer
-}
-*/

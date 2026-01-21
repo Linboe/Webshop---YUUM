@@ -94,11 +94,11 @@ h1 {
   text-transform: uppercase;
 }
 
-h2 {
+h3 {
   color: rgb(255, 255, 255);
 }
 
-.h2Section {
+h2 {
   color: rgb(51, 47, 109);
   background-color: white;
   padding-left: 6px;
@@ -250,7 +250,7 @@ footer .fa {
     margin-inline: 200px;
   }
 
-  .h2Section {
+  h2 {
     display: flex;
     justify-content: center;
   }
