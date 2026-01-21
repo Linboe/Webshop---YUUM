@@ -47,9 +47,11 @@
       <div>
         <span>100 KR</span>
 
-        <button aria-label="button-open-shopping-cart" class="material-symbols-outlined">
+        <button aria-label="button-open-shopping-cart" class="material-symbols-outlined" id="cartBtn">
           shopping_cart
         </button>
+
+        <a href="#cart"></a>
 
         <button aria-label="button-open-navigation-menu" class="material-symbols-outlined" id="menuBtn">
           menu
@@ -57,8 +59,9 @@
 
         <nav class="mainNav" id="mainNav">
           <ul>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#products">Produkter</a></li>
+            <li><a href="#cart">Varukorg</a></li>
+            <li><a href="#contact">Kontakt</a></li>
           </ul>
         </nav>
       </div>
@@ -101,7 +104,7 @@
     <section class="productlist" id="products"></section>
 
     <!------------- varukorg -------------->
-    <h2>Varukorg</h2>
+    <h2 id="cart">Varukorg</h2>
     <section id="shoppingCart">Varukorgen är tom.</section>
 
     <!------- formulär för kunduppgifter ------->

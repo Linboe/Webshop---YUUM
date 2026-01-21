@@ -86,6 +86,17 @@ function closeToggleMenu() {
   mainMenu.classList.remove('open');
 }
 
+// ---------------- CartBtn scroll -------------------
+const cartBtn = document.querySelector('#cartBtn');
+
+if (cartBtn) {
+  cartBtn.addEventListener('click', () => {
+    document.querySelector('#cart').scrollIntoView({
+      behavior: 'smooth',
+    });
+  });
+}
+
 // ------------------ FilternNav ---------------------
 const filterBtn = document.querySelector('#filterBtn');
 const filterNav = document.querySelector('#filterNav');
@@ -210,7 +221,7 @@ function printProducts() {
       </div>
       <p>${currentProduct.category}</p>
       <button class="subtract" data-id="${currentProduct.id}">-</button>
-      <input type="number" id="amount-${currentProduct.id}" undefined>  
+      <input type="number" id="amount-${currentProduct.id}">  
       <button class="add" data-id="${currentProduct.id}">+</button>
       <button class="buy" data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
     </article>
