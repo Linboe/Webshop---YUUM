@@ -98,6 +98,14 @@ h2 {
   color: rgb(255, 255, 255);
 }
 
+.h2Section {
+  color: rgb(51, 47, 109);
+  background-color: white;
+  padding-left: 6px;
+  padding-block: 8px;
+  text-align: left;
+}
+
 /*--------- NAV: TOGGLE-MENU ---------*/
 
 .mainNav {
@@ -168,14 +176,6 @@ button {
 }
 
 /*-------- FORM-CONTACT -------*/
-.h2-contact {
-  color: rgb(51, 47, 109);
-  background-color: white;
-  padding-left: 6px;
-  padding-block: 8px;
-  text-align: left;
-}
-
 form {
   justify-content: center;
   background-color: rgb(153, 150, 196);
@@ -250,7 +250,7 @@ footer .fa {
     margin-inline: 200px;
   }
 
-  .h2-contact {
+  .h2Section {
     display: flex;
     justify-content: center;
   }

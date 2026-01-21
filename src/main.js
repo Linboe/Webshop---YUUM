@@ -185,7 +185,7 @@ function sortByName() {
   printProducts();
 }
 
-// ----------------- SHOPPING-CART --------------------
+// SHOPPING-CART
 const cart = [];
 
 //------ skriver ut produkterna. anv. FOR-LOOP ------
@@ -209,23 +209,63 @@ function printProducts() {
         <p>Rating: ${currentProduct.rating}/5</p>
       </div>
         <p>${currentProduct.category}</p>
-        <button aria-label="button-shopping-cart">Köp</button>
+        <label>
+        <span>Antal</span>
+        <input type="number">
+        </label>
+        <button data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
     </article>
   `;
-
-    productListing.innerHTML = html;
   }
+  productListing.innerHTML = html;
+
+  // ----------------- SHOPPING-CART --------------------
+
+  const buybuttons = document.querySelectorAll('#products button');
+  buybuttons.forEach((btn) => {
+    btn.addEventListener('click', addProductsToCart);
+  });
 }
 
-// i HTML, skriv ut kr och /5 i rating här pga annars påverkar det hur jag behöver skriva funktionerna i t.ex. sortering (t.ex. ist nr för kr till string)
+function addProductsToCart(e) {
+  const clickedBtnId = Number(e.target.dataset.id); //OBS konvertera om string till number pga ID=number - så det matchar produktarrayen
 
-/*const buybuttons = document.querySelectorAll('#products button'); */
+  const product = products.find((product) => product.id === clickedBtnId);
+  //e=parameter som visar att det är event. data-id i html currentProduct.name
+  // console.log(e.target.dataset.id);  --> dataset.id (ta ej med bindestrecket), kan också skriva: name, price osv. få ut info, .target visar att varje köpknapp har en specifik produktkoppling i konsolen
+
+  if (product == undefined) {
+    return;
+  } //om den ej hittar produkt - avbryt
+
+  //------- kolla om produkten finns i varukorgen --------
+  const index = cart.findIndex((product) => product.id == clickedBtnId);
+  if (index == -1) {
+    product.amount = 1;
+    cart.push(product);
+  } else {
+    product.amount += 1;
+  }
+
+  printCart();
+}
+
+const shoppingCartSection = document.querySelector('#shoppingCart');
+function printCart() {
+  shoppingCartSection.innerHTML = '';
+
+  for (let i = 0; i < cart.length; i++) {
+    shoppingCartSection.innerHTML += `
+    <p> ${cart[i].name} ${cart[i].category}: ${cart[i].amount} st</p>
+    `;
+  }
+}
 
 printProducts();
 
 // ----------- JUSTERA ANTALET PRODUKTER -------------
 // ----------------- anv.event -----------------------
-
+/*
 const minus = document.querySelector('#subtract');
 const plus = document.querySelector('#addera');
 const currentCount = document.querySelector('#currentCount');
@@ -240,3 +280,4 @@ function subtract() {
 function addera() {
   currentCount.value = Number(currentCount.value) + 1; //typkonventering - gör om string till nummer
 }
+*/
