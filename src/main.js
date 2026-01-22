@@ -34,17 +34,17 @@ import products from './products.mjs';
  * x  sortera produkter efter pris (nr), rating (nr), namn (string)
  *
  * JUSTERA ANTAL PRODUKTER
- *    justera antal produkter, plus minus  - anv. EVENT
- *    visa priset - totalsumman vid justering
+ * x  justera antal produkter, plus minus  - anv. EVENT
+ * x  köp-knapp --> lägger produkter i varukorgen
  *
  * RATING
  *    visa rating under produkt med ikoner
  *
  * VARUKORG
- *    lägga in produkter (antal) i varukrog
- *    visa rätt pris/summa
+ *    visa inlagda produkter (antal) i varukrog
+ *    visa rätt pris för produkt
  *    i varukorg - justera antal produkter
- *      priset anpassas
+ *    visa priset - totalsumman vid justering
  *    ikon papperskord om jag vill ta bort en hel produkt alt. tömma allt
  *    varukorgssammanfattning som visar endast de munkar som har beställts (skild från beställningsformuläret)
  *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
@@ -86,7 +86,7 @@ function closeToggleMenu() {
   mainMenu.classList.remove('open');
 }
 
-// ---------------- CartBtn scroll -------------------
+// ------------ CartBtn scroll to cart --------------
 const cartBtn = document.querySelector('#cartBtn');
 
 if (cartBtn) {
@@ -221,7 +221,7 @@ function printProducts() {
       </div>
       <p>${currentProduct.category}</p>
       <button class="subtract" data-id="${currentProduct.id}">-</button>
-      <input type="number" id="amount-${currentProduct.id}">  
+      <input type="number" min="1" value="1" id="amount-${currentProduct.id}" >  
       <button class="add" data-id="${currentProduct.id}">+</button>
       <button class="buy" data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
     </article>
@@ -259,7 +259,13 @@ function printProducts() {
   function subtractProducts(e) {
     const clickedBtnId = e.target.dataset.id;
     const input = document.querySelector(`#amount-${clickedBtnId}`);
-    input.value = Number(input.value) - 1;
+
+    let amount = Number(input.value) - 1; //
+    if (amount < 1) {
+      amount = 1;
+    }
+
+    input.value = amount;
   }
 }
 
@@ -275,13 +281,22 @@ function addProductsToCart(e) {
     return;
   } //om den ej hittar produkt - avbryt
 
+  // -------- antal produkter kunden vill beställa -------
+  const inputField = document.querySelector(`#amount-${clickedBtnId}`);
+  let amount = Number(inputField.value);
+  if (amount < 0) {
+    return;
+  }
+
+  inputField.value = 1; //efter tryckt på köp --> inputvärde = 0
+
   //------- kolla om produkten finns i varukorgen --------
   const index = cart.findIndex((product) => product.id == clickedBtnId);
   if (index == -1) {
-    product.amount = 1;
+    product.amount = amount;
     cart.push(product);
   } else {
-    product.amount += 1;
+    product.amount += amount;
   }
 
   printCart();
