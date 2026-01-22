@@ -247,6 +247,16 @@ footer .fa {
   font-size: 1.5rem;
 }
 
+.cart-total {
+  transition: all 0.3s ease-in-out;
+}
+
+.highlight-price {
+  font-size: 1.25rem;
+  color: rgb(145, 46, 73);
+  font-weight: bold;
+}
+
 @media screen and (min-width: 720px) {
   header {
     padding-inline: 40px;

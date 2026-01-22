@@ -299,7 +299,7 @@ function addProductsToCart(e) {
     product.amount += amount;
   }
 
-  //------- justera antal produkter i varukorgen --------
+  //--------- räkna ut totalsumma i varukorgen ----------
 
   printCart();
   updateCartTotals();
@@ -313,10 +313,23 @@ function updateCartTotals() {
     cartTotal += productSum;
   }
 
-  cartTotalHtml.innerHTML = `SUMMA: ${cartTotal} kr`;
+  cartTotalHtml.innerHTML = `Summa: ${cartTotal} kr`;
 
-  console.log(cartTotalHtml.innerHTML); //totalpriset skrivs ut i konsolen men inte på sidan
+  //------ animering för att visa prisuppdatering -------
+  highlightCartTotalChange();
 }
+
+function highlightCartTotalChange() {
+  cartTotalHtml.classList.add('highlight-price');
+
+  setTimeout(removeCartTotalHighlight, 1000 * 2);
+}
+
+function removeCartTotalHighlight() {
+  cartTotalHtml.classList.remove('highlight-price');
+}
+
+//-- skriva ut produkt, kategori, pris, för varje produkt i varukorg --
 
 const shoppingCartSection = document.querySelector('#shoppingCart');
 function printCart() {
@@ -324,9 +337,25 @@ function printCart() {
 
   for (let i = 0; i < cart.length; i++) {
     shoppingCartSection.innerHTML += `
-    <p> ${cart[i].name} ${cart[i].category}: ${cart[i].amount} st</p>
+    <p> ${cart[i].amount} st:  ${cart[i].name} ${cart[i].category} (${cart[i].price}kr/st)
+    <button data-id="${i}" class="delete-product">Radera</button></p>
     `;
   }
+
+  //---------- delete-knapp efter produkt i varukorg ----------
+  const deleteButtons = document.querySelectorAll('button.delete-product');
+  deleteButtons.forEach((btn) => {
+    btn.addEventListener('click', deleteProductFromCart);
+  });
+}
+
+function deleteProductFromCart(e) {
+  const rowId = Number(e.target.dataset.id);
+
+  cart.splice(rowId, 1);
+
+  printCart();
+  updateCartTotals();
 }
 
 printProducts();
