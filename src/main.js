@@ -269,6 +269,38 @@ function printProducts() {
   }
 }
 
+/*// ------ input add and subtract i varukorg  -------
+  const addButtons = document.querySelectorAll('#products button.add');
+  addButtons.forEach((btn) => {
+    btn.addEventListener('click', addProducts);
+  });
+
+  const subtractButtons = document.querySelectorAll(
+    '#products button.subtract',
+  );
+  subtractButtons.forEach((btn) => {
+    btn.addEventListener('click', subtractProducts);
+  });
+
+  function addProducts(e) {
+    const clickedBtnId = e.target.dataset.id;
+    const input = document.querySelector(`#amount-${clickedBtnId}`);
+    input.value = Number(input.value) + 1;
+  }
+
+  function subtractProducts(e) {
+    const clickedBtnId = e.target.dataset.id;
+    const input = document.querySelector(`#amount-${clickedBtnId}`);
+
+    let amount = Number(input.value) - 1; //
+    if (amount < 1) {
+      amount = 1;
+    }
+
+    input.value = amount;
+  }
+*/
+
 // ----------------- SHOPPING-CART --------------------
 function addProductsToCart(e) {
   const clickedBtnId = Number(e.target.dataset.id); //OBS konvertera om string till number pga ID=number - så det matchar produktarrayen
@@ -288,6 +320,13 @@ function addProductsToCart(e) {
     return;
   }
 
+  // -------- antal produkter i varukorg -------
+  /*const inputField = document.querySelector(`#amount-${clickedBtnId}`);
+  let amount = Number(inputField.value);
+  if (amount < 0) {
+    return;
+  } */
+
   inputField.value = 1; //efter tryckt på köp --> inputvärde = 0
 
   //------- kolla om produkten finns i varukorgen --------
@@ -299,7 +338,21 @@ function addProductsToCart(e) {
     product.amount += amount;
   }
 
+  //------- justera antal produkter i varukorgen --------
+  updateCartTotals();
+
   printCart();
+}
+
+const cartTotalHtml = document.querySelector('#cartTotal');
+function updateCartTotals() {
+  let cartTotal = 0;
+  for (let i = 0; i < cart.length; i++) {
+    const productSum = cart[i].price * cart[i].amount;
+    cartTotal += productSum;
+  }
+
+  cartTotalHtml.innerHTML = `${cartTotal} kr`;
 }
 
 const shoppingCartSection = document.querySelector('#shoppingCart');
