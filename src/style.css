@@ -172,7 +172,7 @@ button {
 
 .container div {
   display: flex;
-  gap: 10px;
+  gap: 4px;
 }
 
 /*-------- FORM-CONTACT -------*/
@@ -232,6 +232,14 @@ footer {
 
 footer a {
   text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  color: black;
+  margin-bottom: 4px;
 }
 
 /*----- external-links -----*/
