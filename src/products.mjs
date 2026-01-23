@@ -2,15 +2,26 @@ const products = [
   {
     id: 1,
     name: 'Lux Chocolate',
-    images: 'img.jpg',
+    img: {
+      src: '/img/donut-lux-chocolat.jpg',
+      width: 2000,
+      height: 3000,
+      alt: 'Hand-tar-Lux-Chocolate-munk',
+    },
     price: 60,
     rating: 4,
     category: 'Donut',
   },
+
   {
     id: 2,
     name: 'Vanilla',
-    images: 'img.jpg',
+    img: {
+      src: '/img.donut-vanilla.jpg',
+      width: 3145,
+      height: 4718,
+      alt: 'Tre-vanilj-munkar',
+    },
     price: 20,
     rating: 4,
     category: 'Donut',
@@ -18,7 +29,12 @@ const products = [
   {
     id: 3,
     name: 'Blueberry',
-    images: 'img.jpg',
+    img: {
+      src: '/img/donut-blueberry.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-blåbärsmunk-med-strössel',
+    },
     price: 28,
     rating: 5,
     category: 'Donut',
@@ -26,7 +42,7 @@ const products = [
   {
     id: 4,
     name: 'Honey Swirl',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 38,
     rating: 5,
     category: 'Icecream',
@@ -34,7 +50,7 @@ const products = [
   {
     id: 5,
     name: 'Breezy Melon',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 38,
     rating: 3,
     category: 'Icecream',
@@ -42,7 +58,7 @@ const products = [
   {
     id: 6,
     name: 'Salty Liquorice',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 46,
     rating: 4,
     category: 'Icecream',
@@ -50,7 +66,7 @@ const products = [
   {
     id: 7,
     name: 'Marsmallow',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 50,
     rating: 2,
     category: 'Milkshake',
@@ -58,7 +74,7 @@ const products = [
   {
     id: 8,
     name: 'YUUM special!',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 50,
     rating: 4,
     category: 'Milkshake',
@@ -66,7 +82,7 @@ const products = [
   {
     id: 9,
     name: 'Cocos',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 58,
     rating: 5,
     category: 'Milkshake',
@@ -74,7 +90,7 @@ const products = [
   {
     id: 10,
     name: 'Mango',
-    images: 'img.jpg',
+    img: 'img.jpg',
     price: 50,
     rating: 5,
     category: 'Milkshake',

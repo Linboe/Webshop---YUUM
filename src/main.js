@@ -209,8 +209,22 @@ function printProducts() {
     // let i=0 --> räknare som heter i, i < filteredProducts.length --> villkoret: loop körs så länge i < antalet element i arrayen (filteredProducts.length = antal produkter i array). När i EJ < length --> loop stannar, i++ --> i ökas med 1, gå vidare till nästa varv till alla produkter gåtts igenom.
     const currentProduct = filteredProducts[i];
 
+    //BILDERNA LADDAS INTE - UNDEFINED I KONSOLEN, ngt med ordning som de printas?
+    let imgHtml = '';
+    if (currentProduct.img !== '') {
+      imgHtml = `<figure class="product-image"><img src="${currentProduct.img.src}" 
+      width="${currentProduct.img.width}" 
+      height="${currentProduct.img.height}" 
+      alt="${currentProduct.img.alt}"
+      loading="lazy" 
+      ></figure>`;
+
+      console.log(currentProduct.img.src);
+    }
+
     html += `
     <article>
+   ${imgHtml}
       <h3>${currentProduct.name}</h3>
       <div class="metadata">
         <p>Pris: ${currentProduct.price} kr</p>
