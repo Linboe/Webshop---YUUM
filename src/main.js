@@ -41,14 +41,14 @@ import products from './products.mjs';
  *    visa rating under produkt med ikoner
  *
  * VARUKORG
- *    visa inlagda produkter (antal) i varukrog
- *    visa rätt pris för produkt
+ * x  visa inlagda produkter (antal) i varukrog
+ * x  visa rätt pris för produkt
  *    i varukorg - justera antal produkter
- *    visa priset - totalsumman vid justering
- *    ikon papperskord om jag vill ta bort en hel produkt alt. tömma allt
- *    varukorgssammanfattning som visar endast de munkar som har beställts (skild från beställningsformuläret)
+ * x  visa priset - totalsumman vid justering
+ *    ikon papperskorg om jag vill ta bort en hel produkt alt. tömma allt
+ * x  varukorgssammanfattning som visar endast de munkar som har beställts (skild från beställningsformuläret)
  *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
- *    visuell feedback när varukorgens totalsumma uppdateras t.ex. färg-skiftning
+ * x  visuell feedback när varukorgens totalsumma uppdateras t.ex. färg-skiftning
  *
  *    SPECIALREGLER
  *    mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
@@ -60,14 +60,11 @@ import products from './products.mjs';
  *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
-// ------------------ ARRAY-OBJECT --------------------
-// ---------- samlad info för varje produkt  ----------
-
 let filteredProducts = Array.from(products); //kopia av arrayen ovan. let --> kan ändras vilket behövs vid filtrering
 const productListing = document.querySelector('#products');
 
-// ------------- mainNav: TOGGLE-MENU ---------------
-// ---------------- open and close ------------------
+// ---------------------- mainNav: ToggleMenu --------------------------
+
 const menuButton = document.querySelector('#menuBtn');
 const mainMenu = document.querySelector('#mainNav');
 const navLinks = document.querySelectorAll('#mainNav a');
@@ -86,7 +83,8 @@ function closeToggleMenu() {
   mainMenu.classList.remove('open');
 }
 
-// ------------ CartBtn scroll to cart --------------
+// ---------------- CartBtn scrolla till varukorg ----------------------
+
 const cartBtn = document.querySelector('#cartBtn');
 
 if (cartBtn) {
@@ -97,7 +95,8 @@ if (cartBtn) {
   });
 }
 
-// ------------------ FilternNav ---------------------
+// ------------------------- FilternNav --------------------------------
+
 const filterBtn = document.querySelector('#filterBtn');
 const filterNav = document.querySelector('#filterNav');
 
@@ -107,15 +106,12 @@ function filterOptions() {
   filterNav.classList.toggle('open');
 }
 
-// -------------- FILTER BUTTONS -------------------
-//--------------------------------------------------
+// -------------------------- FilterBtn --------------------------------
 
 const donutsFilterBtn = document.querySelector('#donutsFilterBtn');
 const icecreamFilterBtn = document.querySelector('#icecreamFilterBtn');
 const milkshakeFilterBtn = document.querySelector('#milkshakeFilterBtn');
 const allproductsFilterBtn = document.querySelector('#allproductsFilterBtn');
-
-//------- lägg till click - EVENT på filterBtn -------
 
 donutsFilterBtn.addEventListener('click', filterProductsListByDonutCategory);
 icecreamFilterBtn.addEventListener(
@@ -128,7 +124,7 @@ milkshakeFilterBtn.addEventListener(
 );
 allproductsFilterBtn.addEventListener('click', allProducts);
 
-//------- FILTRERING av produkter i kategori -------
+//-------------- Filtrering av produkter i kategori --------------------
 
 function allProducts() {
   filteredProducts = Array.from(products);
@@ -154,8 +150,8 @@ function filterProductsListByMilkshakeCategory() {
   printProducts();
 }
 
-// ---------------- SORT BUTTONS -------------------
-//--------------------------------------------------
+// ------------------------- SortBtn -----------------------------------
+
 const sortByNameBtn = document.querySelector('#sortByNameBtn');
 const sortByPriceBtn = document.querySelector('#sortByPriceBtn');
 const sortByRatingBtn = document.querySelector('#sortByRatingBtn');
@@ -196,12 +192,13 @@ function sortByName() {
   printProducts();
 }
 
-// SHOPPING-CART
-const cart = [];
+// --------------------------- Varukorg --------------------------------
 
-//------ skriver ut produkterna. anv. FOR-LOOP ------
-//For-loop anv när vet hur mång ggr koden ska köras. loopar igenom en array med index. Index anv vid fler aarrayer, för att hämta rätt element/ändra/ta bort specifikt element t.ex. visa produkt 1, 2 samt veta ordning
-//HTML (först loopa de igenom produkterna MEN efter filtrering/kategori ändrade till filterdProducts) ------
+const cart = []; // Array för produkter i varukorg
+// For-loop för att skriva ut de valda (i) produkterna
+// anv när: vet hur mång ggr koden ska köras. loopar igenom en array med index.
+
+// ------- For-loop för att visa filtrering/produkter/i kategori -------
 
 function printProducts() {
   productListing.innerHTML = ''; //detta för att inte allt ska läggas till utan endast det filtrerade
@@ -209,7 +206,7 @@ function printProducts() {
   let html = '';
 
   for (let i = 0; i < filteredProducts.length; i++) {
-    //filteredProducts.lengt --> se let array i toppen. for --> startar loop, let i=0 --> räknare som heter i, i < filteredProducts.length --> villkoret: loop körs så länge i < antalet element i arrayen (filteredProducts.length = antal produkter i array). När i EJ < length --> loop stannar, i++ --> i ökas med 1, gå vidare till nästa varv till alla produkter gåtts igenom
+    // let i=0 --> räknare som heter i, i < filteredProducts.length --> villkoret: loop körs så länge i < antalet element i arrayen (filteredProducts.length = antal produkter i array). När i EJ < length --> loop stannar, i++ --> i ökas med 1, gå vidare till nästa varv till alla produkter gåtts igenom.
     const currentProduct = filteredProducts[i];
 
     html += `
@@ -230,14 +227,15 @@ function printProducts() {
   //id="amount-${currentProduct.id}" <--- detta är ett sk dynamiskt ID
   productListing.innerHTML = html;
 
-  // ----------------- SHOPPING-CART --------------------
+  // ----------------------- Produkt BuyBtn ------------------------------
 
   const buyButtons = document.querySelectorAll('#products button.buy');
   buyButtons.forEach((btn) => {
     btn.addEventListener('click', addProductsToCart);
   });
 
-  // --------- input add and subtract products ----------
+  // ----------- input +/- x-produkter addBtn & subtractBtn  -------------
+
   const addButtons = document.querySelectorAll('#products button.add');
   addButtons.forEach((btn) => {
     btn.addEventListener('click', addProducts);
@@ -269,7 +267,8 @@ function printProducts() {
   }
 }
 
-// ----------------- SHOPPING-CART --------------------
+// ---------- Varukorg - lägg till specifik produkter med Id -----------
+
 function addProductsToCart(e) {
   const clickedBtnId = Number(e.target.dataset.id); //OBS konvertera om string till number pga ID=number - så det matchar produktarrayen
 
@@ -281,7 +280,8 @@ function addProductsToCart(e) {
     return;
   } //om den ej hittar produkt - avbryt
 
-  // -------- antal produkter kunden vill beställa -------
+  // -------------- visa x-produkter kunden vill beställa ----------------
+
   const inputField = document.querySelector(`#amount-${clickedBtnId}`);
   let amount = Number(inputField.value);
   if (amount < 0) {
@@ -290,7 +290,8 @@ function addProductsToCart(e) {
 
   inputField.value = 1; //efter tryckt på köp --> inputvärde = 0
 
-  //------- kolla om produkten finns i varukorgen --------
+  //---------------- kolla om produkten finns i varukorgen ---------------
+
   const index = cart.findIndex((product) => product.id == clickedBtnId);
   if (index == -1) {
     product.amount = amount;
@@ -299,11 +300,11 @@ function addProductsToCart(e) {
     product.amount += amount;
   }
 
-  //--------- räkna ut totalsumma i varukorgen ----------
-
   printCart();
   updateCartTotals();
 }
+
+// ----------------- räkna ut totalsumma i varukorgen ------------------
 
 const cartTotalHtml = document.querySelector('#cartTotal');
 function updateCartTotals() {
@@ -315,7 +316,8 @@ function updateCartTotals() {
 
   cartTotalHtml.innerHTML = `Summa: ${cartTotal} kr`;
 
-  //------ animering för att visa prisuppdatering -------
+  // -------------- animering för att visa prisuppdatering ---------------
+
   highlightCartTotalChange();
 }
 
@@ -329,7 +331,7 @@ function removeCartTotalHighlight() {
   cartTotalHtml.classList.remove('highlight-price');
 }
 
-//-- skriva ut produkt, kategori, pris, för varje produkt i varukorg --
+// -- skriva ut produkt, kategori, pris, för varje produkt i varukorg --
 
 const shoppingCartSection = document.querySelector('#shoppingCart');
 function printCart() {
@@ -342,7 +344,8 @@ function printCart() {
     `;
   }
 
-  //---------- delete-knapp efter produkt i varukorg ----------
+  // --------------- delete-knapp efter produkt i varukorg ---------------
+
   const deleteButtons = document.querySelectorAll('button.delete-product');
   deleteButtons.forEach((btn) => {
     btn.addEventListener('click', deleteProductFromCart);
