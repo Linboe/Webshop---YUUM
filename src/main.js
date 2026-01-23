@@ -338,9 +338,17 @@ function printCart() {
   shoppingCartSection.innerHTML = '';
 
   for (let i = 0; i < cart.length; i++) {
+    const productSum = cart[i].price * cart[i].amount;
+
     shoppingCartSection.innerHTML += `
-    <p> ${cart[i].amount} st:  ${cart[i].name} ${cart[i].category} (${cart[i].price}kr/st)
-    <button data-id="${i}" class="delete-product">Radera</button></p>
+    <article>
+     ${cart[i].name} ${cart[i].category}:
+     <button data-id="${cart[i].id}" class="subtract-cart-product">-</button>
+     ${cart[i].amount} 
+     <button data-id="${cart[i].id}" class="add-cart-product">+</button>
+     ${productSum}kr
+     <button data-id="${i}" class="delete-product">Radera</button>
+    </article>
     `;
   }
 
@@ -350,6 +358,42 @@ function printCart() {
   deleteButtons.forEach((btn) => {
     btn.addEventListener('click', deleteProductFromCart);
   });
+
+  // ----------------------- +/- knappar i varukorg -----------------------
+
+  const cartSubtractButtons = document.querySelectorAll(
+    'button.subtract-cart-product',
+  );
+  cartSubtractButtons.forEach((btn) => {
+    btn.addEventListener('click', subtractProductFromCart);
+  });
+
+  const cartAddButtons = document.querySelectorAll('button.add-cart-product');
+  cartAddButtons.forEach((btn) => {
+    btn.addEventListener('click', addProductFromCart);
+  });
+}
+
+function subtractProductFromCart(e) {
+  const rowId = Number(e.target.dataset.id);
+  const product = cart.find((product) => product.id === rowId);
+  if (product.amount <= 0) {
+    return;
+  }
+  product.amount -= 1;
+
+  printCart();
+  updateCartTotals();
+}
+
+function addProductFromCart(e) {
+  const rowId = Number(e.target.dataset.id);
+  const product = cart.find((product) => product.id === rowId);
+
+  product.amount += 1;
+
+  printCart();
+  updateCartTotals();
 }
 
 function deleteProductFromCart(e) {
