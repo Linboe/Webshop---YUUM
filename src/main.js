@@ -377,7 +377,7 @@ function printCart() {
 function subtractProductFromCart(e) {
   const rowId = Number(e.target.dataset.id);
   const product = cart.find((product) => product.id === rowId);
-  if (product.amount <= 0) {
+  if (product.amount <= 1) {
     return;
   }
   product.amount -= 1;

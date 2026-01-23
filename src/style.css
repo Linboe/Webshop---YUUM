@@ -77,7 +77,7 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
-/*--------- GENERAL ---------*/
+/*--------------------------------------------*/
 
 body {
   background-color: rgb(235, 234, 250);
@@ -106,7 +106,7 @@ h2 {
   text-align: left;
 }
 
-/*--------- NAV: TOGGLE-MENU ---------*/
+/* ----------------- Huvudmeny ---------------*/
 
 .mainNav {
   display: none;
@@ -146,7 +146,7 @@ li a {
   text-decoration: none;
 }
 
-/*--------- PRODUCTS ---------*/
+/*--------------- Produktkort ----------------*/
 
 article p {
   color: rgb(235, 234, 250);
@@ -174,8 +174,7 @@ button {
   display: flex;
   gap: 4px;
 }
-
-/*-------- FORM-CONTACT -------*/
+/* ------------- Kontaktformulär ------------ */
 form {
   justify-content: center;
   background-color: rgb(153, 150, 196);
@@ -223,7 +222,20 @@ label input:focus + span {
   align-items: start;
 }
 
-/*--------- FOOTER ---------*/
+/* -------input-pilar (cross-browser) --------*/
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* ------------------ Footer ------------------*/
+
 footer {
   margin-top: 20px;
   padding: 20px;
@@ -242,13 +254,15 @@ footer a {
   margin-bottom: 4px;
 }
 
-/*----- external-links -----*/
+/* ------------- externa länkar ------------- */
+
 footer .fa {
   font-size: 1.5rem;
 }
 
+/* --------- animation prisändring ---------- */
 .cart-total {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .highlight-price {
