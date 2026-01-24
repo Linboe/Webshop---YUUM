@@ -3,7 +3,7 @@ const products = [
     id: 1,
     name: 'Lux Chocolate',
     img: {
-      src: '/img/donut-lux-chocolat.jpg',
+      src: '/fed25d-js-intro-inl-1-Linboe/img/donut-lux-chocolat.jpg',
       width: 2000,
       height: 3000,
       alt: 'Hand-tar-Lux-Chocolate-munk',
@@ -17,7 +17,7 @@ const products = [
     id: 2,
     name: 'Vanilla',
     img: {
-      src: '/img.donut-vanilla.jpg',
+      src: '/fed25d-js-intro-inl-1-Linboe/img/donut-vanilla.jpg',
       width: 3145,
       height: 4718,
       alt: 'Tre-vanilj-munkar',
@@ -30,7 +30,7 @@ const products = [
     id: 3,
     name: 'Blueberry',
     img: {
-      src: '/img/donut-blueberry.jpg',
+      src: '/fed25d-js-intro-inl-1-Linboe/img/donut-blueberry.jpg',
       width: 4096,
       height: 2160,
       alt: 'En-blåbärsmunk-med-strössel',
