@@ -135,7 +135,17 @@ h2 {
   font-weight: bold;
 }
 
-/*------------------- Nav --------------------*/
+/* ------- varukorg och meny nav-knapp ------ */
+.fixedNavIcon {
+  background-color: rgba(153, 150, 196, 0.7);
+  position: fixed; /*2DO- BÖRJA I STARTPOS. EJ I TOPPEN!!!*/
+  top: 0;
+  z-index: 9999;
+  left: 10px;
+  right: 10px;
+  padding-top: 10px;
+  padding-left: 8px;
+}
 
 /* ----------------- Huvudmeny ---------------*/
 
@@ -223,6 +233,8 @@ button {
 
 button.buy {
   font-size: 1.5rem;
+  position: relative;
+  bottom: -7px;
 }
 
 .product-image {
@@ -380,9 +392,6 @@ footer .fa {
     margin-bottom: -55px;
   }
 
-  header {
-  }
-
   form {
     display: flex;
     margin-block: 20px;
@@ -392,6 +401,13 @@ footer .fa {
   h2 {
     display: flex;
     justify-content: center;
+  }
+
+  .fixedNavIcon {
+    background-color: rgb(153, 150, 196, 0);
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
   }
 
   .containerNav,
