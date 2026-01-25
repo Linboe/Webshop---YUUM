@@ -42,7 +42,12 @@ const products = [
   {
     id: 4,
     name: 'Honey Swirl',
-    img: 'img.jpg',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-honey-swirl.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-behållare-med-glasskula',
+    },
     price: 38,
     rating: 5,
     category: 'Icecream',
@@ -50,7 +55,12 @@ const products = [
   {
     id: 5,
     name: 'Breezy Melon',
-    img: 'img.jpg',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-breezy-melon.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-glasbehållare-med-2-glasskulor-frukt-i-bakgrunden',
+    },
     price: 38,
     rating: 3,
     category: 'Icecream',
@@ -58,7 +68,12 @@ const products = [
   {
     id: 6,
     name: 'Salty Liquorice',
-    img: 'img.jpg',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-salty-liquorice.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-hand-håller-glasskon-med-mjukglass',
+    },
     price: 46,
     rating: 4,
     category: 'Icecream',
@@ -66,7 +81,12 @@ const products = [
   {
     id: 7,
     name: 'Marsmallow',
-    img: 'img.jpg',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-marsmallow.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'Ett-högt-glas-med-milkshake-kakor-i-bakgrunden',
+    },
     price: 50,
     rating: 2,
     category: 'Milkshake',
@@ -74,15 +94,25 @@ const products = [
   {
     id: 8,
     name: 'YUUM special!',
-    img: 'img.jpg',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-yuum-special.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'Ett-glas-med-milkshake-toppat-med-grädde-choklad-marsmallows-spiller-ut-på-bordet',
+    },
     price: 50,
     rating: 4,
     category: 'Milkshake',
   },
   {
     id: 9,
-    name: 'Cocos',
-    img: 'img.jpg',
+    name: 'Coco',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-coco.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-plastbehållare-med-milkshake-och-sugrör',
+    },
     price: 58,
     rating: 5,
     category: 'Milkshake',
@@ -90,7 +120,12 @@ const products = [
   {
     id: 10,
     name: 'Mango',
-    img: 'img.jpg',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-mango.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-glasmugg-med-milkshake-toppat-med-mango',
+    },
     price: 50,
     rating: 5,
     category: 'Milkshake',

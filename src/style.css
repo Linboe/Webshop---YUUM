@@ -177,7 +177,7 @@ button {
 
 .product-image {
   width: 100%;
-  height: 400px;
+  height: 300px;
   overflow: hidden;
   margin: 0;
 }
@@ -187,6 +187,32 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* ---------------- Varukorg --------------- */
+
+.cart {
+  margin-bottom: 20px;
+}
+
+.cartProducts {
+  gap: 6px;
+}
+
+/* --------- animation prisändring ---------- */
+.cart-total {
+  transition: all 0.2s ease-in-out;
+}
+
+.highlight-price {
+  font-size: 1.25rem;
+  color: rgb(145, 46, 73);
+  font-weight: bold;
+}
+
+.cartProductSum {
+  color: rgb(72, 60, 203);
+  font-weight: bold;
 }
 
 /* ------------- Kontaktformulär ------------ */
@@ -276,17 +302,6 @@ footer .fa {
   font-size: 1.5rem;
 }
 
-/* --------- animation prisändring ---------- */
-.cart-total {
-  transition: all 0.2s ease-in-out;
-}
-
-.highlight-price {
-  font-size: 1.25rem;
-  color: rgb(145, 46, 73);
-  font-weight: bold;
-}
-
 @media screen and (min-width: 720px) {
   header {
     padding-inline: 40px;
@@ -303,6 +318,13 @@ footer .fa {
     justify-content: center;
   }
 
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
   .productlist {
     display: flex;
     justify-content: space-between;
@@ -314,12 +336,14 @@ footer .fa {
     width: 30%;
   }
 
-  .container {
+  /* ---------------- Varukorg --------------- */
+
+  .cartProducts {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
+    justify-content: center;
   }
+
+  /* ------------------ Footer ------------------*/
 
   footer {
     display: flex;

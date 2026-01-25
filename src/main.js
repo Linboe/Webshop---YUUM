@@ -355,12 +355,12 @@ function printCart() {
     const productSum = cart[i].price * cart[i].amount;
 
     shoppingCartSection.innerHTML += `
-    <article>
+    <article class="cartProducts">
      ${cart[i].name} ${cart[i].category}:
      <button data-id="${cart[i].id}" class="subtract-cart-product">-</button>
      ${cart[i].amount} 
      <button data-id="${cart[i].id}" class="add-cart-product">+</button>
-     ${productSum}kr
+     <span class="cartProductSum">${productSum} kr</span>
      <button data-id="${i}" class="delete-product">Radera</button>
     </article>
     `;
