@@ -41,12 +41,12 @@ const products = [
   },
   {
     id: 4,
-    name: 'Honey Swirl',
+    name: 'Berry Swirl',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-honey-swirl.jpg',
+      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-berry-swirl.jpg',
       width: 4096,
       height: 2160,
-      alt: 'En-behållare-med-glasskula',
+      alt: 'En-glasskon-med-rosa-mjukglass',
     },
     price: 38,
     rating: 5,
@@ -54,19 +54,6 @@ const products = [
   },
   {
     id: 5,
-    name: 'Breezy Melon',
-    img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-breezy-melon.jpg',
-      width: 4096,
-      height: 2160,
-      alt: 'En-glasbehållare-med-2-glasskulor-frukt-i-bakgrunden',
-    },
-    price: 38,
-    rating: 3,
-    category: 'Icecream',
-  },
-  {
-    id: 6,
     name: 'Salty Liquorice',
     img: {
       src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-salty-liquorice.jpg',
@@ -76,6 +63,19 @@ const products = [
     },
     price: 46,
     rating: 4,
+    category: 'Icecream',
+  },
+  {
+    id: 6,
+    name: 'Soft Honey',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-soft-honey.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'En-person-slickar-mjukglass-i-kon',
+    },
+    price: 38,
+    rating: 3,
     category: 'Icecream',
   },
   {
@@ -93,6 +93,19 @@ const products = [
   },
   {
     id: 8,
+    name: 'Coco',
+    img: {
+      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-coco.jpg',
+      width: 4096,
+      height: 2160,
+      alt: 'Ett-glas-med-milkshake-och-sugrör',
+    },
+    price: 58,
+    rating: 5,
+    category: 'Milkshake',
+  },
+  {
+    id: 9,
     name: 'YUUM special!',
     img: {
       src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-yuum-special.jpg',
@@ -102,19 +115,6 @@ const products = [
     },
     price: 50,
     rating: 4,
-    category: 'Milkshake',
-  },
-  {
-    id: 9,
-    name: 'Coco',
-    img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-coco.jpg',
-      width: 4096,
-      height: 2160,
-      alt: 'En-plastbehållare-med-milkshake-och-sugrör',
-    },
-    price: 58,
-    rating: 5,
     category: 'Milkshake',
   },
   {

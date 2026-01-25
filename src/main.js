@@ -225,17 +225,20 @@ function printProducts() {
     html += `
     <article>
    ${imgHtml}
+   <div class="productCard">
       <h3>${currentProduct.name}</h3>
       <div class="metadata">
         <p>Pris: ${currentProduct.price} kr</p>
         <p>Rating: ${currentProduct.rating}/5</p>
       </div>
       <p>${currentProduct.category}</p>
+      <div class="productAddSubtract">
       <button class="subtract" data-id="${currentProduct.id}">-</button>
       <input type="number" min="1" value="1" id="amount-${currentProduct.id}" >  
       <button class="add" data-id="${currentProduct.id}">+</button>
       <button class="buy" data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
-    </article>
+    </div></div>
+      </article>
   `;
   }
   //id="amount-${currentProduct.id}" <--- detta är ett sk dynamiskt ID
