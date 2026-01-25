@@ -197,6 +197,12 @@ button {
 
 .cartProducts {
   gap: 6px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.material-symbols-outlined {
+  scale: 90%;
 }
 
 /* --------- animation prisändring ---------- */
@@ -339,8 +345,7 @@ footer .fa {
   /* ---------------- Varukorg --------------- */
 
   .cartProducts {
-    display: flex;
-    justify-content: center;
+    text-align: center;
   }
 
   /* ------------------ Footer ------------------*/

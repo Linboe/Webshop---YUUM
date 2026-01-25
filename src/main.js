@@ -356,13 +356,17 @@ function printCart() {
 
     shoppingCartSection.innerHTML += `
     <article class="cartProducts">
+    <div>
      ${cart[i].name} ${cart[i].category}:
-     <button data-id="${cart[i].id}" class="subtract-cart-product">-</button>
      ${cart[i].amount} 
-     <button data-id="${cart[i].id}" class="add-cart-product">+</button>
-     <span class="cartProductSum">${productSum} kr</span>
-     <button data-id="${i}" class="delete-product">Radera</button>
-    </article>
+     </div>
+     <div>
+     <button data-id="${cart[i].id}" class="material-symbols-outlined subtract-cart-product">remove</button>
+     <button data-id="${cart[i].id}" class="material-symbols-outlined add-cart-product">add</button>
+     <button data-id="${i}" class="material-symbols-outlined delete-product">delete</button>
+      <span class="cartProductSum">${productSum} kr</span>
+      </div>
+      </article>
     `;
   }
 
