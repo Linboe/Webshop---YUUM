@@ -229,18 +229,28 @@ function printProducts() {
       <h3>${currentProduct.name}</h3>
       <div class="metadata">
         <p>Pris: ${currentProduct.price} kr</p>
-        <p>Rating: ${currentProduct.rating}/5</p>
+        <p class="productRating">${renderRating(currentProduct.rating)}</p>
       </div>
       <p>${currentProduct.category}</p>
       <div class="productAddSubtract">
       <button class="subtract" data-id="${currentProduct.id}">-</button>
       <input type="number" min="1" value="1" id="amount-${currentProduct.id}" >  
       <button class="add" data-id="${currentProduct.id}">+</button>
-      <button class="buy" data-id="${currentProduct.id}" aria-label="button-shopping-cart">Köp</button>
-    </div></div>
+      <button class="buy material-symbols-outlined" data-id="${currentProduct.id}" aria-label="button-add-product-to-shopping-cart">add_shopping_cart</button>
+      </div></div>
       </article>
   `;
   }
+
+  // ----------------------- Stjärn-rating ------------------------------
+  function renderRating(rating, maxRating = 5) {
+    let stars = '';
+    for (let i = 1; i <= maxRating; i++) {
+      stars += i <= rating ? '★' : '☆';
+    }
+    return stars;
+  }
+
   //id="amount-${currentProduct.id}" <--- detta är ett sk dynamiskt ID
   productListing.innerHTML = html;
 
@@ -305,7 +315,7 @@ function addProductsToCart(e) {
     return;
   }
 
-  inputField.value = 1; //efter tryckt på köp --> inputvärde = 0
+  inputField.value = 0; //efter tryckt på köp --> inputvärde = 0
 
   //---------------- kolla om produkten finns i varukorgen ---------------
 
@@ -324,6 +334,7 @@ function addProductsToCart(e) {
 // ----------------- räkna ut totalsumma i varukorgen ------------------
 
 const cartTotalHtml = document.querySelector('#cartTotal');
+
 function updateCartTotals() {
   let cartTotal = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -332,6 +343,11 @@ function updateCartTotals() {
   }
 
   cartTotalHtml.innerHTML = `Summa: ${cartTotal} kr`;
+
+  const totalSumNav = document.querySelector('#total-sum');
+  if (totalSumNav) {
+    totalSumNav.textContent = `${cartTotal} kr`;
+  }
 
   // -------------- animering för att visa prisuppdatering ---------------
 

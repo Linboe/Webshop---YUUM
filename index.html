@@ -18,6 +18,9 @@
   <title>FED25D | Inlämningsuppgift 1</title>
 
   <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add_shopping_cart" />
+
+  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=remove" />
 
   <link rel="stylesheet"
@@ -52,9 +55,9 @@
 
   <header>
     <div class="container">
-      <h1>yuum!</h1>
+      <h1>yuum</h1>
       <div>
-        <span>100 KR</span>
+        <span class="total-sum" id="total-sum"></span>
 
         <button aria-label="button-open-shopping-cart" class="material-symbols-outlined" id="cartBtn">
           shopping_cart
@@ -80,123 +83,121 @@
   <!--************************************************************************-->
   <!--****************************** MAIN ************************************-->
   <!--************************************************************************-->
-  <main>
-    <!-------------- filtrering --------------->
+  <!-------------- filtrering --------------->
+  <div class="containerNav">
+    <div>
+      <button aria-label="button-open-filter-menu" class="material-symbols-outlined" id="filterBtn">
+        filter_alt
+      </button>
 
-    <div class="container">
-      <div>
-        <button aria-label="button-open-filter-menu" class="material-symbols-outlined" id="filterBtn">
-          filter_alt
-        </button>
-
-        <nav class="filterNav" id="filterNav">
-          <button aria-label="filter-show-donuts" id="donutsFilterBtn">Donuts</button>
-          <button aria-label="filter-show-icecream" id="icecreamFilterBtn">Icecream</button>
-          <button aria-label="filter-show-milkshake" id="milkshakeFilterBtn">Milkshake</button>
-          <button aria-label="filter-show-all" id="allproductsFilterBtn">All</button>
-        </nav>
-      </div>
-
-      <!--------------- sortering --------------->
-      <div>
-        <button aria-label="button-sort-product-alphabetically" class="material-symbols-outlined"
-          id="sortByNameBtn">sort_by_alpha</button>
-        <button aria-label="button-sort-product-by-lowest-price-first" class="material-symbols-outlined"
-          id="sortByPriceBtn">arrow_cool_down</button>
-        <button aria-label="button-sort-product-by-highest-rating-first" class="material-symbols-outlined"
-          id="sortByRatingBtn">star</button>
-      </div>
+      <nav class="filterNav" id="filterNav">
+        <button aria-label="filter-show-donuts" id="donutsFilterBtn">Donuts</button>
+        <button aria-label="filter-show-icecream" id="icecreamFilterBtn">Icecream</button>
+        <button aria-label="filter-show-milkshake" id="milkshakeFilterBtn">Milkshake</button>
+        <button aria-label="filter-show-all" id="allproductsFilterBtn">All</button>
+      </nav>
     </div>
 
-    <!------------- produktlista -------------->
+    <!--------------- sortering --------------->
+    <div>
+      <button aria-label="button-sort-product-alphabetically" class="material-symbols-outlined"
+        id="sortByNameBtn">sort_by_alpha</button>
+      <button aria-label="button-sort-product-by-lowest-price-first" class="material-symbols-outlined"
+        id="sortByPriceBtn">arrow_cool_down</button>
+      <button aria-label="button-sort-product-by-highest-rating-first" class="material-symbols-outlined"
+        id="sortByRatingBtn">star</button>
+    </div>
+  </div>
 
-    <section class="productlist" id="products"></section>
+  <!------------- produktlista -------------->
 
-    <!------------- varukorg -------------->
-    <h2 class="cart" id="cart">Varukorg</h2>
-    <section>
-      <div class="cartProducts" id="shoppingCart">Varukorgen är tom.</div>
+  <section class="productlist" id="products"></section>
 
-      <div class="cartProducts" id="cartTotal"></div> <!--detta värde ska ändras dynamiskt i varukorgen-->
-    </section>
+  <!------------- varukorg -------------->
+  <h2 class="cart" id="cart">Varukorg</h2>
+  <section class="section">
+    <div class="cartProducts" id="shoppingCart">Varukorgen är tom.</div>
 
-    <!------- formulär för kunduppgifter ------->
-    <h2 id="contact">Kontaktformulär</h2>
-    <form>
-      <fieldset class="contactInput">
-        <label>
-          <input type="text" name="first-name" required>
-          <span>Förnamn</span>
-        </label>
+    <div class="cartProducts" id="cartTotal"></div> <!--detta värde ska ändras dynamiskt i varukorgen-->
+  </section>
 
-        <label>
-          <input type="text" name="surname" required>
-          <span>Efternamn</span>
-        </label>
+  <!------- formulär för kunduppgifter ------->
+  <h2 id="contact">Kontaktformulär</h2>
+  <form class="section">
+    <fieldset class="contactInput">
+      <label>
+        <input type="text" name="first-name" required>
+        <span>Förnamn</span>
+      </label>
 
-        <label>
-          <input type="text" name="adress" required>
-          <span>Adress (gata)</span>
-        </label>
+      <label>
+        <input type="text" name="surname" required>
+        <span>Efternamn</span>
+      </label>
 
-        <label>
-          <input type="number" name="postcode" required>
-          <span>Postnummer</span>
-        </label>
+      <label>
+        <input type="text" name="adress" required>
+        <span>Adress (gata)</span>
+      </label>
 
-        <label>
-          <input type="text" name="postcode-area" required>
-          <span>Postort</span>
-        </label>
+      <label>
+        <input type="number" name="postcode" required>
+        <span>Postnummer</span>
+      </label>
 
-        <label>
-          <input type="text" name="entery-code">
-          <span>Ev.portkod</span>
-        </label>
+      <label>
+        <input type="text" name="postcode-area" required>
+        <span>Postort</span>
+      </label>
 
-        <label>
-          <input type="tel" name="telephonenumber">
-          <span>Telefon (mobil)</span>
-        </label>
+      <label>
+        <input type="text" name="entery-code">
+        <span>Ev.portkod</span>
+      </label>
 
-        <label>
-          <input type="email" name="e-mail" required>
-          <span>E-postadress</span>
-        </label>
-      </fieldset>
+      <label>
+        <input type="tel" name="telephonenumber">
+        <span>Telefon (mobil)</span>
+      </label>
 
-      <fieldset>
-        <span>Välj betalsätt</span>
-        <label>
-          <input type="radio" name="payment-method-invocie" value="invocie">
-          <span>Faktura</span>
-        </label>
-        <label>
-          <input type="radio" name="payment-method-card" value="card-payment">
-          <span>Kortbetalning</span>
-          <!--Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
+      <label>
+        <input type="email" name="e-mail" required>
+        <span>E-postadress</span>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <span>Välj betalsätt</span>
+      <label>
+        <input type="radio" name="payment-method-invocie" value="invocie">
+        <span>Faktura</span>
+      </label>
+      <label>
+        <input type="radio" name="payment-method-card" value="card-payment">
+        <span>Kortbetalning</span>
+        <!--Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
 Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. Dessa behöver inte valideras!-->
-        </label>
+      </label>
 
-        <label>
-          <input type="checkbox" name="consent-to-the-processing-of-personal-data-checkbox">
-          <span>Godkännande av behandling av personuppgifter</span>
-        </label>
+      <label>
+        <input type="checkbox" name="consent-to-the-processing-of-personal-data-checkbox">
+        <span>Godkännande av behandling av personuppgifter</span>
+      </label>
 
-        <label>
-          <input type="checkbox" name="subscribe-to-newsletter-checkbox">
-          <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
-        </label>
+      <label>
+        <input type="checkbox" name="subscribe-to-newsletter-checkbox">
+        <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
+      </label>
 
-        <!--Samtliga formulärfält ska valideras och formuläret/beställningen ska inte gå att skicka om det finns några fel
+      <!--Samtliga formulärfält ska valideras och formuläret/beställningen ska inte gå att skicka om det finns några fel
   - Felen ska markeras och kommuniceras tydligt (t.ex. ej enbart med röd färg, tag i beaktande a11y)
   - När formuläret är korrekt ifyllt ska Skicka-/Beställ-knappen aktiveras, innan det är den utgråad
   - Det ska finnas en "Rensa beställning"-knapp som återställer samtliga formulärfält liksom eventuella beställda munkar/produkter (alltså antalet återställs till 0)
   - Det ska finnas ett fält för att mata in en rabattkod.-->
 
-        <button>Skicka</button>
-      </fieldset>
-    </form>
+      <button>Skicka</button>
+    </fieldset>
+  </form>
 
   </main>
 

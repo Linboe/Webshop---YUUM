@@ -79,19 +79,26 @@ textarea:not([rows]) {
 
 /*--------------------------------------------*/
 
+.productlist,
+.section {
+  margin-bottom: 40px;
+}
+
 body {
   background-color: rgb(235, 234, 250);
 }
 
 header {
   background-color: white;
-  margin-block: 20px;
+  margin-bottom: 10px;
 }
 
 h1 {
   color: rgb(51, 47, 109);
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   text-transform: uppercase;
+  font-size: 8rem;
+  margin-top: -10px;
 }
 
 h3 {
@@ -105,6 +112,30 @@ h2 {
   padding-block: 8px;
   text-align: left;
 }
+
+.container {
+  padding: 8px;
+}
+
+.containerNav {
+  padding: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.container div,
+.containerNav div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.total-sum {
+  color: rgb(51, 47, 109);
+  font-weight: bold;
+}
+
+/*------------------- Nav --------------------*/
 
 /* ----------------- Huvudmeny ---------------*/
 
@@ -162,6 +193,12 @@ article p {
   padding: 20px;
 }
 
+.inputProductCard {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
 .productlist .metadata {
   display: flex;
   justify-content: space-between;
@@ -169,11 +206,23 @@ article p {
 
 button {
   margin-bottom: 8px;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+  padding: 5px;
 }
 
-.container div {
-  display: flex;
-  gap: 4px;
+.material-symbols-outlined {
+  color: rgb(235, 234, 250);
+  background-color: rgb(58, 55, 94);
+  border-radius: 4px;
+  padding: 4px;
+  border: none;
+  font-size: 1.2rem;
+}
+
+button.buy {
+  font-size: 1.5rem;
 }
 
 .product-image {
@@ -203,23 +252,27 @@ button {
 }
 
 .cartProducts {
-  gap: 6px;
   display: block;
   margin-bottom: 12px;
 }
 
-.material-symbols-outlined {
-  scale: 90%;
+.cartProducts div {
+  margin-bottom: 4px;
 }
 
 /* --------- animation prisändring ---------- */
+.cartProducts {
+  font-weight: bold;
+  color: rgb(51, 47, 109);
+}
+
 .cart-total {
   transition: all 0.2s ease-in-out;
 }
 
 .highlight-price {
   font-size: 1.25rem;
-  color: rgb(145, 46, 73);
+  color: rgb(9, 159, 159);
   font-weight: bold;
 }
 
@@ -292,7 +345,7 @@ input[type='number'] {
 /* ------------------ Footer ------------------*/
 
 footer {
-  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 20px;
   display: block;
 }
@@ -317,7 +370,17 @@ footer .fa {
 
 @media screen and (min-width: 720px) {
   header {
+    margin-top: 40px;
+    margin-bottom: 50px;
     padding-inline: 40px;
+  }
+
+  h1 {
+    margin-top: -36px;
+    margin-bottom: -55px;
+  }
+
+  header {
   }
 
   form {
@@ -331,6 +394,7 @@ footer .fa {
     justify-content: center;
   }
 
+  .containerNav,
   .container {
     display: flex;
     justify-content: space-between;
