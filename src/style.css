@@ -139,7 +139,6 @@ h2 {
 .fixedNavIcon {
   background-color: rgba(153, 150, 196, 0.7);
   position: fixed; /*2DO- BÖRJA I STARTPOS. EJ I TOPPEN!!!*/
-  top: 0;
   z-index: 9999;
   left: 10px;
   right: 10px;
