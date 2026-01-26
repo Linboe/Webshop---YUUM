@@ -130,11 +130,6 @@ h2 {
   gap: 4px;
 }
 
-.total-sum {
-  color: rgb(51, 47, 109);
-  font-weight: bold;
-}
-
 /* ------- varukorg och meny-nav fixerad ----- */
 .fixedNavIcon {
   background-color: rgba(153, 150, 196, 0.7);
@@ -150,6 +145,11 @@ h2 {
   right: 0;
   margin-top: 0;
   z-index: 9999;
+}
+
+.total-sum {
+  color: rgb(9, 159, 159);
+  font-weight: bold;
 }
 
 /* ----------------- Huvudmeny ---------------*/
@@ -250,8 +250,8 @@ button {
 }
 
 .material-symbols-outlined {
-  color: rgb(235, 234, 250);
-  background-color: rgb(58, 55, 94);
+  color: rgb(58, 55, 94);
+  background-color: rgb(153, 150, 196);
   border-radius: 4px;
   padding: 4px;
   border: none;
@@ -259,9 +259,9 @@ button {
 }
 
 button.buy {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   position: relative;
-  bottom: -7px;
+  bottom: -5px;
 }
 
 /* ---------------- Varukorg --------------- */
@@ -404,14 +404,12 @@ footer .fa {
     justify-content: center;
   }
 
+  /* ------------ nav-ikon-fixerad ------------ */
+
   .fixedNavIcon {
-    background-color: rgb(153, 150, 196, 0);
-    display: flex;
-    position: relative;
+    background-color: rgba(153, 150, 196, 0);
     justify-content: flex-end;
   }
-
-  /* ------------ nav-ikon-fixerad ------------ */
 
   .fixedNavIcon.fixed {
     left: -16px;
