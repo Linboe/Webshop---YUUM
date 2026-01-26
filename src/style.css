@@ -95,14 +95,20 @@ header {
 
 h1 {
   color: rgb(51, 47, 109);
-  padding-bottom: 20px;
+  padding-bottom: 18px;
   text-transform: uppercase;
-  font-size: 8rem;
-  margin-top: -10px;
+  font-size: 9rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
 
 h3 {
   color: rgb(255, 255, 255);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 450;
+  font-style: normal;
+  font-size: 1.25rem;
 }
 
 h2 {
@@ -111,6 +117,24 @@ h2 {
   padding-left: 6px;
   padding-block: 8px;
   text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 0.9rem;
+}
+
+form span,
+footer a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8rem;
 }
 
 .container {
@@ -149,7 +173,10 @@ h2 {
 
 .total-sum {
   color: rgb(9, 159, 159);
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 0.8rem;
 }
 
 /* ----------------- Huvudmeny ---------------*/
@@ -174,6 +201,12 @@ h2 {
 
 .mainNav ul {
   list-style: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.1rem;
+  text-align: center;
+  color: rgb(51, 47, 109);
 }
 
 .filterNav {
@@ -264,6 +297,16 @@ button.buy {
   bottom: -5px;
 }
 
+button.send {
+  border-radius: 8px;
+  margin-top: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-style: normal;
+  background-color: rgb(51, 47, 109);
+  color: rgb(255, 255, 255);
+}
 /* ---------------- Varukorg --------------- */
 
 .cart {
@@ -281,7 +324,10 @@ button.buy {
 
 /* --------- animation prisändring ---------- */
 .cartProducts {
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8rem;
   color: rgb(51, 47, 109);
 }
 
@@ -290,14 +336,14 @@ button.buy {
 }
 
 .highlight-price {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: rgb(9, 159, 159);
   font-weight: bold;
 }
 
 .cartProductSum {
   color: rgb(72, 60, 203);
-  font-weight: bold;
+  font-weight: 600;
 }
 
 /* ------------- Kontaktformulär ------------ */
@@ -336,16 +382,17 @@ fieldset.contactInput input {
 fieldset.contactInput label span {
   display: block;
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 6px;
+  left: 6px;
 
   pointer-events: none;
   transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 label input:focus + span {
-  top: -20px;
+  top: -18px;
   align-items: start;
+  font-weight: bold;
 }
 
 /* -------input-pilar (cross-browser) --------*/
