@@ -73,7 +73,7 @@ menuButton.addEventListener('click', toggleMenu);
 navLinks.forEach((link) => {
   link.addEventListener('click', closeToggleMenu);
 });
-mainNav.addEventListener('click', closeToggleMenu);
+mainMenu.addEventListener('click', closeToggleMenu);
 
 function toggleMenu() {
   mainMenu.classList.toggle('open');
@@ -441,5 +441,18 @@ function deleteProductFromCart(e) {
   printCart();
   updateCartTotals();
 }
+
+// --------------------- nav-ikoner-fixerade offset ---------------------
+
+const fixedNavIcon = document.querySelector('.fixedNavIcon');
+const navOffset = fixedNavIcon.offsetTop;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY >= navOffset) {
+    fixedNavIcon.classList.add('fixed');
+  } else {
+    fixedNavIcon.classList.remove('fixed');
+  }
+});
 
 printProducts();

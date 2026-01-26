@@ -135,15 +135,21 @@ h2 {
   font-weight: bold;
 }
 
-/* ------- varukorg och meny nav-knapp ------ */
+/* ------- varukorg och meny-nav fixerad ----- */
 .fixedNavIcon {
   background-color: rgba(153, 150, 196, 0.7);
-  position: fixed; /*2DO- BÖRJA I STARTPOS. EJ I TOPPEN!!!*/
-  z-index: 9999;
-  left: 10px;
-  right: 10px;
+  width: 100%;
   padding-top: 10px;
   padding-left: 8px;
+}
+
+.fixedNavIcon.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  z-index: 9999;
 }
 
 /* ----------------- Huvudmeny ---------------*/
@@ -213,6 +219,28 @@ article p {
   justify-content: space-between;
 }
 
+.product-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.product-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.productAddSubtract {
+  margin-top: 16px;
+}
+
+/* ---------------- knappar ----------------- */
+
 button {
   margin-bottom: 8px;
   border: none;
@@ -234,26 +262,6 @@ button.buy {
   font-size: 1.5rem;
   position: relative;
   bottom: -7px;
-}
-
-.product-image {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  margin: 0;
-}
-
-.product-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
-.productAddSubtract {
-  margin-top: 16px;
 }
 
 /* ---------------- Varukorg --------------- */
@@ -391,12 +399,6 @@ footer .fa {
     margin-bottom: -55px;
   }
 
-  form {
-    display: flex;
-    margin-block: 20px;
-    margin-inline: 200px;
-  }
-
   h2 {
     display: flex;
     justify-content: center;
@@ -409,6 +411,12 @@ footer .fa {
     justify-content: flex-end;
   }
 
+  /* ------------ nav-ikon-fixerad ------------ */
+
+  .fixedNavIcon.fixed {
+    left: -16px;
+  }
+
   .containerNav,
   .container {
     display: flex;
@@ -416,6 +424,8 @@ footer .fa {
     width: 100%;
     align-items: center;
   }
+
+  /* ------------- produkt-kort --------------- */
 
   .productlist {
     display: flex;
@@ -434,7 +444,15 @@ footer .fa {
     text-align: center;
   }
 
-  /* ------------------ Footer ------------------*/
+  /* ------------- Kontaktformulär ----------- */
+
+  form {
+    display: flex;
+    margin-block: 20px;
+    margin-inline: 200px;
+  }
+
+  /* ----------------- Footer ---------------- */
 
   footer {
     display: flex;
