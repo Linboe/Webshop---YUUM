@@ -307,6 +307,16 @@ button.send {
   background-color: rgb(51, 47, 109);
   color: rgb(255, 255, 255);
 }
+
+.filterNav button {
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  font-size: 0.9rem;
+  font-style: normal;
+  background-color: rgb(51, 47, 109);
+  color: rgb(255, 255, 255);
+}
 /* ---------------- Varukorg --------------- */
 
 .cart {
