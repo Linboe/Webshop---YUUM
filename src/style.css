@@ -89,6 +89,7 @@ body {
 }
 
 header {
+  position: relative;
   margin-top: 0;
   height: 137px;
   background-color: white;
@@ -104,6 +105,7 @@ h1 {
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
   font-style: normal;
+  margin-bottom: -20px;
 }
 
 h3 {
@@ -155,6 +157,24 @@ footer a {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* --------- fig.img.linjeteckningar --------- */
+.catStretch img,
+.catBack img {
+  position: absolute;
+}
+
+.catStretch img {
+  left: 270px;
+  top: 5px;
+  width: 300px;
+}
+
+.catBack img {
+  left: 200px;
+  bottom: 60px;
+  width: 240px;
 }
 
 /* ------- varukorg och meny-nav fixerad ----- */
@@ -361,6 +381,7 @@ button.send {
 
 /* ------------- Kontaktformulär ------------ */
 form {
+  position: relative;
   justify-content: center;
   background-color: rgb(153, 150, 196);
   border-radius: 8px;
@@ -511,6 +532,19 @@ footer .fa {
     display: flex;
     margin-block: 20px;
     margin-inline: 200px;
+  }
+
+  /* -------- fig.img.linjeteckningar --------- */
+  .catStretch img {
+    left: 390px;
+    top: -140px;
+    width: 420px;
+  }
+
+  .catBack img {
+    left: 490px;
+    bottom: -115px;
+    width: 500px;
   }
 
   /* ----------------- Footer ---------------- */
