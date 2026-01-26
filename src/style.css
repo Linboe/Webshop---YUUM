@@ -89,11 +89,14 @@ body {
 }
 
 header {
+  margin-top: 0;
+  height: 137px;
   background-color: white;
-  margin-bottom: 10px;
+  margin-bottom: 90px;
 }
 
 h1 {
+  margin: 0;
   color: rgb(51, 47, 109);
   padding-bottom: 18px;
   text-transform: uppercase;
@@ -301,8 +304,8 @@ button.send {
   border-radius: 8px;
   margin-top: 6px;
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: 0.9rem;
+  font-weight: 200;
+  font-size: 0.8rem;
   font-style: normal;
   background-color: rgb(51, 47, 109);
   color: rgb(255, 255, 255);
@@ -428,14 +431,16 @@ footer {
 
 footer a {
   text-decoration: none;
+  font-weight: 500;
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
   gap: 4px;
-  color: black;
+  color: rgb(51, 47, 109);
   margin-bottom: 4px;
+  font-weight: 500;
 }
 
 /* ------------- externa länkar ------------- */
@@ -449,6 +454,7 @@ footer .fa {
     margin-top: 40px;
     margin-bottom: 50px;
     padding-inline: 40px;
+    height: 100px;
   }
 
   h1 {
