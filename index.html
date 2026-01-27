@@ -179,7 +179,7 @@
     <fieldset>
       <h4>Välj betalsätt:</h4>
       <label>
-        <input type="radio" name="payment-method" value="invocie" class="invocie">
+        <input type="radio" name="payment-method" value="invocie" class="invoice">
         <span>Faktura</span>
       </label>
 
@@ -188,16 +188,16 @@
         <span>Kortbetalning</span>
       </label>
 
-      <div class="box invocie">
-        <h4>Fakturauppgifter</h4>
-        <input type="number" placeholder="personnummer">
+      <div class="box invoice">
+        <h5>Fakturauppgifter</h5>
+        <input type="text" inputmode="numeric" placeholder="YYYYMMDD-XXXX">
       </div>
 
       <div class="box card">
-        <h4>Kortuppgifter</h4>
-        <input type="number" placeholder="kortnummer">
-        <input type="month" type="year" placeholder="datum/år"> <!--kolla typ mån/år-->
-        <input type="number" placeholder="CVC">
+        <h5>Kortuppgifter</h5>
+        <input type="number" placeholder="1234 5678 9012 3456">
+        <input type="month" placeholder="MM/YY"> <!--kolla typ mån/år-->
+        <input type="number" maxlength="3" placeholder="CVC">
       </div>
 
       <label>

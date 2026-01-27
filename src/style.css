@@ -136,7 +136,8 @@ p {
 
 h4,
 form span,
-footer a {
+footer a,
+input::placeholder {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -145,6 +146,12 @@ footer a {
 
 h4 {
   font-weight: bold;
+}
+
+h5 {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-size: 0.75rem;
 }
 
 .container {
@@ -168,6 +175,7 @@ h4 {
 .catStretch img,
 .catBack img {
   position: absolute;
+  pointer-events: none;
 }
 
 .catStretch img {
@@ -177,8 +185,8 @@ h4 {
 }
 
 .catBack img {
-  left: 220px;
-  bottom: 65px;
+  left: 285px;
+  bottom: 160px;
   width: 240px;
 }
 
@@ -443,14 +451,24 @@ label input:focus + span {
 
 /* ------ betalnings-alt. formulär-alt ------*/
 
-.card input,
-.invocie input {
-  margin-block: 10px;
+.box input {
+  margin-bottom: 10px;
 }
 
 .box {
   display: none;
 }
+
+label:has(input.invoice:checked) ~ .box.invoice,
+label:has(input.card:checked) ~ .box.card {
+  display: block;
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin-block: 10px;
+}
+
 /* -------input-pilar (cross-browser) --------*/
 
 input[type='number']::-webkit-inner-spin-button,
