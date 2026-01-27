@@ -1,6 +1,5 @@
 import './style.css';
 import products from './products.mjs';
-import { CatBackSvg, CatStretchSvg } from './img.mjs';
 
 /** FÖR ATT LÖSA UPPGIFTEN
  * Logik & programflöde
@@ -455,14 +454,5 @@ window.addEventListener('scroll', () => {
     fixedNavIcon.classList.remove('fixed');
   }
 });
-
-const imgCatStretch = document.querySelector('#catStretch img');
-const imgCatBack = document.querySelector('#catBack img');
-
-imgCatStretch.src = CatStretchSvg;
-imgCatStretch.alt = 'Linje-teckning-katt-stretchar';
-
-imgCatBack.src = CatBackSvg;
-imgCatBack.alt = 'Linje-teckning-katt-rygg';
 
 printProducts();
