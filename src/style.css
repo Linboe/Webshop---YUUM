@@ -443,7 +443,8 @@ fieldset.contactInput label span {
   transition: top 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-label input:focus + span {
+label input:focus + span,
+label input:not(:placeholder-shown) + span {
   top: -18px;
   align-items: start;
   font-weight: bold;
@@ -583,7 +584,7 @@ footer .fa {
 
   .catBack img {
     left: 490px;
-    bottom: -115px;
+    bottom: -180px;
     width: 500px;
   }
 
