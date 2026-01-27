@@ -173,20 +173,32 @@
         <input type="email" name="e-mail" required>
         <span>E-postadress</span>
       </label>
+      <button class="resetORder">Rensa beställning</button>
     </fieldset>
 
     <fieldset>
-      <span>Välj betalsätt:</span>
+      <h4>Välj betalsätt:</h4>
       <label>
-        <input type="radio" name="payment-method-invocie" value="invocie">
+        <input type="radio" name="payment-method" value="invocie" class="invocie">
         <span>Faktura</span>
       </label>
+
       <label>
-        <input type="radio" name="payment-method-card" value="card-payment">
+        <input type="radio" name="payment-method" value="card-payment" class="card">
         <span>Kortbetalning</span>
-        <!--Om faktura valts som betalsätt ska ett formulärfält för svenskt personnummer visas. Även detta fält ska valideras innan formuläret går att skicka iväg, dvs. att man fyllt i korrekt personnummer.
-Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. Dessa behöver inte valideras!-->
       </label>
+
+      <div class="box invocie">
+        <h4>Fakturauppgifter</h4>
+        <input type="number" placeholder="personnummer">
+      </div>
+
+      <div class="box card">
+        <h4>Kortuppgifter</h4>
+        <input type="number" placeholder="kortnummer">
+        <input type="month" type="year" placeholder="datum/år"> <!--kolla typ mån/år-->
+        <input type="number" placeholder="CVC">
+      </div>
 
       <label>
         <input type="checkbox" name="consent-to-the-processing-of-personal-data-checkbox">
@@ -197,12 +209,6 @@ Om kort väljs som betalsätt, visas fält för kortnummer, datum/år och CVC. D
         <input type="checkbox" name="subscribe-to-newsletter-checkbox">
         <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
       </label>
-
-      <!--Samtliga formulärfält ska valideras och formuläret/beställningen ska inte gå att skicka om det finns några fel
-  - Felen ska markeras och kommuniceras tydligt (t.ex. ej enbart med röd färg, tag i beaktande a11y)
-  - När formuläret är korrekt ifyllt ska Skicka-/Beställ-knappen aktiveras, innan det är den utgråad
-  - Det ska finnas en "Rensa beställning"-knapp som återställer samtliga formulärfält liksom eventuella beställda munkar/produkter (alltså antalet återställs till 0)
-  - Det ska finnas ett fält för att mata in en rabattkod.-->
 
       <button class="send">Skicka</button>
 

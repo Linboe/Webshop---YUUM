@@ -134,12 +134,17 @@ p {
   font-size: 0.9rem;
 }
 
+h4,
 form span,
 footer a {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 0.8rem;
+}
+
+h4 {
+  font-weight: bold;
 }
 
 .container {
@@ -172,8 +177,8 @@ footer a {
 }
 
 .catBack img {
-  left: 200px;
-  bottom: 60px;
+  left: 220px;
+  bottom: 65px;
   width: 240px;
 }
 
@@ -320,7 +325,8 @@ button.buy {
   bottom: -5px;
 }
 
-button.send {
+button.send,
+button.resetORder {
   border-radius: 8px;
   margin-top: 6px;
   font-family: 'Poppins', sans-serif;
@@ -329,6 +335,12 @@ button.send {
   font-style: normal;
   background-color: rgb(51, 47, 109);
   color: rgb(255, 255, 255);
+}
+
+button.resetORder {
+  color: rgb(51, 47, 109);
+  background-color: rgb(255, 255, 255);
+  font-weight: 600;
 }
 
 .filterNav button {
@@ -429,6 +441,16 @@ label input:focus + span {
   font-weight: bold;
 }
 
+/* ------ betalnings-alt. formulär-alt ------*/
+
+.card input,
+.invocie input {
+  margin-block: 10px;
+}
+
+.box {
+  display: none;
+}
 /* -------input-pilar (cross-browser) --------*/
 
 input[type='number']::-webkit-inner-spin-button,
