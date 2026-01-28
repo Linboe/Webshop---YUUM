@@ -132,11 +132,11 @@
 
   <!------- formulär för kunduppgifter ------->
   <h2 id="contact">Kontaktformulär</h2>
-  <form class="section">
+  <form id="order-form" class="section">
     <fieldset class="contactInput">
       <label>
         <input type="text" id="firstname" name="first-name" placeholder="" required>
-        <span>Förnamn HEJ</span>
+        <span>Förnamn</span>
         <span class="hidden error">Fel: Förnamn behöver minst två bokstäver</span>
       </label>
 
@@ -147,19 +147,20 @@
       </label>
 
       <label>
-        <input type="text" name="adress" placeholder="" required>
+        <input type="text" id="address" name="adress" placeholder="" required>
         <span>Adress (gata)</span>
         <span class="hidden error">Fel: Adress behöver minst två bokstäver</span>
       </label>
 
       <label>
-        <input type="number" name="postcode" placeholder="" required>
+        <input type="text" inputmode="numeric" maxlength="6" id="postcode" name="postcode" placeholder="" required>
+        <!--type:text inputmode:numeric pga vill sätta maxlength -->
         <span>Postnummer</span>
         <span class="hidden error">Fel: Postnummer behöver minst fem siffror</span>
       </label>
 
       <label>
-        <input type="text" name="postcode-area" placeholder="" required>
+        <input type="text" id="postcode-area" name="postcode-area" placeholder="" required>
         <span>Postort</span>
         <span class="hidden error">Fel: Postort behöver minst två bokstäver</span>
       </label>
@@ -170,13 +171,13 @@
       </label>
 
       <label>
-        <input type="tel" name="telephonenumber" placeholder="" required>
+        <input type="tel" id="telephonenumber" name="telephonenumber" placeholder="" required>
         <span>Telefon (mobil)</span>
         <span class="hidden error">Fel: Telefonnummer behöver börja på 07 och innehålla 10 siffror</span>
       </label>
 
       <label>
-        <input type="email" name="e-mail" placeholder="" required>
+        <input type="email" id="email" name="e-mail" placeholder="" required>
         <span>E-postadress</span>
         <span class="hidden error">Fel: E-postadressen har fel format</span>
       </label>
@@ -199,7 +200,7 @@
 
       <div class="box invoice">
         <h5>Fakturauppgifter</h5>
-        <input type="text" inputmode="numeric" maxlength="11" placeholder="YYYYMMDD-XXXX">
+        <input type="text" id="personal-number" inputmode="numeric" maxlength="13" placeholder="YYYYMMDD-XXXX">
         <span class="hidden error">Fel: Personnummer har fel format</span>
       </div>
 
@@ -221,7 +222,7 @@
         <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
       </label>
 
-      <button id="orderBtn" class="send">Beställ</button>
+      <button id="order-btn" class="send">Beställ</button>
 
       <figure class="catBack" alt="Ikon-cat-on-back"><img src="/public/img/cat-on-back.svg"></figure>
     </fieldset>
