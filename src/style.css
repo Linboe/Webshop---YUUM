@@ -455,7 +455,7 @@ label input:not(:placeholder-shown) + span {
   font-weight: bold;
 }
 
-/* ------ betalnings-alt. formulär-alt ------*/
+/* ------ betalnings-alt. formulär-box.alt ------*/
 
 .box input {
   margin-bottom: 10px;
@@ -475,7 +475,7 @@ h4 {
   margin-block: 10px;
 }
 
-/* -------input-pilar (cross-browser) --------*/
+/* -------input-pilar (cross-browser) ------- */
 
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -495,6 +495,18 @@ input.card-date {
 
 input.card-cvc {
   width: 42px;
+}
+
+/* ----------- Input felmeddelanden --------- */
+.contactInput .hidden,
+.hidden {
+  display: none;
+}
+
+.error {
+  color: rgb(111, 7, 7);
+  font-size: 0.7rem;
+  margin-top: -20px;
 }
 
 /* ------------------ Footer ------------------*/

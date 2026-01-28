@@ -30,7 +30,6 @@ import products from './products.mjs';
  * x  visa priset - totalsumman vid justering
  * x  ikon papperskorg om jag vill ta bort en hel produkt alt. tömma allt
  * x  varukorgssammanfattning som visar endast de munkar som har beställts (skild från beställningsformuläret)
- *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
  * x  visuell feedback när varukorgens totalsumma uppdateras t.ex. färg-skiftning
  *
  * KUNDFORMULÄR
@@ -38,7 +37,7 @@ import products from './products.mjs';
  *    felmeddelande vid fel input
  *    skicka-knapp
  *    rensa formulär-knapp
- *    vid beställning:bekräftelseruta
+ *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
  *
  *    SPECIALREGLER
  *    mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
@@ -490,5 +489,30 @@ window.addEventListener('scroll', () => {
 // ----------------------------------------------------------------------
 // ---------------------- felmeddelande och regEx -----------------------
 // ----------------------------------------------------------------------
+
+const firstNameRegEx =
+  /^(?=.{2,}$)[A-Za-zÅÄÖåäö]+(?:[-][A-Za-zÅÄÖåäö]+)*(?:\.[A-Za-zÅÄÖåäö]+)?$/;
+const firstName = document.querySelector('#firstname');
+
+firstName.addEventListener('focusout', validateFirstNameField);
+
+function validateFirstNameField() {
+  const inputFieldValue = firstName.value;
+
+  if (inputFieldValue.length === 0) {
+    return;
+  }
+
+  const isValidFirstName = firstNameRegEx.test(inputFieldValue);
+  const firstNameError = firstName.parentElement.querySelector('.error');
+
+  if (isValidFirstName) {
+    firstNameError.classList.add('hidden');
+  } else {
+    firstNameError.classList.remove('hidden');
+
+    return isValidFirstName;
+  }
+}
 
 printProducts();

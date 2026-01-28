@@ -135,45 +135,54 @@
   <form class="section">
     <fieldset class="contactInput">
       <label>
-        <input type="text" name="first-name" placeholder="" required>
+        <input type="text" id="firstname" name="first-name" placeholder="" required>
         <span>Förnamn</span>
+        <span class="hidden error">Fel: Förnamn behöver minst två bokstäver</span>
       </label>
 
       <label>
         <input type="text" name="surname" placeholder="" required>
         <span>Efternamn</span>
+        <span class="hidden error">Fel: Efternamn behöver minst två bokstäver</span>
       </label>
 
       <label>
         <input type="text" name="adress" placeholder="" required>
         <span>Adress (gata)</span>
+        <span class="hidden error">Fel: Adress behöver minst två bokstäver</span>
       </label>
 
       <label>
         <input type="number" name="postcode" placeholder="" required>
         <span>Postnummer</span>
+        <span class="hidden error">Fel: Postnummer behöver minst fem siffror</span>
       </label>
 
       <label>
         <input type="text" name="postcode-area" placeholder="" required>
         <span>Postort</span>
+        <span class="hidden error">Fel: Postort behöver minst två bokstäver</span>
       </label>
 
       <label>
         <input type="text" name="entery-code" placeholder="">
-        <span>Ev.portkod</span>
+        <span>Ev.portkod (valfritt)</span>
       </label>
 
       <label>
         <input type="tel" name="telephonenumber" placeholder="" required>
         <span>Telefon (mobil)</span>
+        <span class="hidden error">Fel: Telefonnummer behöver börja på 07 och innehålla 10 siffror</span>
       </label>
 
       <label>
         <input type="email" name="e-mail" placeholder="" required>
         <span>E-postadress</span>
+        <span class="hidden error">Fel: E-postadressen har fel format</span>
       </label>
-      <button class="resetORder">Rensa beställning</button>
+
+
+      <button id="resetBtn" class="resetOrder">Rensa beställning</button>
     </fieldset>
 
     <fieldset>
@@ -190,7 +199,8 @@
 
       <div class="box invoice">
         <h5>Fakturauppgifter</h5>
-        <input type="text" inputmode="numeric" placeholder="YYYYMMDD-XXXX">
+        <input type="text" inputmode="numeric" maxlength="11" placeholder="YYYYMMDD-XXXX">
+        <span class="hidden error">Fel: Personnummer har fel format</span>
       </div>
 
       <div class="box card">
@@ -211,7 +221,7 @@
         <span class="checkbox">Beställning av nyhetsbrev</span> <!--ska vara iklickad som default-->
       </label>
 
-      <button class="send">Skicka</button>
+      <button id="orderBtn" class="send">Beställ</button>
 
       <figure class="catBack" alt="Ikon-cat-on-back"><img src="/public/img/cat-on-back.svg"></figure>
     </fieldset>
