@@ -195,9 +195,10 @@
 
       <div class="box card">
         <h5>Kortuppgifter</h5>
-        <input type="number" placeholder="1234 5678 9012 3456">
-        <input type="month" placeholder="MM/YY"> <!--kolla typ mån/år-->
-        <input type="number" maxlength="3" placeholder="CVC">
+        <input type="text" inputmode="numeric" maxlength="16" placeholder="1234 5678 9012 3456">
+        <!--type="text" inputmode="numeric" : satte så ist för nr pga vill ha maxlength-->
+        <input type="month" class="card-date" maxlength="5" placeholder="MM/YY"> <!--kolla typ mån/år-->
+        <input type="text" inputmode="numeric" class="card-cvc" maxlength="3" placeholder="CVC">
       </div>
 
       <label>

@@ -488,6 +488,14 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+input.card-date {
+  width: 58px;
+}
+
+input.card-cvc {
+  width: 42px;
+}
+
 /* ------------------ Footer ------------------*/
 
 footer {
