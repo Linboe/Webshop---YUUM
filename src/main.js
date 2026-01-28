@@ -33,11 +33,12 @@ import products from './products.mjs';
  * x  visuell feedback när varukorgens totalsumma uppdateras t.ex. färg-skiftning
  *
  * KUNDFORMULÄR
- *    validera input - regEx
- *    felmeddelande vid fel input
+ * x  validera input - regEx
+ * x  felmeddelande vid fel input
+ * x  formuläret ska vara korrekt ifyllt för att skickas iväg
  *    skicka-knapp
- *    rensa formulär-knapp
  *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
+ *    rensa formulär-knapp
  *
  *    SPECIALREGLER
  *    mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
@@ -224,8 +225,6 @@ function printProducts() {
       alt="${currentProduct.img.alt}"
       loading="lazy" 
       ></figure>`;
-
-      console.log(currentProduct.img.src);
     }
 
     html += `
@@ -506,7 +505,6 @@ const postCode = document.querySelector('#postcode');
 const telephoneNumber = document.querySelector('#telephonenumber');
 const email = document.querySelector('#email');
 const personalNumber = document.querySelector('#personal-number');
-//const orderBtn = document.querySelector('#order-btn');
 
 postCode.addEventListener('focusout', validatePostCodeField);
 telephoneNumber.addEventListener('focusout', validateTelephoneNumberField);
@@ -517,7 +515,7 @@ function validatePostCodeField() {
   const inputFieldValue = postCode.value;
 
   if (inputFieldValue.length === 0) {
-    return;
+    return false;
   }
 
   const isValidPostCode = postCodeRegEx.test(inputFieldValue);
@@ -527,16 +525,15 @@ function validatePostCodeField() {
     postCodeError.classList.add('hidden');
   } else {
     postCodeError.classList.remove('hidden');
-
-    return isValidPostCode;
   }
+  return isValidPostCode;
 }
 
 function validateTelephoneNumberField() {
   const inputFieldValue = telephoneNumber.value;
 
   if (inputFieldValue.length === 0) {
-    return;
+    return false;
   }
 
   const isValidTelephoneNumber = mobileRegEx.test(inputFieldValue);
@@ -547,16 +544,15 @@ function validateTelephoneNumberField() {
     telephoneNumberError.classList.add('hidden');
   } else {
     telephoneNumberError.classList.remove('hidden');
-
-    return isValidTelephoneNumber;
   }
+  return isValidTelephoneNumber;
 }
 
 function validateEmailField() {
   const inputFieldValue = email.value;
 
   if (inputFieldValue.length === 0) {
-    return;
+    return false;
   }
 
   const isValidEmail = emailRegEx.test(inputFieldValue);
@@ -566,16 +562,15 @@ function validateEmailField() {
     emailError.classList.add('hidden');
   } else {
     emailError.classList.remove('hidden');
-
-    return isValidEmail;
   }
+  return isValidEmail;
 }
 
 function validatePersonalNumberField() {
   const inputFieldValue = personalNumber.value;
 
   if (inputFieldValue.length === 0) {
-    return;
+    return false;
   }
 
   const isValidPersonalNumber = swedishPNRegEx.test(inputFieldValue);
@@ -586,14 +581,20 @@ function validatePersonalNumberField() {
     personalNumberError.classList.add('hidden');
   } else {
     personalNumberError.classList.remove('hidden');
-
-    return isValidPersonalNumber;
   }
+  return isValidPersonalNumber;
 }
 
 // ----------------------------------------------------------------------
 //  felmed. för-/efternamn/adress/postort (slippa upprepning av funktion)
 // ----------------------------------------------------------------------
+/* ISTÄLLET för:
+firstName.addEventListener('focusout', validateFirstNameField);
+surName.addEventListener('focusout', validateSurNameField);
+address.addEventListener('focusout', validateAddressField);
+postCodeArea.addEventListener('focusout', validatePostCodeAreaField);
+
++ sen funktionerna likt ovan*/
 
 firstName.addEventListener('focusout', () => validateNameField(firstName));
 surName.addEventListener('focusout', () => validateNameField(surName));
@@ -622,56 +623,47 @@ function validateNameField(inputField) {
   return isValid;
 }
 
-firstName.addEventListener('focusout', () => validateNameField(firstName));
-surName.addEventListener('focusout', () => validateNameField(surName));
-address.addEventListener('focusout', () => validateNameField(address));
-postCodeArea.addEventListener('focusout', () =>
-  validateNameField(postCodeArea),
-);
+// ----------------------------------------------------------------------
+// ------------ checka så alla input-fält är korrekt ifyllda ------------
+// ------------------- när man trycker på skicka ------------------------
 
-/* ISTÄLLET för separata funktioner ihopskrivet som ovan
+const orderBtn = document.querySelector('#order-btn');
+const formError = document.querySelector('#form-error');
 
-//firstName.addEventListener('focusout', validateFirstNameField);
-//surName.addEventListener('focusout', validateSurNameField);
-//address.addEventListener('focusout', validateAddressField);
-//postCodeArea.addEventListener('focusout', validatePostCodeAreaField);
+orderBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  checkFormFieldValidity();
+});
 
-function validateSurNameField() {
-  const inputFieldValue = surName.value;
+function checkFormFieldValidity() {
+  formError.classList.add('hidden');
 
-  if (inputFieldValue.length === 0) {
-    return;
-  }
+  const firstNameOK = validateNameField(firstName);
+  const surNameOK = validateNameField(surName);
+  const addressOK = validateNameField(address);
+  const postCodeAreaOK = validateNameField(postCodeArea);
+  const postCodeOK = validatePostCodeField();
+  const telephoneNumberOK = validateTelephoneNumberField();
+  const emailOK = validateEmailField();
+  const personalNumberOK = validatePersonalNumberField();
 
-  const isValidSurName = nameRegEx.test(inputFieldValue);
-  const surNameError = surName.parentElement.querySelector('.error');
+  const allValid =
+    firstNameOK &&
+    surNameOK &&
+    addressOK &&
+    postCodeAreaOK &&
+    postCodeOK &&
+    telephoneNumberOK &&
+    emailOK &&
+    personalNumberOK;
 
-  if (isValidSurName) {
-    surNameError.classList.add('hidden');
+  if (!allValid) {
+    formError.classList.remove('hidden');
   } else {
-    surNameError.classList.remove('hidden');
-
-    return isValidSurName;
+    orderBtn.closest('form').submit();
+    formError.classList.add('hidden');
   }
+  //2DO är beställBTN aktiverad när fel ifyllt? ska EJ gå att skicka endast felmeddelande. Samt skickas det iväg när rätt ifyllt?
 }
-
-function validateFirstNameField() {
-  const inputFieldValue = firstName.value;
-
-  if (inputFieldValue.length === 0) {
-    return;
-  }
-
-  const isValidFirstName = nameRegEx.test(inputFieldValue);
-  const firstNameError = firstName.parentElement.querySelector('.error');
-
-  if (isValidFirstName) {
-    firstNameError.classList.add('hidden');
-  } else {
-    firstNameError.classList.remove('hidden');
-
-    return isValidFirstName;
-  }
-}*/
 
 printProducts();
