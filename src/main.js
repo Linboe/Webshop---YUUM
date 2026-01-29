@@ -36,7 +36,7 @@ import products from './products.mjs';
  * x  validera input - regEx
  * x  felmeddelande vid fel input
  * x  formuläret ska vara korrekt ifyllt för att skickas iväg
- *    skicka-knapp
+ * x  skicka-knapp
  *    när man tryckt på beställ-knappen --> bekräftelse-ruta med info om beställningen och leveranstid
  *    rensa formulär-knapp
  *
@@ -350,13 +350,13 @@ function addProductsToCart(e) {
 }
 
 // ----------------------------------------------------------------------
-// ----------------- räkna ut totalsumma i varukorgen -------------------
+// ----------------- Räkna ut totalsumma i varukorgen -------------------
 // ----------------------------------------------------------------------
 
 const cartTotalHtml = document.querySelector('#cartTotal');
+let cartTotal = 0; //flyttat ut till global pga anv i rabattuträkning längre ned. tidigare i funktionen
 
 function updateCartTotals() {
-  let cartTotal = 0;
   for (let i = 0; i < cart.length; i++) {
     const productSum = cart[i].price * cart[i].amount;
     cartTotal += productSum;
@@ -366,7 +366,7 @@ function updateCartTotals() {
 
   const totalSumNav = document.querySelector('#total-sum');
   if (totalSumNav) {
-    totalSumNav.textContent = `${cartTotal} kr`;
+    totalSumNav.textContent = `${cartTotal} HEJkr`; //byt ut denna till pris efter rabatterna
   }
 
   // ----------------------------------------------------------------------
@@ -387,7 +387,7 @@ function removeCartTotalHighlight() {
 }
 
 // ----------------------------------------------------------------------
-// -- skriva ut produkt, kategori, pris, för varje produkt i varukorg ---
+// -- Skriva ut produkt, kategori, pris, för varje produkt i varukorg ---
 // ----------------------------------------------------------------------
 
 const shoppingCartSection = document.querySelector('#shoppingCart');
@@ -414,7 +414,7 @@ function printCart() {
   }
 
   // ----------------------------------------------------------------------
-  // --------------- delete-knapp efter produkt i varukorg ----------------
+  // --------------- Delete-knapp efter produkt i varukorg ----------------
   // ----------------------------------------------------------------------
 
   const deleteButtons = document.querySelectorAll('button.delete-product');
@@ -471,7 +471,7 @@ function deleteProductFromCart(e) {
 }
 
 // ----------------------------------------------------------------------
-// --------------------- nav-ikoner-fixerade offset ---------------------
+// --------------------- Nav-ikoner-fixerade offset ---------------------
 // ----------------------------------------------------------------------
 
 const fixedNavIcon = document.querySelector('.fixedNavIcon');
@@ -486,7 +486,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ----------------------------------------------------------------------
-// ---------------------- felmeddelande och regEx -----------------------
+// ----------------------- Felmeddelande - regEx ------------------------
 // ----------------------------------------------------------------------
 
 const nameRegEx =
@@ -662,6 +662,10 @@ function validatePersonalNumberField() {
   return isValidPersonalNumber;
 }
 
+// ----------------------------------------------------------------------
+// ------------ Formvalidering och orderBtn färgändring -----------------
+// ----------------------------------------------------------------------
+
 function checkFormFieldValidity() {
   orderBtn.setAttribute('disabled', '');
   orderBtn.classList.remove('ready');
@@ -714,4 +718,86 @@ export function initform() {
   orderForm.addEventListener('focusout', checkFormFieldValidity);
 }
 initform();
+
+// ----------------------------------------------------------------------
+// ------------------------- Specialregler ------------------------------
+// ----------------------------------------------------------------------
+
+/*
+På måndagar innan kl. 10 ges 10 % rabatt på hela beställningssumman. 
+Detta visas i varukorgssammanställningen som en rad med texten 
+"Måndagsrabatt: 10 % på hela beställningen".
+*/
+
+const date = new Date(2026, 0, 26, 8, 0); //töm Date() innan inlämning
+
+let cartSum = 100; //vill ha cartTotal men lyckas endast skriva ut 0
+
+/* samma sak, skrivet på annat vis
+if (date.getDay() === 1) {
+  if (date.getHours() < 10) {
+  }
+  console.log('måndag OCH innan kl.10');
+}*/
+const MONDAY = 1;
+if (date.getDay() === MONDAY && date.getHours() < 10) {
+  cartSum *= 0.9; // 100-10% = 90% (10%rabatt)
+
+  document.querySelector('#discount').innerHTML =
+    'Måndagsrabatt: 10 % på hela beställningen';
+}
+
+document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
+
+/*
+Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
+I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
+*/
+//i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
+
+let shippingCost = 25;
+let orderProductCount = 5;
+
+function calculateShipping() {
+  if (orderProductCount > 15) {
+    shippingCost = 0;
+  } else {
+    shippingCost = 25 + 0.1 * cartSum;
+  }
+
+  document.querySelector('#shippingCost').innerHTML =
+    `Fraktkostnad: ${shippingCost} kr`;
+}
+
+calculateShipping();
+
+/*
+På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
+tillkommer ett helgpåslag på 15 % på alla munkar. 
+Detta ska inte framgå för kunden att munkarna är dyrare, 
+utan priset ska bara vara högre i "utskriften" av munkarna.
+*/
+
+/*
+Om kunden har beställt för totalt mer än 800 kr 
+ska det inte gå att välja faktura som betalsätt.
+*/
+
+/*
+Om kunden har beställt minst 10 munkar av samma sort, 
+ska munkpriset för just denna munksort rabatteras med 10 %
+*/
+
+/*
+Om kunden inte har lagt beställningen inom 15 minuter så 
+ska beställningsformuläret tömmas/rensas och kunden 
+ska meddelas att denne är för långsam.
+*/
+
+const SLOWNESS_TIMER_MINUTES = 15; //caps endast variabel som en "inställning"=bestämt
+setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
+function clearOrder() {
+  //se för.l 27 min in...!!
+}
+
 printProducts();
