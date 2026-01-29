@@ -627,6 +627,8 @@ function validateNameField(inputField) {
 // ------------ checka så alla input-fält är korrekt ifyllda ------------
 // ------------------- när man trycker på skicka ------------------------
 
+// ----- 2DO ----- !!! PROBLEM !!! -----
+//skickaBtn färgändring skriver över error-med.koden ovan så felmeddelande dyker upp trots focusout :(
 const orderBtn = document.querySelector('#order-btn');
 const formError = document.querySelector('#form-error');
 const form = orderBtn.closest('form'); //ny
