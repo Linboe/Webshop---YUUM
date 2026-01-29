@@ -496,7 +496,8 @@ const mobileRegEx = /^07\d{8}$/;
 const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const swedishPNRegEx = /^\d{8}-?\d{4}$/;
 
-//const orderForm = document.querySelector('#order-form');*/
+const orderBtn = document.querySelector('#order-btn');
+const orderForm = document.querySelector('#order-form');
 const firstName = document.querySelector('#firstname');
 const surName = document.querySelector('#surname');
 const address = document.querySelector('#address');
@@ -506,10 +507,86 @@ const telephoneNumber = document.querySelector('#telephonenumber');
 const email = document.querySelector('#email');
 const personalNumber = document.querySelector('#personal-number');
 
+firstName.addEventListener('focusout', validateFirstNameField);
+surName.addEventListener('focusout', validateSurNameField);
+address.addEventListener('focusout', validateAddressField);
+postCodeArea.addEventListener('focusout', validatePostCodeAreaField);
 postCode.addEventListener('focusout', validatePostCodeField);
 telephoneNumber.addEventListener('focusout', validateTelephoneNumberField);
 email.addEventListener('focusout', validateEmailField);
 personalNumber.addEventListener('focusout', validatePersonalNumberField);
+
+function validateFirstNameField() {
+  const inputFieldValue = firstName.value;
+
+  if (inputFieldValue.length === 0) {
+    return false;
+  }
+
+  const isValidFirstName = nameRegEx.test(inputFieldValue);
+  const firstNameError = firstName.parentElement.querySelector('.error');
+
+  if (isValidFirstName) {
+    firstNameError.classList.add('hidden');
+  } else {
+    firstNameError.classList.remove('hidden');
+  }
+  return isValidFirstName;
+}
+
+function validateSurNameField() {
+  const inputFieldValue = surName.value;
+
+  if (inputFieldValue.length === 0) {
+    return false;
+  }
+
+  const isValidSurName = nameRegEx.test(inputFieldValue);
+  const surNameError = surName.parentElement.querySelector('.error');
+
+  if (isValidSurName) {
+    surNameError.classList.add('hidden');
+  } else {
+    surNameError.classList.remove('hidden');
+  }
+  return isValidSurName;
+}
+
+function validateAddressField() {
+  const inputFieldValue = address.value;
+
+  if (inputFieldValue.length === 0) {
+    return false;
+  }
+
+  const isValidAddress = nameRegEx.test(inputFieldValue);
+  const addressError = address.parentElement.querySelector('.error');
+
+  if (isValidAddress) {
+    addressError.classList.add('hidden');
+  } else {
+    addressError.classList.remove('hidden');
+  }
+  return isValidAddress;
+}
+
+function validatePostCodeAreaField() {
+  const inputFieldValue = postCodeArea.value;
+
+  if (inputFieldValue.length === 0) {
+    return false;
+  }
+
+  const isValidPostCodeArea = nameRegEx.test(inputFieldValue);
+  const postCodeAreaError = postCodeArea.parentElement.querySelector('.error');
+
+  if (isValidPostCodeArea) {
+    postCodeAreaError.classList.add('hidden');
+  } else {
+    postCodeAreaError.classList.remove('hidden');
+  }
+  return isValidPostCodeArea;
+}
 
 function validatePostCodeField() {
   const inputFieldValue = postCode.value;
@@ -585,99 +662,56 @@ function validatePersonalNumberField() {
   return isValidPersonalNumber;
 }
 
-// ----------------------------------------------------------------------
-//  felmed. för-/efternamn/adress/postort (slippa upprepning av funktion)
-// ----------------------------------------------------------------------
-/* ISTÄLLET för:
-firstName.addEventListener('focusout', validateFirstNameField);
-surName.addEventListener('focusout', validateSurNameField);
-address.addEventListener('focusout', validateAddressField);
-postCodeArea.addEventListener('focusout', validatePostCodeAreaField);
+function checkFormFieldValidity() {
+  orderBtn.setAttribute('disabled', '');
+  orderBtn.classList.remove('ready');
 
-+ sen funktionerna likt ovan*/
-
-firstName.addEventListener('focusout', () => validateNameField(firstName));
-surName.addEventListener('focusout', () => validateNameField(surName));
-address.addEventListener('focusout', () => validateNameField(address));
-postCodeArea.addEventListener('focusout', () =>
-  validateNameField(postCodeArea),
-);
-
-function validateNameField(inputField) {
-  const inputValue = inputField.value;
-  const errorSpan = inputField.parentElement.querySelector('.error');
-
-  if (inputValue.length === 0) {
-    errorSpan.classList.add('hidden');
-    return false;
-  }
-
-  const isValid = nameRegEx.test(inputValue);
-
-  if (isValid) {
-    errorSpan.classList.add('hidden');
-  } else {
-    errorSpan.classList.remove('hidden');
-  }
-
-  return isValid;
-}
-
-// ----------------------------------------------------------------------
-// ------------ checka så alla input-fält är korrekt ifyllda ------------
-// ------------------- när man trycker på skicka ------------------------
-
-// ----- 2DO ----- !!! PROBLEM !!! -----
-//skickaBtn färgändring skriver över error-med.koden ovan så felmeddelande dyker upp trots focusout :(
-const orderBtn = document.querySelector('#order-btn');
-const formError = document.querySelector('#form-error');
-const form = orderBtn.closest('form'); //ny
-
-form.addEventListener('input', updateSendBtn);
-
-orderBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  checkFormFieldValidity(true); // ny (true), innan tomt
-});
-
-function checkFormFieldValidity(submit = false) {
-  formError.classList.add('hidden');
-
-  const firstNameOK = validateNameField(firstName);
-  const surNameOK = validateNameField(surName);
-  const addressOK = validateNameField(address);
-  const postCodeAreaOK = validateNameField(postCodeArea);
+  const firstNameOK = validateFirstNameField();
+  const surNameOK = validateSurNameField();
+  const addressOK = validateAddressField();
+  const postCodeAreaOK = validatePostCodeAreaField();
   const postCodeOK = validatePostCodeField();
   const telephoneNumberOK = validateTelephoneNumberField();
   const emailOK = validateEmailField();
   const personalNumberOK = validatePersonalNumberField();
 
-  const allValid =
-    firstNameOK &&
-    surNameOK &&
-    addressOK &&
-    postCodeAreaOK &&
-    postCodeOK &&
-    telephoneNumberOK &&
-    emailOK &&
-    personalNumberOK;
-
-  if (!allValid && submit) {
-    //visar felmed. om submit=true
-    formError.classList.remove('hidden');
-  }
-  if (allValid && submit) {
-    //skickar form om submit=true
-    orderBtn.closest('form').submit();
-    formError.classList.add('hidden');
+  if (!firstNameOK) {
+    return;
   }
 
-  return allValid; //retunerar true/false så knapp kan uppdateras i realtid
-}
+  if (!surNameOK) {
+    return;
+  }
 
-function updateSendBtn() {
-  const allValid = checkFormFieldValidity(false);
-  orderBtn.classList.toggle('ready', allValid);
-}
+  if (!addressOK) {
+    return;
+  }
 
+  if (!postCodeOK) {
+    return;
+  }
+
+  if (!postCodeAreaOK) {
+    return;
+  }
+
+  if (!telephoneNumberOK) {
+    return;
+  }
+
+  if (!emailOK) {
+    return;
+  }
+
+  if (!personalNumberOK) {
+    return;
+  }
+
+  orderBtn.removeAttribute('disabled');
+  orderBtn.classList.add('ready');
+}
+export function initform() {
+  orderForm.addEventListener('focusout', checkFormFieldValidity);
+}
+initform();
 printProducts();
