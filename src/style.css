@@ -321,6 +321,7 @@ button {
   background-color: white;
   border-radius: 4px;
   padding: 5px;
+  cursor: pointer;
 }
 
 .material-symbols-outlined {
@@ -339,18 +340,16 @@ button.buy {
 }
 
 button.send,
-button.resetORder {
+button.resetOrder {
   border-radius: 8px;
   margin-top: 6px;
   font-family: 'Poppins', sans-serif;
   font-weight: 200;
   font-size: 0.8rem;
   font-style: normal;
-  background-color: rgb(51, 47, 109);
-  color: rgb(255, 255, 255);
 }
 
-button.resetORder {
+button.resetOrder {
   color: rgb(51, 47, 109);
   background-color: rgb(255, 255, 255);
   font-weight: 600;
@@ -365,6 +364,21 @@ button.resetORder {
   background-color: rgb(51, 47, 109);
   color: rgb(255, 255, 255);
 }
+
+button.send {
+  background-color: rgb(206, 206, 206);
+  color: rgb(51, 47, 109);
+  cursor: not-allowed;
+  transition: background 0.2 ease;
+  font-weight: 600;
+}
+
+.send.ready {
+  background-color: rgb(51, 47, 109);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
 /* ---------------- Varukorg --------------- */
 
 .cart {

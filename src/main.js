@@ -629,13 +629,16 @@ function validateNameField(inputField) {
 
 const orderBtn = document.querySelector('#order-btn');
 const formError = document.querySelector('#form-error');
+const form = orderBtn.closest('form'); //ny
+
+form.addEventListener('input', updateSendBtn);
 
 orderBtn.addEventListener('click', (e) => {
   e.preventDefault();
-  checkFormFieldValidity();
+  checkFormFieldValidity(true); // ny (true), innan tomt
 });
 
-function checkFormFieldValidity() {
+function checkFormFieldValidity(submit = false) {
   formError.classList.add('hidden');
 
   const firstNameOK = validateNameField(firstName);
@@ -657,13 +660,23 @@ function checkFormFieldValidity() {
     emailOK &&
     personalNumberOK;
 
-  if (!allValid) {
+  if (!allValid && submit) {
+    //visar felmed. om submit=true
     formError.classList.remove('hidden');
-  } else {
+  }
+  if (allValid && submit) {
+    //skickar form om submit=true
     orderBtn.closest('form').submit();
     formError.classList.add('hidden');
   }
-  //2DO är beställBTN aktiverad när fel ifyllt? ska EJ gå att skicka endast felmeddelande. Samt skickas det iväg när rätt ifyllt?
+
+  return allValid; //retunerar true/false så knapp kan uppdateras i realtid
+}
+
+function updateSendBtn() {
+  const allValid = checkFormFieldValidity(false);
+  orderBtn.classList.toggle('ready', allValid);
+  orderBtn.disabled = !allValid;
 }
 
 printProducts();
