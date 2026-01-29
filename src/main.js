@@ -676,7 +676,6 @@ function checkFormFieldValidity(submit = false) {
 function updateSendBtn() {
   const allValid = checkFormFieldValidity(false);
   orderBtn.classList.toggle('ready', allValid);
-  orderBtn.disabled = !allValid;
 }
 
 printProducts();

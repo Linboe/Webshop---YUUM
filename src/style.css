@@ -368,7 +368,7 @@ button.resetOrder {
 button.send {
   background-color: rgb(206, 206, 206);
   color: rgb(51, 47, 109);
-  cursor: not-allowed;
+  cursor: default;
   transition: background 0.2 ease;
   font-weight: 600;
 }
