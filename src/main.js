@@ -572,32 +572,32 @@ tillkommer ett helgpåslag på 15 % på alla munkar.
 Detta ska inte framgå för kunden att munkarna är dyrare, 
 utan priset ska bara vara högre i "utskriften" av munkarna.
 */
-  function updateProductSum() {
-    const date = new Date(2016, 5, 16, 0); // Uncaught ReferenceError: date is not defined
-    const FRIDAY = 5;
-    const SATURDAY = 6;
-    const SUNDAY = 0;
 
-    let weekendPrice = 0;
+  const date = new Date(2016, 0, 30, 17); // Uncaught ReferenceError: date is not defined
+  const FRIDAY = 5;
+  const SATURDAY = 6;
+  const SUNDAY = 0;
 
-    for (let i = 0; i < cart.length; i++) {
-      const productSum = cart[i].price * cart[i].amount;
-      weekendPrice += productSum;
+  for (let i = 0; i < cart.length; i++) {
+    const productSum = cart[i].price * cart[i].amount;
+    let weekendPrice = productSum;
 
-      if (
-        (date.getDay() === FRIDAY && date.getHours() >= 15) ||
-        date.getDay() === SATURDAY ||
-        (date.getDay() === SUNDAY && date.getHours() <= 3)
-      ) {
-        weekendPrice *= 1.15;
+    if (
+      (date.getDay() === FRIDAY && date.getHours() >= 15) ||
+      date.getDay() === SATURDAY ||
+      (date.getDay() === SUNDAY && date.getHours() <= 3)
+    ) {
+      weekendPrice *= 1.15;
+      weekendPrice = Math.round(weekendPrice);
+
+      const span = document.querySelectorAll('.cartProductSum')[i];
+      if (span) {
+        span.textContent = `${weekendPrice} kr`;
+
+        console.log(`Total varukorg med helgpåslag: ${weekendPrice} kr`);
       }
     }
-
-    weekendPrice = Math.round(weekendPrice);
-    console.log(`Total varukorg med helgpåslag: ${weekendPrice} kr`);
   }
-
-  updateProductSum();
 
   // ----------------------------------------------------------------------
   // --------------- Delete-knapp efter produkt i varukorg ----------------
