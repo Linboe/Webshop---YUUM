@@ -355,8 +355,8 @@ function addProductsToCart(e) {
 
 const cartTotalHtml = document.querySelector('#cartTotal');
 
-let cartTotal = 0; //gör global
 function updateCartTotals() {
+  let cartTotal = 0;
   for (let i = 0; i < cart.length; i++) {
     const productSum = cart[i].price * cart[i].amount;
     cartTotal += productSum;
@@ -427,14 +427,11 @@ Om kunden beställer totalt mer än 15 munkar så blir frakten gratis.
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
 */
-  // OBS - onödigt med loop för varje men pga göra tydligt för mig..
-  // OBS - har jag 2 olika produkter behöver båda just nu vara över 15 för fri frakt - fixa!
+  // OBS - fraktkostnad försvinner ej efter raderad produkt
 
   for (let i = 0; i < cart.length; i++) {
-    const product = cart[i];
-
     let shippingCost = 25;
-    let orderProductCount = product.amount;
+    let orderProductCount = cart[i].amount;
 
     function calculateShipping() {
       if (orderProductCount > 15) {
