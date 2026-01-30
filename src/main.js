@@ -354,9 +354,9 @@ function addProductsToCart(e) {
 // ----------------------------------------------------------------------
 
 const cartTotalHtml = document.querySelector('#cartTotal');
-let cartTotal = 0; //flyttat ut till global pga anv i rabattuträkning längre ned. tidigare i funktionen
 
 function updateCartTotals() {
+  let cartTotal = 0;
   for (let i = 0; i < cart.length; i++) {
     const productSum = cart[i].price * cart[i].amount;
     cartTotal += productSum;
@@ -364,17 +364,47 @@ function updateCartTotals() {
 
   cartTotalHtml.innerHTML = `Summa: ${cartTotal} kr`;
 
-  const totalSumNav = document.querySelector('#total-sum');
-  if (totalSumNav) {
-    totalSumNav.textContent = `${cartTotal} HEJkr`; //byt ut denna till pris efter rabatterna
+  // ----------------------------------------------------------------------
+  // ------------------------- Specialregler ------------------------------
+  // ----------------------------------------------------------------------
+
+  /*
+På måndagar innan kl. 10 ges 10 % rabatt på hela beställningssumman. 
+Detta visas i varukorgssammanställningen som en rad med texten 
+"Måndagsrabatt: 10 % på hela beställningen".
+*/
+
+  const date = new Date(2026, 0, 26, 8, 0); //töm Date() innan inlämning
+  let cartSum = cartTotal;
+
+  /* samma sak, skrivet på annat vis
+if (date.getDay() === 1) {
+  if (date.getHours() < 10) {
+  }
+  console.log('måndag OCH innan kl.10');
+}*/
+
+  const MONDAY = 1;
+  if (date.getDay() === MONDAY && date.getHours() < 10) {
+    cartSum *= 0.9; // 100-10% = 90% (10%rabatt)
+
+    document.querySelector('#discount').innerHTML =
+      'Måndagsrabatt: 10 % på hela beställningen';
   }
 
-  // ----------------------------------------------------------------------
-  // -------------- animering för att visa prisuppdatering ----------------
+  document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
+
+  // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
 
-  highlightCartTotalChange();
+  document.querySelector('#total-sum').innerHTML = `${cartSum} kr`;
 }
+
+// ----------------------------------------------------------------------
+// -------------- animering för att visa prisuppdatering ----------------
+// ----------------------------------------------------------------------
+
+highlightCartTotalChange();
 
 function highlightCartTotalChange() {
   cartTotalHtml.classList.add('highlight-price');
@@ -719,42 +749,12 @@ export function initform() {
 }
 initform();
 
-// ----------------------------------------------------------------------
-// ------------------------- Specialregler ------------------------------
-// ----------------------------------------------------------------------
-
-/*
-På måndagar innan kl. 10 ges 10 % rabatt på hela beställningssumman. 
-Detta visas i varukorgssammanställningen som en rad med texten 
-"Måndagsrabatt: 10 % på hela beställningen".
-*/
-
-const date = new Date(2026, 0, 26, 8, 0); //töm Date() innan inlämning
-
-let cartSum = 100; //vill ha cartTotal men lyckas endast skriva ut 0
-
-/* samma sak, skrivet på annat vis
-if (date.getDay() === 1) {
-  if (date.getHours() < 10) {
-  }
-  console.log('måndag OCH innan kl.10');
-}*/
-const MONDAY = 1;
-if (date.getDay() === MONDAY && date.getHours() < 10) {
-  cartSum *= 0.9; // 100-10% = 90% (10%rabatt)
-
-  document.querySelector('#discount').innerHTML =
-    'Måndagsrabatt: 10 % på hela beställningen';
-}
-
-document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
-
 /*
 Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 */
 //i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
-
+/*
 let shippingCost = 25;
 let orderProductCount = 5;
 
@@ -770,7 +770,7 @@ function calculateShipping() {
 }
 
 calculateShipping();
-
+*/
 /*
 På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
 tillkommer ett helgpåslag på 15 % på alla munkar. 
