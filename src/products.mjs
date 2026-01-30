@@ -106,7 +106,7 @@ const products = [
   },
   {
     id: 9,
-    name: 'YUUM special!',
+    name: 'YUUM special',
     img: {
       src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-yuum-special.jpg',
       width: 4096,

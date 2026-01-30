@@ -390,31 +390,90 @@ if (date.getDay() === 1) {
 
     document.querySelector('#discount').innerHTML =
       'Måndagsrabatt: 10 % på hela beställningen';
+    document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
+  } else {
+    document.querySelector('#discount').innerHTML = '';
   }
-
-  document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
 
   /*
 Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
 */
+  // OBS - onödigt med loop för varje men pga göra tydligt för mig..
+  // OBS - har jag 2 olika produkter behöver båda just nu vara över 15 för fri frakt - fixa!
+  for (let i = 0; i < cart.length; i++) {
+    const product = cart[i];
 
-  let shippingCost = 25;
-  let orderProductCount = 16;
+    let shippingCost = 25;
+    let orderProductCount = product.amount;
 
-  function calculateShipping() {
-    if (orderProductCount > 15) {
-      shippingCost = 0;
-    } else {
-      shippingCost = Math.round((25 + 0.1 * cartSum) * 100) / 100;
+    function calculateShipping() {
+      if (orderProductCount > 15) {
+        shippingCost = 0;
+      } else {
+        shippingCost = Math.round((25 + 0.1 * cartSum) * 100) / 100;
+      }
     }
-
+    calculateShipping();
     document.querySelector('#shippingCost').innerHTML =
       `Fraktkostnad: ${shippingCost} kr`;
   }
+  /*
+Om kunden har beställt minst 10 munkar av samma sort, 
+ska munkpriset för just denna munksort rabatteras med 10 %
+*/
+  //20 DO - om jag ändrar antal produkter med +/- RÄTT MEN
+  // ta bort alla produkter ligger "Totalt pris efter rabatter: 450 kr" kvar - FIXA
+  // även fraktkostnaden blir kvar då..............
 
-  calculateShipping();
+  // Container för rabatter
+  const discountContainer = document.querySelector('#productDiscontCost');
+
+  discountContainer.innerHTML = ''; // rensa gamla rader
+  let totalDiscountedSum = 0; // totalsumma för alla produkter med rabatt
+
+  for (let i = 0; i < cart.length; i++) {
+    const product = cart[i];
+    const sameProduct = product.amount;
+    const productSum = product.price * sameProduct;
+    let discountedProductSum = productSum;
+
+    // Unikt ID per produkt
+    const discountId = `discount-${product.id}`;
+    let existingRow = document.querySelector(`#${discountId}`);
+
+    if (sameProduct >= 10) {
+      discountedProductSum = Math.round(productSum * 0.9); // 10% rabatt
+      totalDiscountedSum += discountedProductSum; // addera till totalsumman
+
+      if (existingRow) {
+        existingRow.innerHTML = `Minst 10 produkter av sorten "${product.name}" ger 10% rabatt, totalsumma för produkt: ${discountedProductSum} kr`;
+      } else {
+        const newRow = document.createElement('p');
+        newRow.id = discountId;
+        newRow.innerHTML = `Minst 10 produkter av sorten "${product.name}" ger 10% rabatt, totalsumma för produkt: ${discountedProductSum} kr`;
+        discountContainer.appendChild(newRow);
+      }
+    } else {
+      // Ta bort raden om rabatten inte längre gäller
+      if (existingRow) existingRow.remove();
+    }
+
+    const totalElement = document.querySelector('#totalDiscountedSum');
+    if (totalDiscountedSum > 0) {
+      totalElement.innerHTML = `Totalt pris efter rabatter: ${totalDiscountedSum} kr`;
+    } else {
+      totalElement.innerHTML = ''; // rensa om ingen rabatt dragits
+    }
+  }
+
+  /*
+På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
+tillkommer ett helgpåslag på 15 % på alla munkar. 
+Detta ska inte framgå för kunden att munkarna är dyrare, 
+utan priset ska bara vara högre i "utskriften" av munkarna.
+*/
 
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
@@ -772,20 +831,8 @@ export function initform() {
 initform();
 
 /*
-På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
-tillkommer ett helgpåslag på 15 % på alla munkar. 
-Detta ska inte framgå för kunden att munkarna är dyrare, 
-utan priset ska bara vara högre i "utskriften" av munkarna.
-*/
-
-/*
 Om kunden har beställt för totalt mer än 800 kr 
 ska det inte gå att välja faktura som betalsätt.
-*/
-
-/*
-Om kunden har beställt minst 10 munkar av samma sort, 
-ska munkpriset för just denna munksort rabatteras med 10 %
 */
 
 /*
