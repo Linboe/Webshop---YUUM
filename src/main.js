@@ -374,7 +374,7 @@ Detta visas i varukorgssammanställningen som en rad med texten
 "Måndagsrabatt: 10 % på hela beställningen".
 */
 
-  const date = new Date(2026, 0, 26, 8, 0); //töm Date() innan inlämning
+  const date = new Date(); //töm Date(2026, 0, 26, 8, 0) innan inlämning
   let cartSum = cartTotal;
 
   /* samma sak, skrivet på annat vis
@@ -393,6 +393,28 @@ if (date.getDay() === 1) {
   }
 
   document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
+
+  /*
+Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
+I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
+(i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
+*/
+
+  let shippingCost = 25;
+  let orderProductCount = 16;
+
+  function calculateShipping() {
+    if (orderProductCount > 15) {
+      shippingCost = 0;
+    } else {
+      shippingCost = Math.round((25 + 0.1 * cartSum) * 100) / 100;
+    }
+
+    document.querySelector('#shippingCost').innerHTML =
+      `Fraktkostnad: ${shippingCost} kr`;
+  }
+
+  calculateShipping();
 
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
@@ -749,28 +771,6 @@ export function initform() {
 }
 initform();
 
-/*
-Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
-I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
-*/
-//i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
-/*
-let shippingCost = 25;
-let orderProductCount = 5;
-
-function calculateShipping() {
-  if (orderProductCount > 15) {
-    shippingCost = 0;
-  } else {
-    shippingCost = 25 + 0.1 * cartSum;
-  }
-
-  document.querySelector('#shippingCost').innerHTML =
-    `Fraktkostnad: ${shippingCost} kr`;
-}
-
-calculateShipping();
-*/
 /*
 På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
 tillkommer ett helgpåslag på 15 % på alla munkar. 
