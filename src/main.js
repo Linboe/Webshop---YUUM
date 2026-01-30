@@ -365,6 +365,21 @@ function updateCartTotals() {
   cartTotalHtml.innerHTML = `Summa: ${cartTotal} kr`;
 
   // ----------------------------------------------------------------------
+  // -------------- animering för att visa prisuppdatering ----------------
+  // ----------------------------------------------------------------------
+
+  highlightCartTotalChange();
+
+  function highlightCartTotalChange() {
+    cartTotalHtml.classList.add('highlight-price');
+
+    setTimeout(removeCartTotalHighlight, 1000 * 2);
+  }
+
+  function removeCartTotalHighlight() {
+    cartTotalHtml.classList.remove('highlight-price');
+  }
+  // ----------------------------------------------------------------------
   // ------------------------- Specialregler ------------------------------
   // ----------------------------------------------------------------------
 
@@ -462,7 +477,7 @@ ska munkpriset för just denna munksort rabatteras med 10 %
 
     const totalElement = document.querySelector('#totalDiscountedSum');
     if (totalDiscountedSum > 0) {
-      totalElement.innerHTML = `Totalt pris efter rabatter: ${totalDiscountedSum} kr`;
+      totalElement.innerHTML = `Totalt pris efter rabatter (ex. frakt): ${totalDiscountedSum}kr`;
     } else {
       totalElement.innerHTML = ''; // rensa om ingen rabatt dragits
     }
@@ -475,26 +490,28 @@ Detta ska inte framgå för kunden att munkarna är dyrare,
 utan priset ska bara vara högre i "utskriften" av munkarna.
 */
 
+  /*
+Om kunden har beställt för totalt mer än 800 kr 
+ska det inte gå att välja faktura som betalsätt.
+*/
+
+  /*
+Om kunden inte har lagt beställningen inom 15 minuter så 
+ska beställningsformuläret tömmas/rensas och kunden 
+ska meddelas att denne är för långsam.
+*/
+
+  const SLOWNESS_TIMER_MINUTES = 15; //caps endast variabel som en "inställning"=bestämt
+  setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
+  function clearOrder() {
+    //se för.l 27 min in...!!
+  }
+
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
 
+  // 2DO !!! denna visar INTE uppdaterad rabattTOTAL (förutom måndag) - MÅSTE ÄNDRAS
   document.querySelector('#total-sum').innerHTML = `${cartSum} kr`;
-}
-
-// ----------------------------------------------------------------------
-// -------------- animering för att visa prisuppdatering ----------------
-// ----------------------------------------------------------------------
-
-highlightCartTotalChange();
-
-function highlightCartTotalChange() {
-  cartTotalHtml.classList.add('highlight-price');
-
-  setTimeout(removeCartTotalHighlight, 1000 * 2);
-}
-
-function removeCartTotalHighlight() {
-  cartTotalHtml.classList.remove('highlight-price');
 }
 
 // ----------------------------------------------------------------------
@@ -829,22 +846,5 @@ export function initform() {
   orderForm.addEventListener('focusout', checkFormFieldValidity);
 }
 initform();
-
-/*
-Om kunden har beställt för totalt mer än 800 kr 
-ska det inte gå att välja faktura som betalsätt.
-*/
-
-/*
-Om kunden inte har lagt beställningen inom 15 minuter så 
-ska beställningsformuläret tömmas/rensas och kunden 
-ska meddelas att denne är för långsam.
-*/
-
-const SLOWNESS_TIMER_MINUTES = 15; //caps endast variabel som en "inställning"=bestämt
-setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
-function clearOrder() {
-  //se för.l 27 min in...!!
-}
 
 printProducts();

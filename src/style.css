@@ -394,6 +394,17 @@ button.send.ready:not(:disabled) {
   margin-bottom: 4px;
 }
 
+.shippingCost {
+  color: rgb(72, 60, 203);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.totalDiscountedSum {
+  color: rgb(9, 159, 159);
+  font-weight: 600;
+}
+
 /* --------- animation prisändring ---------- */
 .cartProducts {
   font-family: 'Poppins', sans-serif;
