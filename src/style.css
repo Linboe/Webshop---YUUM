@@ -400,7 +400,8 @@ button.send.ready:not(:disabled) {
   font-weight: 600;
 }
 
-.totalDiscountedSum {
+.totalDiscountedSum,
+.cartSum {
   color: rgb(9, 159, 159);
   font-weight: 600;
 }

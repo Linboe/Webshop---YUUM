@@ -41,11 +41,11 @@ import products from './products.mjs';
  *    rensa formulär-knapp
  *
  *    SPECIALREGLER
- *    mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
+ * x  mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
  *    fre - se uppgiftsbeskrivning
- *    > 800 kr - se uppgiftsbeskrivning
+ * x  > 800 kr - se uppgiftsbeskrivning
  *    >= 10 munkar/produkter - se uppgiftsbeskrivning
- *    >= 15 munkar/produkter - se uppgiftsbeskrivning
+ * x  >= 15 munkar/produkter - se uppgiftsbeskrivning
  *    om ej beställning inom 15 min ska beställningsformuläret tömmas/rensas och kunden ska meddelas att för långsamt - anv. timer?
  *    Extra/frivilligt - se uppgiftsbeskrivning
  */
@@ -405,7 +405,7 @@ if (date.getDay() === 1) {
 
     document.querySelector('#discount').innerHTML =
       'Måndagsrabatt: 10 % på hela beställningen';
-    document.querySelector('#cartSum').innerHTML = `${cartSum} kr`;
+    document.querySelector('#cartSum').innerHTML = `Totalsumma: ${cartSum} kr`;
   } else {
     document.querySelector('#discount').innerHTML = '';
   }
