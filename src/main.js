@@ -451,49 +451,25 @@ I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 Om kunden har beställt minst 10 munkar av samma sort, 
 ska munkpriset för just denna munksort rabatteras med 10 %
 */
-  //20 DO - om jag ändrar antal produkter med +/- RÄTT MEN
-  // ta bort alla produkter ligger "Totalt pris efter rabatter: 450 kr" kvar - FIXA
-  // även fraktkostnaden blir kvar då..............
-
-  // Container för rabatter
-  const discountContainer = document.querySelector('#productDiscontCost');
-
-  discountContainer.innerHTML = ''; // rensa gamla rader
-  let totalDiscountedSum = 0; // totalsumma för alla produkter med rabatt
-
+  let totalDiscountedSum = 0;
   for (let i = 0; i < cart.length; i++) {
-    const product = cart[i];
-    const sameProduct = product.amount;
-    const productSum = product.price * sameProduct;
+    const sameProduct = cart[i].amount;
+    const productSum = cart[i].price * sameProduct;
     let discountedProductSum = productSum;
 
-    // Unikt ID per produkt
-    const discountId = `discount-${product.id}`;
-    let existingRow = document.querySelector(`#${discountId}`);
-
     if (sameProduct >= 10) {
-      discountedProductSum = Math.round(productSum * 0.9); // 10% rabatt
-      totalDiscountedSum += discountedProductSum; // addera till totalsumman
-
-      if (existingRow) {
-        existingRow.innerHTML = `Minst 10 produkter av sorten "${product.name}" ger 10% rabatt, totalsumma för produkt: ${discountedProductSum} kr`;
-      } else {
-        const newRow = document.createElement('p');
-        newRow.id = discountId;
-        newRow.innerHTML = `Minst 10 produkter av sorten "${product.name}" ger 10% rabatt, totalsumma för produkt: ${discountedProductSum} kr`;
-        discountContainer.appendChild(newRow);
-      }
-    } else {
-      // Ta bort raden om rabatten inte längre gäller
-      if (existingRow) existingRow.remove();
+      discountedProductSum = Math.round(productSum * 0.9);
+      // 10% rabatt
     }
+    totalDiscountedSum += discountedProductSum; // Summera alla produkter, rabatterade eller ej
+  }
+  // Uppdatera totalsumman i DOM
+  const totalDiscountedEl = document.querySelector('#totalDiscountedSum');
 
-    const totalElement = document.querySelector('#totalDiscountedSum');
-    if (totalDiscountedSum > 0) {
-      totalElement.innerHTML = `Totalt pris efter rabatter (ex. frakt): ${totalDiscountedSum}kr`;
-    } else {
-      totalElement.innerHTML = ''; // rensa om ingen rabatt dragits
-    }
+  if (totalDiscountedEl) {
+    totalDiscountedEl.innerHTML = `Totalt pris efter rabatter (ex. frakt): ${totalDiscountedSum} kr`;
+  } else {
+    totalDiscountedEl.innerHTML = ''; // rensa om ingen rabatt dragits
   }
 
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
@@ -573,10 +549,12 @@ Detta ska inte framgå för kunden att munkarna är dyrare,
 utan priset ska bara vara högre i "utskriften" av munkarna.
 */
 
-  const date = new Date(2016, 0, 30, 17); // Uncaught ReferenceError: date is not defined
+  const date = new Date(2016, 4, 30, 17); // för helg new Date(2016, 0, 30, 17)
   const FRIDAY = 5;
   const SATURDAY = 6;
   const SUNDAY = 0;
+  const cartTotalHtml = document.querySelector('#cartTotal');
+  let totalWeekendPrice = 0;
 
   for (let i = 0; i < cart.length; i++) {
     const productSum = cart[i].price * cart[i].amount;
@@ -593,10 +571,16 @@ utan priset ska bara vara högre i "utskriften" av munkarna.
       const span = document.querySelectorAll('.cartProductSum')[i];
       if (span) {
         span.textContent = `${weekendPrice} kr`;
-
-        console.log(`Total varukorg med helgpåslag: ${weekendPrice} kr`);
       }
+      totalWeekendPrice += weekendPrice;
     }
+
+    // OBS 2DO cartTotal skrivs inte över (endast i console) - checka ID
+    if (cartTotal) {
+      cartTotal.innerHTML = `Summa: ${totalWeekendPrice} kr`;
+    }
+
+    console.log(`Total varukorg med helgpåslag: ${totalWeekendPrice} kr`);
   }
 
   // ----------------------------------------------------------------------
