@@ -428,22 +428,25 @@ I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
 */
   // OBS - fraktkostnad försvinner ej efter raderad produkt
+  // fortfarande fel pga let shippingCost = 25; i en loop..
+  // decimaler i ${shippingCost}, hinner ej
 
+  let orderProductCount = 0;
   for (let i = 0; i < cart.length; i++) {
-    let shippingCost = 25;
-    let orderProductCount = cart[i].amount;
-
-    function calculateShipping() {
-      if (orderProductCount > 15) {
-        shippingCost = 0;
-      } else {
-        shippingCost = Math.round((25 + 0.1 * cartSum) * 100) / 100;
-      }
-    }
-    calculateShipping();
-    document.querySelector('#shippingCost').innerHTML =
-      `Fraktkostnad: ${shippingCost} kr`;
+    orderProductCount += cart[i].amount;
   }
+
+  function calculateShipping() {
+    if (orderProductCount > 15) {
+      shippingCost = 0;
+    } else {
+      shippingCost = Math.round((25 + 0.1 * cartSum) * 100) / 100;
+    }
+  }
+  calculateShipping();
+  document.querySelector('#shippingCost').innerHTML =
+    `Fraktkostnad: ${shippingCost} kr`;
+
   /*
 Om kunden har beställt minst 10 munkar av samma sort, 
 ska munkpriset för just denna munksort rabatteras med 10 %
