@@ -495,18 +495,6 @@ Om kunden har beställt för totalt mer än 800 kr
 ska det inte gå att välja faktura som betalsätt.
 */
 
-  /*
-Om kunden inte har lagt beställningen inom 15 minuter så 
-ska beställningsformuläret tömmas/rensas och kunden 
-ska meddelas att denne är för långsam.
-*/
-
-  const SLOWNESS_TIMER_MINUTES = 15; //caps endast variabel som en "inställning"=bestämt
-  setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
-  function clearOrder() {
-    //se för.l 27 min in...!!
-  }
-
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
 
@@ -539,6 +527,32 @@ function printCart() {
       </div>
       </article>
     `;
+  }
+  /*
+Om kunden inte har lagt beställningen inom 15 minuter så 
+ska beställningsformuläret tömmas/rensas och kunden 
+ska meddelas att denne är för långsam.
+*/
+
+  //OBS! 2DO!!!! --- totalsumman tömt inte!!
+  const toSlowMsg = document.querySelector('#toSlowMsg');
+  const SLOWNESS_TIMER_MINUTES = 0.1; //ändra till 15 min (0.1 för test) caps endast variabel som en "inställning"=bestämt
+
+  setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
+
+  function clearOrder() {
+    console.log('15 minuter har gått. clearOrder körs nu.');
+
+    const shoppingCartSection = document.querySelector('#shoppingCart');
+
+    if (shoppingCartSection) {
+      shoppingCartSection.innerHTML = '';
+    }
+
+    if (toSlowMsg) {
+      toSlowMsg.innerHTML =
+        'Formuläret har tömts eftersom beställningen inte slutfördes inom 15 minuter.';
+    }
   }
 
   // ----------------------------------------------------------------------
