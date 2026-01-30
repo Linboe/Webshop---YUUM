@@ -411,6 +411,18 @@ if (date.getDay() === 1) {
   }
 
   /*
+Om kunden har beställt för totalt mer än 800 kr 
+ska det inte gå att välja faktura som betalsätt.
+*/
+  const invoiceOption = document.querySelector('.invoice');
+  const invoiceLabel = document.querySelector('.invoice-option');
+
+  if (cartSum > 800) {
+    if (invoiceOption) invoiceOption.remove();
+    if (invoiceLabel) invoiceLabel.remove();
+  }
+
+  /*
 Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
@@ -484,18 +496,6 @@ ska munkpriset för just denna munksort rabatteras med 10 %
     }
   }
 
-  /*
-På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
-tillkommer ett helgpåslag på 15 % på alla munkar. 
-Detta ska inte framgå för kunden att munkarna är dyrare, 
-utan priset ska bara vara högre i "utskriften" av munkarna.
-*/
-
-  /*
-Om kunden har beställt för totalt mer än 800 kr 
-ska det inte gå att välja faktura som betalsätt.
-*/
-
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
 
@@ -534,8 +534,11 @@ Om kunden inte har lagt beställningen inom 15 minuter så
 ska beställningsformuläret tömmas/rensas och kunden 
 ska meddelas att denne är för långsam.
 */
+
+  //RABATTERNA SKA OCSKSÅ TÖMMAS
   const toSlowMsg = document.querySelector('#toSlowMsg');
-  const SLOWNESS_TIMER_MINUTES = 0.1; //ändra till 15 min (0.1 för test) caps endast variabel som en "inställning"=bestämt
+  const SLOWNESS_TIMER_MINUTES = 15; //ändra till 15 min (0.1 för test)
+  // caps endast variabel som en "inställning"=bestämt
   const shippingCostHtml = document.querySelector('#shippingCost');
 
   setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
@@ -562,6 +565,13 @@ ska meddelas att denne är för långsam.
         'Formuläret har tömts eftersom beställningen inte slutfördes inom 15 minuter.';
     }
   }
+
+  /*
+På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
+tillkommer ett helgpåslag på 15 % på alla munkar. 
+Detta ska inte framgå för kunden att munkarna är dyrare, 
+utan priset ska bara vara högre i "utskriften" av munkarna.
+*/
 
   // ----------------------------------------------------------------------
   // --------------- Delete-knapp efter produkt i varukorg ----------------
