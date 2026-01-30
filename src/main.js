@@ -529,30 +529,13 @@ ska meddelas att denne är för långsam.
       shoppingCartSection.innerHTML = '';
     }
 
-    // Rensa cart-array och totalsumma
-    cart.length = 0;
-    cartTotal = 0;
-    cartTotalHtml.innerHTML = 'Summa: 0kr';
-
-    // Rensa frakt
-    if (shippingCostHtml) {
-      shippingCostHtml.innerHTML = 'Fraktkostnad: 0 kr';
+    const totalOrderSummary = document.querySelector('#totalOrderSummary');
+    if (totalOrderSummary) {
+      totalOrderSummary.innerHTML = '';
     }
-
-    // Rensa rabatter och totalsummor
-    const totalDiscountedEl = document.querySelector('#totalDiscountedSum');
-    if (totalDiscountedEl) {
-      totalDiscountedEl.innerHTML = '';
-    }
-
-    const discountEl = document.querySelector('#discount');
-    if (discountEl) {
-      discountEl.innerHTML = '';
-    }
-
-    const cartSumEl = document.querySelector('#cartSum');
-    if (cartSumEl) {
-      cartSumEl.innerHTML = '';
+    const orderSummary = document.querySelector('#orderSummary');
+    if (orderSummary) {
+      orderSummary.innerHTML = '';
     }
 
     const totalSumEl = document.querySelector('#total-sum');
@@ -863,7 +846,7 @@ function validatePersonalNumberField() {
 // ----------------------------------------------------------------------
 // ------------ Formvalidering och orderBtn färgändring -----------------
 // ----------------------------------------------------------------------
-
+// OBS 2DO - ändra till att form kan skickas vid sumbit ist
 function checkFormFieldValidity() {
   orderBtn.setAttribute('disabled', '');
   orderBtn.classList.remove('ready');
