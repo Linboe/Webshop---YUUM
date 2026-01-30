@@ -42,12 +42,11 @@ import products from './products.mjs';
  *
  *    SPECIALREGLER
  * x  mån innan kl.10 = 10% rabatt på beställningssumman - visas med en rad "Måndagsrabatt: 10% på hela beställningen"
- *    fre - se uppgiftsbeskrivning
+ * x  fre - se uppgiftsbeskrivning
  * x  > 800 kr - se uppgiftsbeskrivning
- *    >= 10 munkar/produkter - se uppgiftsbeskrivning
+ * x  >= 10 munkar/produkter - se uppgiftsbeskrivning
  * x  >= 15 munkar/produkter - se uppgiftsbeskrivning
  *    om ej beställning inom 15 min ska beställningsformuläret tömmas/rensas och kunden ska meddelas att för långsamt - anv. timer?
- *    Extra/frivilligt - se uppgiftsbeskrivning
  */
 
 let filteredProducts = Array.from(products); //kopia av arrayen ovan. let --> kan ändras vilket behövs vid filtrering
@@ -389,7 +388,7 @@ Detta visas i varukorgssammanställningen som en rad med texten
 "Måndagsrabatt: 10 % på hela beställningen".
 */
 
-  const date = new Date(2026, 1, 26, 8, 0); //töm Date(2026, 0, 26, 8, 0) innan inlämning
+  const date = new Date(2026, 0, 26, 8, 0); //töm Date(2026, 0, 26, 8, 0) innan inlämning
   let cartSum = cartTotal;
 
   /* samma sak, skrivet på annat vis
@@ -430,6 +429,8 @@ Om kunden beställer totalt mer än 15 munkar så blir frakten gratis.
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
 */
+
+  //OBS 2DO - fraktkostnad Ej i totalpriset
 
   let orderProductCount = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -475,7 +476,7 @@ ska munkpriset för just denna munksort rabatteras med 10 %
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
 
-  // 2DO !!! denna visar INTE uppdaterad rabattTOTAL (förutom måndag) - MÅSTE ÄNDRAS
+  // OBS 2DO !!! denna visar INTE uppdaterad rabattTOTAL (förutom måndag) - MÅSTE ÄNDRAS
   document.querySelector('#total-sum').innerHTML = `${cartSum} kr`;
 }
 
@@ -510,10 +511,9 @@ Om kunden inte har lagt beställningen inom 15 minuter så
 ska beställningsformuläret tömmas/rensas och kunden 
 ska meddelas att denne är för långsam.
 */
-
-  //RABATTERNA SKA OCSKSÅ TÖMMAS
+  // OBS 2DO -
   const toSlowMsg = document.querySelector('#toSlowMsg');
-  const SLOWNESS_TIMER_MINUTES = 15; //ändra till 15 min (0.1 för test)
+  const SLOWNESS_TIMER_MINUTES = 0.1; //ändra till 15 min (0.1 för test)
   // caps endast variabel som en "inställning"=bestämt
   const shippingCostHtml = document.querySelector('#shippingCost');
 
@@ -524,21 +524,49 @@ ska meddelas att denne är för långsam.
 
     const shoppingCartSection = document.querySelector('#shoppingCart');
 
+    // Töm varukorg
     if (shoppingCartSection) {
       shoppingCartSection.innerHTML = '';
     }
 
+    // Rensa cart-array och totalsumma
     cart.length = 0;
     cartTotal = 0;
     cartTotalHtml.innerHTML = 'Summa: 0kr';
 
+    // Rensa frakt
     if (shippingCostHtml) {
       shippingCostHtml.innerHTML = 'Fraktkostnad: 0 kr';
+    }
+
+    // Rensa rabatter och totalsummor
+    const totalDiscountedEl = document.querySelector('#totalDiscountedSum');
+    if (totalDiscountedEl) {
+      totalDiscountedEl.innerHTML = '';
+    }
+
+    const discountEl = document.querySelector('#discount');
+    if (discountEl) {
+      discountEl.innerHTML = '';
+    }
+
+    const cartSumEl = document.querySelector('#cartSum');
+    if (cartSumEl) {
+      cartSumEl.innerHTML = '';
+    }
+
+    const totalSumEl = document.querySelector('#total-sum');
+    if (totalSumEl) {
+      totalSumEl.innerHTML = '0 kr'; // nollställ
     }
 
     if (toSlowMsg) {
       toSlowMsg.innerHTML =
         'Formuläret har tömts eftersom beställningen inte slutfördes inom 15 minuter.';
+
+      setTimeout(() => {
+        toSlowMsg.innerHTML = '';
+      }, 6000); // meddelandet ligger kvar i 6 sek
     }
   }
 
