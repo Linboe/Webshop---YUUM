@@ -389,7 +389,7 @@ Detta visas i varukorgssammanställningen som en rad med texten
 "Måndagsrabatt: 10 % på hela beställningen".
 */
 
-  const date = new Date(); //töm Date(2026, 0, 26, 8, 0) innan inlämning
+  const date = new Date(2026, 1, 26, 8, 0); //töm Date(2026, 0, 26, 8, 0) innan inlämning
   let cartSum = cartTotal;
 
   /* samma sak, skrivet på annat vis
@@ -571,22 +571,33 @@ På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03
 tillkommer ett helgpåslag på 15 % på alla munkar. 
 Detta ska inte framgå för kunden att munkarna är dyrare, 
 utan priset ska bara vara högre i "utskriften" av munkarna.
-
-  const date = new Date(2016, 4, 16, 0);
-  let weekendPrice = productSum;
-
-  const FRIDAY = 5;
-  const SATURDAY = 6;
-  const SUNDAY = 0;
-
-  if (
-    (date.getDay() === FRIDAY && date.getHours() >= 15) ||
-    date.getDay() === SATURDAY ||
-    (date.getDay() === SUNDAY && date.getHours() <= 3)
-  ) {
-    weekendPrice *= 1.15;
-  }
 */
+  function updateProductSum() {
+    const date = new Date(2016, 5, 16, 0); // Uncaught ReferenceError: date is not defined
+    const FRIDAY = 5;
+    const SATURDAY = 6;
+    const SUNDAY = 0;
+
+    let weekendPrice = 0;
+
+    for (let i = 0; i < cart.length; i++) {
+      const productSum = cart[i].price * cart[i].amount;
+      weekendPrice += productSum;
+
+      if (
+        (date.getDay() === FRIDAY && date.getHours() >= 15) ||
+        date.getDay() === SATURDAY ||
+        (date.getDay() === SUNDAY && date.getHours() <= 3)
+      ) {
+        weekendPrice *= 1.15;
+      }
+    }
+
+    weekendPrice = Math.round(weekendPrice);
+    console.log(`Total varukorg med helgpåslag: ${weekendPrice} kr`);
+  }
+
+  updateProductSum();
 
   // ----------------------------------------------------------------------
   // --------------- Delete-knapp efter produkt i varukorg ----------------
