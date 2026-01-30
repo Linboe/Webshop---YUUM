@@ -571,6 +571,21 @@ På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03
 tillkommer ett helgpåslag på 15 % på alla munkar. 
 Detta ska inte framgå för kunden att munkarna är dyrare, 
 utan priset ska bara vara högre i "utskriften" av munkarna.
+
+  const date = new Date(2016, 4, 16, 0);
+  let weekendPrice = productSum;
+
+  const FRIDAY = 5;
+  const SATURDAY = 6;
+  const SUNDAY = 0;
+
+  if (
+    (date.getDay() === FRIDAY && date.getHours() >= 15) ||
+    date.getDay() === SATURDAY ||
+    (date.getDay() === SUNDAY && date.getHours() <= 3)
+  ) {
+    weekendPrice *= 1.15;
+  }
 */
 
   // ----------------------------------------------------------------------
