@@ -388,7 +388,7 @@ Detta visas i varukorgssammanställningen som en rad med texten
 "Måndagsrabatt: 10 % på hela beställningen".
 */
 
-  const date = new Date(2026, 0, 26, 8, 0); //töm Date(2026, 0, 26, 8, 0) innan inlämning
+  const date = new Date(); //töm Date(2026, 0, 26, 8, 0) innan inlämning
   let cartSum = cartTotal;
 
   /* samma sak, skrivet på annat vis
@@ -560,7 +560,7 @@ Detta ska inte framgå för kunden att munkarna är dyrare,
 utan priset ska bara vara högre i "utskriften" av munkarna.
 */
 
-  const date = new Date(2016, 4, 30, 17); // för helg new Date(2016, 0, 30, 17)
+  const date = new Date(); // för helg new Date(2016, 0, 30, 17)
   const FRIDAY = 5;
   const SATURDAY = 6;
   const SUNDAY = 0;
@@ -909,6 +909,7 @@ const resetBtn = document.getElementById('resetBtn');
 const totalOrderSummary = document.getElementById('totalOrderSummary');
 const orderSummary = document.getElementById('orderSummary');
 const totalSum = document.getElementById('total-sum');
+const cartTotal = document.getElementById('cartTotal');
 
 resetBtn.addEventListener('click', () => {
   if (orderForm) orderForm.reset();
@@ -917,6 +918,8 @@ resetBtn.addEventListener('click', () => {
     const products = totalOrderSummary.querySelectorAll('article.cartProducts');
     products.forEach((p) => p.remove()); //så inte +/- knapparna försvinner och man kan lägga till produkter igen efter resetBtn
   }
+
+  if (cartTotal) cartTotal.innerHTML = '';
 
   if (orderSummary) orderSummary.innerHTML = '';
 
