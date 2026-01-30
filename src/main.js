@@ -564,7 +564,7 @@ utan priset ska bara vara högre i "utskriften" av munkarna.
   const FRIDAY = 5;
   const SATURDAY = 6;
   const SUNDAY = 0;
-  const cartTotalHtml = document.querySelector('#cartTotal');
+
   let totalWeekendPrice = 0;
 
   for (let i = 0; i < cart.length; i++) {
@@ -578,21 +578,21 @@ utan priset ska bara vara högre i "utskriften" av munkarna.
     ) {
       weekendPrice *= 1.15;
       weekendPrice = Math.round(weekendPrice);
-
-      const span = document.querySelectorAll('.cartProductSum')[i];
-      if (span) {
-        span.textContent = `${weekendPrice} kr`;
-      }
-      totalWeekendPrice += weekendPrice;
     }
 
-    // OBS 2DO cartTotal skrivs inte över (endast i console) - checka ID
-    if (cartTotal) {
-      cartTotal.innerHTML = `Summa: ${totalWeekendPrice} kr`;
+    const span = document.querySelectorAll('.cartProductSum')[i];
+    if (span) {
+      span.textContent = `${weekendPrice} kr`;
     }
-
-    console.log(`Total varukorg med helgpåslag: ${totalWeekendPrice} kr`);
+    totalWeekendPrice += weekendPrice;
   }
+  // OBS 2DO cartTotal skrivs inte över (endast i console) - checka ID
+  const cartTotal = document.querySelector('.cartProducts');
+  if (cartTotal) {
+    cartTotal.innerHTML = `Summa: ${totalWeekendPrice} kr`;
+  }
+
+  console.log(`Total varukorg med helgpåslag: ${totalWeekendPrice} kr`);
 
   // ----------------------------------------------------------------------
   // --------------- Delete-knapp efter produkt i varukorg ----------------
