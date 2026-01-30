@@ -418,8 +418,11 @@ ska det inte gå att välja faktura som betalsätt.
   const invoiceLabel = document.querySelector('.invoice-option');
 
   if (cartSum > 800) {
-    if (invoiceOption) invoiceOption.remove();
-    if (invoiceLabel) invoiceLabel.remove();
+    if (invoiceOption) invoiceOption.style.display = 'none';
+    if (invoiceLabel) invoiceLabel.style.display = 'none';
+  } else {
+    if (invoiceOption) invoiceOption.style.display = '';
+    if (invoiceLabel) invoiceLabel.style.display = '';
   }
 
   /*
@@ -427,9 +430,6 @@ Om kunden beställer totalt mer än 15 munkar så blir frakten gratis.
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
 */
-  // OBS - fraktkostnad försvinner ej efter raderad produkt
-  // fortfarande fel pga let shippingCost = 25; i en loop..
-  // decimaler i ${shippingCost}, hinner ej
 
   let orderProductCount = 0;
   for (let i = 0; i < cart.length; i++) {
