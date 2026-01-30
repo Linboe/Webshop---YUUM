@@ -355,8 +355,8 @@ function addProductsToCart(e) {
 
 const cartTotalHtml = document.querySelector('#cartTotal');
 
+let cartTotal = 0; //gör global
 function updateCartTotals() {
-  let cartTotal = 0;
   for (let i = 0; i < cart.length; i++) {
     const productSum = cart[i].price * cart[i].amount;
     cartTotal += productSum;
@@ -417,6 +417,7 @@ I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 */
   // OBS - onödigt med loop för varje men pga göra tydligt för mig..
   // OBS - har jag 2 olika produkter behöver båda just nu vara över 15 för fri frakt - fixa!
+
   for (let i = 0; i < cart.length; i++) {
     const product = cart[i];
 
@@ -533,10 +534,9 @@ Om kunden inte har lagt beställningen inom 15 minuter så
 ska beställningsformuläret tömmas/rensas och kunden 
 ska meddelas att denne är för långsam.
 */
-
-  //OBS! 2DO!!!! --- totalsumman tömt inte!!
   const toSlowMsg = document.querySelector('#toSlowMsg');
   const SLOWNESS_TIMER_MINUTES = 0.1; //ändra till 15 min (0.1 för test) caps endast variabel som en "inställning"=bestämt
+  const shippingCostHtml = document.querySelector('#shippingCost');
 
   setTimeout(clearOrder, 1000 * 60 * SLOWNESS_TIMER_MINUTES);
 
@@ -547,6 +547,14 @@ ska meddelas att denne är för långsam.
 
     if (shoppingCartSection) {
       shoppingCartSection.innerHTML = '';
+    }
+
+    cart.length = 0;
+    cartTotal = 0;
+    cartTotalHtml.innerHTML = 'Summa: 0kr';
+
+    if (shippingCostHtml) {
+      shippingCostHtml.innerHTML = 'Fraktkostnad: 0 kr';
     }
 
     if (toSlowMsg) {

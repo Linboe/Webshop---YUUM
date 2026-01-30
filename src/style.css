@@ -405,6 +405,12 @@ button.send.ready:not(:disabled) {
   font-weight: 600;
 }
 
+.toSlowMsg {
+  color: rgb(111, 7, 7);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 25px;
+}
 /* --------- animation prisändring ---------- */
 .cartProducts {
   font-family: 'Poppins', sans-serif;
