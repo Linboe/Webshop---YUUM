@@ -513,7 +513,7 @@ ska meddelas att denne är för långsam.
 */
   // OBS 2DO -
   const toSlowMsg = document.querySelector('#toSlowMsg');
-  const SLOWNESS_TIMER_MINUTES = 0.1; //ändra till 15 min (0.1 för test)
+  const SLOWNESS_TIMER_MINUTES = 15; //ändra till 15 min (0.1 för test)
   // caps endast variabel som en "inställning"=bestämt
   const shippingCostHtml = document.querySelector('#shippingCost');
 
@@ -847,6 +847,7 @@ function validatePersonalNumberField() {
 // ------------ Formvalidering och orderBtn färgändring -----------------
 // ----------------------------------------------------------------------
 // OBS 2DO - ändra till att form kan skickas vid sumbit ist
+// OBS 2DO - knappen ändrar inte färg om kort valts (pga invocie ej validerat) - fixa!
 function checkFormFieldValidity() {
   orderBtn.setAttribute('disabled', '');
   orderBtn.classList.remove('ready');
@@ -899,5 +900,27 @@ export function initform() {
   orderForm.addEventListener('focusout', checkFormFieldValidity);
 }
 initform();
+
+// ----------------------------------------------------------------------
+// ---------------- Rensa formulär och varukorg Btn ---------------------
+// ----------------------------------------------------------------------
+
+const resetBtn = document.getElementById('resetBtn');
+const totalOrderSummary = document.getElementById('totalOrderSummary');
+const orderSummary = document.getElementById('orderSummary');
+const totalSum = document.getElementById('total-sum');
+
+resetBtn.addEventListener('click', () => {
+  if (orderForm) orderForm.reset();
+
+  if (totalOrderSummary) {
+    const products = totalOrderSummary.querySelectorAll('article.cartProducts');
+    products.forEach((p) => p.remove()); //så inte +/- knapparna försvinner och man kan lägga till produkter igen efter resetBtn
+  }
+
+  if (orderSummary) orderSummary.innerHTML = '';
+
+  if (totalSum) orderSummary.innerHTML = '';
+});
 
 printProducts();
