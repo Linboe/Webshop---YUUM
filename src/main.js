@@ -381,13 +381,12 @@ function updateCartTotals() {
   // ----------------------------------------------------------------------
   // ------------------------- Specialregler ------------------------------
   // ----------------------------------------------------------------------
-
+  /*
   /*
 På måndagar innan kl. 10 ges 10 % rabatt på hela beställningssumman. 
 Detta visas i varukorgssammanställningen som en rad med texten 
 "Måndagsrabatt: 10 % på hela beställningen".
 */
-
   const date = new Date(); //töm Date(2026, 0, 26, 8, 0) innan inlämning
   let cartSum = cartTotal;
 
@@ -412,7 +411,7 @@ if (date.getDay() === 1) {
   /*
 Om kunden har beställt för totalt mer än 800 kr 
 ska det inte gå att välja faktura som betalsätt.
-*/
+
   const invoiceOption = document.querySelector('.invoice');
   const invoiceLabel = document.querySelector('.invoice-option');
 
@@ -423,12 +422,12 @@ ska det inte gå att välja faktura som betalsätt.
     if (invoiceOption) invoiceOption.style.display = '';
     if (invoiceLabel) invoiceLabel.style.display = '';
   }
-
+*/
   /*
 Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. 
 I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
 (i detta fall om man beställer mer än 15 produkter (ej specifikt munk)
-*/
+
 
   //OBS 2DO - fraktkostnad Ej i totalpriset
 
@@ -447,11 +446,11 @@ I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
   calculateShipping();
   document.querySelector('#shippingCost').innerHTML =
     `Fraktkostnad: ${shippingCost} kr`;
-
+*/
   /*
 Om kunden har beställt minst 10 munkar av samma sort, 
 ska munkpriset för just denna munksort rabatteras med 10 %
-*/
+
   let totalDiscountedSum = 0;
   for (let i = 0; i < cart.length; i++) {
     const sameProduct = cart[i].amount;
@@ -472,7 +471,7 @@ ska munkpriset för just denna munksort rabatteras med 10 %
   } else {
     totalDiscountedEl.innerHTML = ''; // rensa om ingen rabatt dragits
   }
-
+*/
   // -------------- totalt pris efter rabatt i fixed-nav ------------------
   // ----------------------------------------------------------------------
 
@@ -510,7 +509,7 @@ function printCart() {
 Om kunden inte har lagt beställningen inom 15 minuter så 
 ska beställningsformuläret tömmas/rensas och kunden 
 ska meddelas att denne är för långsam.
-*/
+
   // OBS 2DO -
   const toSlowMsg = document.querySelector('#toSlowMsg');
   const SLOWNESS_TIMER_MINUTES = 15; //ändra till 15 min (0.1 för test)
@@ -552,13 +551,13 @@ ska meddelas att denne är för långsam.
       }, 6000); // meddelandet ligger kvar i 6 sek
     }
   }
-
+*/
   /*
 På fredagar efter kl. 15 och fram till natten mellan söndag och måndag kl. 03.00 
 tillkommer ett helgpåslag på 15 % på alla munkar. 
 Detta ska inte framgå för kunden att munkarna är dyrare, 
 utan priset ska bara vara högre i "utskriften" av munkarna.
-*/
+
 
   const date = new Date(); // för helg new Date(2016, 0, 30, 17)
   const FRIDAY = 5;
@@ -593,7 +592,7 @@ utan priset ska bara vara högre i "utskriften" av munkarna.
   }
 
   console.log(`Total varukorg med helgpåslag: ${totalWeekendPrice} kr`);
-
+*/
   // ----------------------------------------------------------------------
   // --------------- Delete-knapp efter produkt i varukorg ----------------
   // ----------------------------------------------------------------------

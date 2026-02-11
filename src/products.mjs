@@ -80,7 +80,7 @@ const products = [
   },
   {
     id: 7,
-    name: 'Marsmallow',
+    name: 'Marshmallow',
     img: {
       src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-marsmallow.jpg',
       width: 4096,
