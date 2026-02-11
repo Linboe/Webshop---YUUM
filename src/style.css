@@ -568,6 +568,7 @@ footer a {
 
 footer .fa {
   font-size: 1.5rem;
+  color: rgb(51, 47, 109);
 }
 
 @media screen and (min-width: 720px) {
