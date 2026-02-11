@@ -3,7 +3,7 @@ const products = [
     id: 1,
     name: 'Lux Chocolate',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/donut-lux-chocolat.jpg',
+      src: '/Webshop---YUUM/img/donut-lux-chocolat.jpg',
       width: 2000,
       height: 3000,
       alt: 'Hand-tar-Lux-Chocolate-munk',
@@ -17,7 +17,7 @@ const products = [
     id: 2,
     name: 'Vanilla',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/donut-vanilla.jpg',
+      src: '/Webshop---YUUM/img/donut-vanilla.jpg',
       width: 3145,
       height: 4718,
       alt: 'Tre-vanilj-munkar',
@@ -30,7 +30,7 @@ const products = [
     id: 3,
     name: 'Blueberry',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/donut-blueberry.jpg',
+      src: '/Webshop---YUUM/img/donut-blueberry.jpg',
       width: 4096,
       height: 2160,
       alt: 'En-blåbärsmunk-med-strössel',
@@ -43,7 +43,7 @@ const products = [
     id: 4,
     name: 'Berry Swirl',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-berry-swirl.jpg',
+      src: '/Webshop---YUUM/img/icecream-berry-swirl.jpg',
       width: 4096,
       height: 2160,
       alt: 'En-glasskon-med-rosa-mjukglass',
@@ -56,7 +56,7 @@ const products = [
     id: 5,
     name: 'Salty Liquorice',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-salty-liquorice.jpg',
+      src: '/Webshop---YUUM/img/icecream-salty-liquorice.jpg',
       width: 4096,
       height: 2160,
       alt: 'En-hand-håller-glasskon-med-mjukglass',
@@ -69,7 +69,7 @@ const products = [
     id: 6,
     name: 'Soft Honey',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/icecream-soft-honey.jpg',
+      src: '/Webshop---YUUM/img/icecream-soft-honey.jpg',
       width: 4096,
       height: 2160,
       alt: 'En-person-slickar-mjukglass-i-kon',
@@ -82,7 +82,7 @@ const products = [
     id: 7,
     name: 'Marshmallow',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-marsmallow.jpg',
+      src: '/Webshop---YUUM/img/milkshake-marsmallow.jpg',
       width: 4096,
       height: 2160,
       alt: 'Ett-högt-glas-med-milkshake-kakor-i-bakgrunden',
@@ -95,7 +95,7 @@ const products = [
     id: 8,
     name: 'Coco',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-coco.jpg',
+      src: '/Webshop---YUUM/img/milkshake-coco.jpg',
       width: 4096,
       height: 2160,
       alt: 'Ett-glas-med-milkshake-och-sugrör',
@@ -108,7 +108,7 @@ const products = [
     id: 9,
     name: 'YUUM special',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-yuum-special.jpg',
+      src: '/Webshop---YUUM/img/milkshake-yuum-special.jpg',
       width: 4096,
       height: 2160,
       alt: 'Ett-glas-med-milkshake-toppat-med-grädde-choklad-marsmallows-spiller-ut-på-bordet',
@@ -121,7 +121,7 @@ const products = [
     id: 10,
     name: 'Mango',
     img: {
-      src: '/fed25d-js-intro-inl-1-Linboe/img/milkshake-mango.jpg',
+      src: '/Webshop---YUUM/img/milkshake-mango.jpg',
       width: 4096,
       height: 2160,
       alt: 'En-glasmugg-med-milkshake-toppat-med-mango',
