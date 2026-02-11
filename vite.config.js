@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/fed25d-js-intro-inl-1-Linboe/',
+  base: '/https://github.com/Linboe/Webshop---YUUM',
 });
