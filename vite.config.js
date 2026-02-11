@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/Linboe/Webshop---YUUM',
+  base: '/Webshop---YUUM',
 });
